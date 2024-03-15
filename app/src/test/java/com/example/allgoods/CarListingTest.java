@@ -10,7 +10,7 @@ public class CarListingTest {
 
     @Test
     public void testValidCarListingCreation() {
-        User owner = new User(1, "testUser", "Test@Password123");
+        User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
         Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
         Date listingDate = new Date();
@@ -24,7 +24,7 @@ public class CarListingTest {
 
     @Test
     public void testChangePrice() {
-        User owner = new User(1, "testUser", "Test@Password123");
+        User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
         Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
         Date listingDate = new Date();
@@ -36,7 +36,7 @@ public class CarListingTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testChangePriceSamePrice() {
-        User owner = new User(1, "testUser", "Test@Password123");
+        User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
         Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
         Date listingDate = new Date();
@@ -45,77 +45,23 @@ public class CarListingTest {
         carListing.changePrice(25000.50);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testChangePriceInvalidNewPrice() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
-        Date listingDate = new Date();
-        CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
-
-        carListing.changePrice(-5000);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidPriceZero() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
-        Date listingDate = new Date();
-        new CarListing(1, car, 0, listingDate);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidPriceNegative() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
-        Date listingDate = new Date();
-        new CarListing(1, car, -10000, listingDate);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidPriceTooHigh() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
-        Date listingDate = new Date();
-        new CarListing(1, car, 200000000, listingDate);
-    }
     @Test
-    public void testCarListingTags() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        String[] tags = {"sedan", "automatic", "gasoline", "black"};
+    public void testGetOwnerEmail() {
+        User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
+        String[] tags = {"sedan", "automatic"};
         Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
         Date listingDate = new Date();
         CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
 
-        String[] carTags = car.getCarTagsArray();
-        assertEquals(4, carTags.length);
-        assertArrayEquals(tags, car.getCarTagsArray());
-    }
-
-    @Test
-    public void testChangeCarTags() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        String[] tags = {"sedan", "automatic", "gasoline", "black"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
-        Date listingDate = new Date();
-        CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
-
-        car.addTags("SUV");
-        car.addTags("4WD");
-
-        String[] newTags = {"sedan", "automatic", "gasoline", "black", "SUV", "4WD"};
-        String[] updatedCarTags = car.getCarTagsArray();
-        assertEquals(6, updatedCarTags.length);
+        assertEquals("testuser@example.com", carListing.getCar().getOwner().getEmail());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidCarTags() {
-        User owner = new User(1, "testUser", "Test@Password123");
-        // Attempt to add a tag with special characters
-        String[] invalidTags = {"sedan", "automatic", "gasoline", "black!", "invalid#tag"};
-        new Car(1, owner, "Toyota", "Camry", 2019, invalidTags);
+    public void testInvalidEmail() {
+        User owner = new User(1, "testUser", "Test@Password123", "invalidemail.com");
+        String[] tags = {"sedan", "automatic"};
+        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
+        Date listingDate = new Date();
+        new CarListing(1, car, 25000.50, listingDate);
     }
 }

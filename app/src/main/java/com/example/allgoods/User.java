@@ -4,16 +4,25 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import java.util.Base64;
+import java.util.regex.Pattern;
 
 public class User {
     private final int id;
     private String username;
+
+    private String email;
     private String encryptedPassword;
 
     private static final String SECRET_KEY = "all_goods_key_of_secrets";
 
-    public User(int id, String username, String password) {
+    public User(int id, String username, String password, String email) {
         this.id = id;
+        if(!isValidEmail(email)){
+            throw new IllegalArgumentException("Please input a valid email address");
+        }
+        else{
+            this.email = email;
+        }
         if (!isValidUsername(username)) {
             throw new IllegalArgumentException("Please make sure your username does not have " +
                     "any special characters or spaces");
@@ -34,6 +43,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public String getEmail(){
+        return email;
     }
 
     public String getPassword() {
@@ -96,5 +109,12 @@ public class User {
     private boolean isValidUsername(String username) {
         String regex = "^[a-zA-Z0-9]{6,}$";
         return username.matches(regex);
+    }
+
+    private boolean isValidEmail(String email) {
+        // Regular expression for email validation
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(email).matches();
     }
 }

@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 // Create a new user
                 try {
-                    User newUser = new User(0, userUsername, userPassword);
+                    User newUser = new User(0, userUsername, userPassword, userEmail);
                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                     // Navigate to the login page after successful registration
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
