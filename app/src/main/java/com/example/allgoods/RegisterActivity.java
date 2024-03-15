@@ -16,6 +16,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     Button registerButton;
 
+    Button returnButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,15 @@ public class RegisterActivity extends AppCompatActivity {
         username = findViewById(R.id.editTextUsername);
         password = findViewById(R.id.editTextPassword);
         registerButton = findViewById(R.id.buttonRegister);
+        returnButton = findViewById(R.id.returnButton);
 
+        returnButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -84,15 +84,20 @@
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="306dp"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Sign In"
-        android:textSize="14sp"
+        android:layout_marginBottom="20dp"
+        android:padding="8dp"
+        android:text="Already Registered? Log in"
         android:textAlignment="center"
+        android:background="@android:color/transparent"
         android:textColor="@color/purple"
-        android:layout_marginTop="20dp"/>
+        android:textSize="14sp" />
+
 </LinearLayout>
