@@ -1,6 +1,8 @@
 package com.example.allgoods;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     User newUser = new User(0, userUsername, userPassword);
                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                    // Navigate to the login page after successful registration
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 } catch (IllegalArgumentException e) {
                     Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
