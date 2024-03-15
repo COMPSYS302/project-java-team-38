@@ -15,17 +15,33 @@ public class User {
 
     public User(int id, String username, String password){
         this.id = id;
-        this.username = username;
-        this.encryptedPassword = encrypt(password);
+        if(!isValidUsername(username)){
+            throw new RuntimeException("Please make sure your username does not have" +
+                    "any special characters or spaces");
+        }
+        else {
+            this.username = username;
+        }
+        if(!isValidPassword(password)){
+            throw new RuntimeException("Be sure to include 8 letters which contain 2" +
+                    "numbers and a special character");
+        }
+        else {
+            encryptedPassword = encrypt(password);
+        }
     }
+
+    // getUsername() function gets the username
     public String getUsername() {
         return username;
     }
 
+    // getId() function gets the id
     public int getId() {
         return id;
     }
 
+    // getPassword() function decrypts the password and gets password
     public String getPassword() {
         return decrypt(encryptedPassword);
     }
@@ -66,7 +82,13 @@ public class User {
     // changeUsername() function changes the username of the user
     // inputs userid and the new username and changes the username of the user
     public void changeUsername(int userId, String newUsername){
-        this.username = newUsername;
+        if(!isValidUsername(newUsername)){
+            throw new RuntimeException("Please make sure your username does not have" +
+                    "any special characters or spaces");
+        }
+        else {
+            this.username = newUsername;
+        }
     }
 
     // changePassword() function changes the password of the user
@@ -90,12 +112,22 @@ public class User {
         this.encryptedPassword = encrypt(newPassword);
     }
 
-    // 
-    // Password must be at least 8 characters long and contain 2 numbers and 1 special character
+    // isValidPassword() function checks whether the
+    // Password must be at least 8 characters long and contain
+    // 2 numbers and 1 special character
     private boolean isValidPassword(String password) {
         String regex = "^(?=.*[0-9].*[0-9])(?=.*[!@#$%^&*()-+=]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    // isValidUsername() function checks whether the username is longer than 5 character
+    // does not include any spaces or special characters
+    private boolean isValidUsername(String username) {
+        String regex = "^[a-zA-Z0-9]{6,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(username);
         return matcher.matches();
     }
 }
