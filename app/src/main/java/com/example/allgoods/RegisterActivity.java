@@ -27,12 +27,24 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Retrieve user input
                 String userEmail = email.getText().toString();
                 String userUsername = username.getText().toString();
                 String userPassword = password.getText().toString();
 
-                // Here you can add your logic to handle the registration process.
-                Toast.makeText(RegisterActivity.this, "Registration process goes here!", Toast.LENGTH_SHORT).show();
+                // Validate input
+                if (userEmail.isEmpty() || userUsername.isEmpty() || userPassword.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Create a new user
+                try {
+                    User newUser = new User(0, userUsername, userPassword);
+                    Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                } catch (IllegalArgumentException e) {
+                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
