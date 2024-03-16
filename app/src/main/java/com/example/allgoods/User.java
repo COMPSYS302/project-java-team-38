@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 public class User {
     private final int id;
     private String username;
-
     private String email;
     private String encryptedPassword;
+    AuthenticationManager authenticationManager;
 
     private static final String SECRET_KEY = "all_goods_key_of_secrets";
 

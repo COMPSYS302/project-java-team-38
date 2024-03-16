@@ -18,6 +18,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button returnButton;
 
+    AuthenticationManager authenticationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     User newUser = new User(0, userUsername, userPassword, userEmail);
                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                    // adds the user to the authentication Manager
+                    authenticationManager.addUserCredentials(newUser);
                     // Navigate to the login page after successful registration
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
