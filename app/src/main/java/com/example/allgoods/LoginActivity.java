@@ -35,10 +35,14 @@ public class LoginActivity extends AppCompatActivity {
             // To do:
             // login validation with data base
             // once logged in go to main activity page
+            // convert username and password to string and validate whether fields are valid or not
             public void onClick(View view) {
                 try {
-                    authenticationManager.loginAuthenticator(username.getText().toString(),password.getText().toString());
-
+                    if(authenticationManager.loginAuthenticator(username.getText().toString(),password.getText().toString()) == true) {
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Intent moveToMainActivitiy = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(moveToMainActivitiy);
+                    }
                 } catch(IllegalArgumentException e){
                     Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
