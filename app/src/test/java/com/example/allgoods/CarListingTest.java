@@ -10,11 +10,11 @@ public class CarListingTest {
 
     @Test
     public void testValidCarListingCreation() {
-        User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
+        User owner = new User( "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
+        Car car = new Car( owner, "Toyota", "Camry", 2019, tags,38392);
         Date listingDate = new Date();
-        CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
+        CarListing carListing = new CarListing( car, 25000.50, listingDate);
 
         assertEquals(1, carListing.getId());
         assertEquals(car, carListing.getCar());
@@ -26,7 +26,7 @@ public class CarListingTest {
     public void testChangePrice() {
         User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
+        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags,303820);
         Date listingDate = new Date();
         CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
 
@@ -38,7 +38,7 @@ public class CarListingTest {
     public void testChangePriceSamePrice() {
         User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
+        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags,38392);
         Date listingDate = new Date();
         CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
 
@@ -49,7 +49,7 @@ public class CarListingTest {
     public void testGetOwnerEmail() {
         User owner = new User(1, "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
+        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags,309382);
         Date listingDate = new Date();
         CarListing carListing = new CarListing(1, car, 25000.50, listingDate);
 
@@ -60,7 +60,7 @@ public class CarListingTest {
     public void testInvalidEmail() {
         User owner = new User(1, "testUser", "Test@Password123", "invalidemail.com");
         String[] tags = {"sedan", "automatic"};
-        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags);
+        Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags,3739);
         Date listingDate = new Date();
         new CarListing(1, car, 25000.50, listingDate);
     }

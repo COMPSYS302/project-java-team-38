@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -54,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 // Create a new user
                 try {
-                    User newUser = new User(0, userUsername, userPassword, userEmail);
+                    User newUser = new User(UUID.randomUUID().toString(), userUsername, userPassword, userEmail);
                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                     // adds the user to the authentication Manager
                     authenticationManager.addUserCredentials(newUser);

@@ -7,7 +7,7 @@ import java.util.Base64;
 import java.util.regex.Pattern;
 
 public class User {
-    private final int id;
+    private final String id;
     private String username;
     private String email;
     private String encryptedPassword;
@@ -15,7 +15,7 @@ public class User {
 
     private static final String SECRET_KEY = "all_goods_key_of_secrets";
 
-    public User(int id, String username, String password, String email) {
+    public User(String id, String username, String password, String email) {
         this.id = id;
         if(!isValidEmail(email)){
             throw new IllegalArgumentException("Please input a valid email address");
@@ -41,7 +41,7 @@ public class User {
         return username;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

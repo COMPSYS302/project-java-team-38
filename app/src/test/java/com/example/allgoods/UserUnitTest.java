@@ -8,36 +8,36 @@ public class UserUnitTest {
 
     @Test
     public void testValidUserCreation() {
-        User user = new User(1, "validUser", "Valid@Password123", "valid@example.com");
+        User user = new User("1", "validUser", "Valid@Password123", "valid@example.com");
         assertEquals("validUser", user.getUsername());
-        assertEquals(1, user.getId());
+        assertEquals("1", user.getId());
         assertEquals("valid@example.com", user.getEmail());
         assertTrue(user.getPassword().matches("Valid@Password123"));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidUsername() {
-        new User(1, "invalid User", "Valid@Password123", "valid@example.com");
+        new User("1", "invalid User", "Valid@Password123", "valid@example.com");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidPassword() {
-        new User(1, "validUser", "invalidpassword", "valid@example.com");
+        new User("1", "validUser", "invalidpassword", "valid@example.com");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidEmail() {
-        new User(1, "validUser", "Valid@Password123", "invalidemail");
+        new User("1", "validUser", "Valid@Password123", "invalidemail");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNullEmail() {
-        new User(1, "validUser", "Valid@Password123", null);
+        new User("1", "validUser", "Valid@Password123", null);
     }
 
     @Test
     public void testChangeUsername() {
-        User user = new User(1, "validUser", "Valid@Password123", "valid@example.com");
+        User user = new User("1", "validUser", "Valid@Password123", "valid@example.com");
         user.changeUsername("newUsername", "validUser");
         assertEquals("newUsername", user.getUsername());
     }
