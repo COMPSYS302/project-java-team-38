@@ -18,7 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button returnButton;
 
-    AuthenticationManager authenticationManager = new AuthenticationManager();
+    AuthenticationManager authenticationManager = AuthenticationManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

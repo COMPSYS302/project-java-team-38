@@ -12,7 +12,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
     Button loginButton;
     Button signupText;
-    AuthenticationManager authenticationManager;
+    AuthenticationManager authenticationManager = AuthenticationManager.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             // convert username and password to string and validate whether fields are valid or not
             public void onClick(View view) {
                 try {
-                    if(authenticationManager.loginAuthenticator(username.getText().toString(),password.getText().toString()) == true) {
+                    if(authenticationManager.loginAuthenticator(username.getText().toString(),password.getText().toString()) == true && authenticationManager.databaseValidator() == true) {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent moveToMainActivitiy = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(moveToMainActivitiy);
