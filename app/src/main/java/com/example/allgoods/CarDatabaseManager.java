@@ -18,7 +18,7 @@ public class CarDatabaseManager {
         if(!carListing.getCar().getUser().equals(user)){
             throw new IllegalArgumentException("Invalid action");
         }
-        
+
     }
 
 

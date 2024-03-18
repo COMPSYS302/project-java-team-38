@@ -26,7 +26,7 @@ public class Car {
         this.year = year;
         this.odo = odo;
         Collections.addAll(this.carTags, carTags);
-    }
+    } 
 
     // Getter methods
     public String getCarId() {

@@ -1,7 +1,16 @@
 package com.example.allgoods;
+import androidx.annotation.Nullable;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Random;
+
+
 
 import java.util.Base64;
 import java.util.regex.Pattern;
@@ -12,11 +21,17 @@ public class User {
     private String email;
     private String encryptedPassword;
     AuthenticationManager authenticationManager;
+    private static final long BASE_TIMESTAMP = 1647657600000L; // Base timestamp (adjustable to your needs)
+    private static final Random random = new Random();
 
     private static final String SECRET_KEY = "all_goods_key_of_secrets";
 
-    public User(String id, String username, String password, String email) {
-        this.id = id;
+    public User(String username, String password, String email) {
+        if(generateUniqueId().equals(null)){
+            id = generateUniqueId2();
+        }else{
+            id = generateUniqueId();
+        }
         if(!isValidEmail(email)){
             throw new IllegalArgumentException("Please input a valid email address");
         }
@@ -117,4 +132,35 @@ public class User {
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(email).matches();
     }
+    @Nullable
+    public static String generateUniqueId() {
+        try {
+            // Get the MAC address of the first network interface
+            InetAddress localHost = InetAddress.getLocalHost();
+            NetworkInterface networkInterface = NetworkInterface.getByInetAddress(localHost);
+            byte[] macBytes = networkInterface.getHardwareAddress();
+
+            // Convert MAC address bytes to hex string
+            StringBuilder macStringBuilder = new StringBuilder();
+            for (byte b : macBytes) {
+                macStringBuilder.append(String.format("%02X", b));
+            }
+
+            return macStringBuilder.toString();
+        } catch (SocketException | UnknownHostException e) {
+            e.printStackTrace(); // Handle exceptions gracefully
+            return null; // Return null if unable to get MAC address
+        }
+    }
+
+    public static String generateUniqueId2() {
+        long currentTimestamp = System.currentTimeMillis(); // Current timestamp
+        long uniquePart = currentTimestamp - BASE_TIMESTAMP; // Subtracting base timestamp
+
+        // Adding a random portion to ensure uniqueness
+        uniquePart = uniquePart * 1000 + random.nextInt(1000);
+
+        return String.valueOf(uniquePart); // Convert to string
+    }
+
 }
