@@ -37,7 +37,7 @@ public class AuthenticationManager {
     // Method to authenticate user login
     public boolean loginAuthenticator(String email, String password) {
         // Check if the email exists in the HashMap
-        if (!users.containsKey(email)) {
+        if (!users.containsKey(email) || databaseValidator() == false) {
             throw new IllegalArgumentException("Email is not registered. Please register!");
         }
         // Check if the password matches the stored password for the email
