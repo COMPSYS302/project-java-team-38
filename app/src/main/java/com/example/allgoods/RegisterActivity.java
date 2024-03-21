@@ -55,7 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 // Create a new user
                 try {
-                    User newUser = new User(userUsername, userPassword, userEmail);
+                    UUID uniqueID = UUID.randomUUID();
+                    User newUser = new User(uniqueID.toString(),userUsername, userPassword, userEmail);
                     Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                     // adds the user to the authentication Manager
                     authenticationManager.addUserCredentials(newUser);

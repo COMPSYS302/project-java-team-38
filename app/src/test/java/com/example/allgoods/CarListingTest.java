@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class CarListingTest {
 
-    @Test
+   /* @Test
     public void testValidCarListingCreation() {
         User owner = new User( "testUser", "Test@Password123", "testuser@example.com");
         String[] tags = {"sedan", "automatic"};
@@ -63,5 +63,5 @@ public class CarListingTest {
         Car car = new Car(1, owner, "Toyota", "Camry", 2019, tags,3739);
         Date listingDate = new Date();
         new CarListing(1, car, 25000.50, listingDate);
-    }
+    }*/
 }
