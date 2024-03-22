@@ -6,13 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="@color/purple"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/custom_edittext"
+            android:layout_alignParentStart="true"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/homeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/purple"
+                android:layout_margin="8dp"
+                android:background="@drawable/custom_edittext"
+                android:text="Home"
+                />
+            <Button
+                android:id="@+id/plusButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@drawable/custom_edittext"
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/purple"
+                android:text="+"
+                />
+
+            <Button
+                android:id="@+id/watchlistButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/purple"
+                android:layout_margin="8dp"
+                android:background="@drawable/custom_edittext"
+                android:text="Watchlist"
+                />
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

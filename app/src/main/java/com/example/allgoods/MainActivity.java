@@ -1,14 +1,60 @@
 package com.example.allgoods;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
 public class MainActivity extends AppCompatActivity {
+
+    private Button backButton, homeButton, plusButton, watchlistButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize buttons
+        backButton = findViewById(R.id.backButton);
+        homeButton = findViewById(R.id.homeButton);
+        plusButton = findViewById(R.id.plusButton);
+        watchlistButton = findViewById(R.id.watchlistButton);
+
+        // Set click listeners for each button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Simulate back navigation
+                finish(); // Close current activity
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Home
+                Toast.makeText(MainActivity.this, "Home clicked", Toast.LENGTH_SHORT).show();
+                // Intent to navigate to Home Activity could go here
+            }
+        });
+
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Action for Plus button
+                Toast.makeText(MainActivity.this, "Plus clicked", Toast.LENGTH_SHORT).show();
+                // Actions or Intent to add something could go here
+            }
+        });
+
+        watchlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Watchlist
+                Toast.makeText(MainActivity.this, "Watchlist clicked", Toast.LENGTH_SHORT).show();
+                // Intent to navigate to Watchlist Activity could go here
+            }
+        });
     }
 }
