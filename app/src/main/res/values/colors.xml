@@ -4,4 +4,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name = "light_purple">#DA70D6</color>
     <color name="purple">#8692f7</color>
+    <color name="bottom_nav_item_color">#FF000000</color>
+    <color name="selected_color">#FF0000</color> <!-- red for selected -->
+    <color name="default_color">#000000</color> <!-- black for not selected -->
+    <selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:color="@color/selected_color" android:state_pressed="true" />
+        <item android:color="@color/default_color" />
+    </selector>
+
+
+
 </resources>
+
