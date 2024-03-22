@@ -5,7 +5,9 @@
     <solid android:color="#FFFFFF"/> <!-- Assuming a white background for the search bar -->
 
     <corners android:radius="16dp"/> <!-- Rounded corners with a radius of 16dp -->
-
+    <stroke
+        android:width="3dp"
+        android:color="@color/black"/>
     <padding
         android:left="16dp"
         android:top="10dp"
