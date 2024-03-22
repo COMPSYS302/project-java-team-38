@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,14 +12,30 @@
 
         <Button
             android:id="@+id/backButton"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="Back"
-            android:textColor="@color/purple"
             android:layout_alignParentTop="true"
-            android:background="@drawable/custom_edittext"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:background="@drawable/custom_edittext" />
 
+        <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="12dp"
+            android:background="@drawable/search_bar_bg"
+            android:hint="Search products..."
+            android:inputType="text"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#000"
+            android:textColorHint="#AAA"
+            android:layout_below="@id/backButton"
+            android:layout_marginTop="8dp" />
 
 
         <LinearLayout
