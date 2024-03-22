@@ -22,30 +22,25 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         signupText = findViewById(R.id.signupText);
 
-        signupText.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
+        signupText.setOnClickListener(view -> {
 
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
-            }
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
         });
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // logic for login written over here
-            // To do:
-            // login validation with data base
-            // once logged in go to main activity page
-            // convert username and password to string and validate whether fields are valid or not
-            public void onClick(View view) {
-                try {
-                    if(authenticationManager.loginAuthenticator(username.getText().toString(),password.getText().toString()) == true && authenticationManager.databaseValidator() == true) {
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent moveToMainActivitiy = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(moveToMainActivitiy);
-                    }
-                } catch(IllegalArgumentException e){
-                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        // logic for login written over here
+// To do:
+// login validation with data base
+// once logged in go to main activity page
+// convert username and password to string and validate whether fields are valid or not
+        loginButton.setOnClickListener(view -> {
+            try {
+                if(authenticationManager.loginAuthenticator(username.getText().toString(), password.getText().toString()) && authenticationManager.databaseValidator()) {
+                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Intent moveToMainActivitiy = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(moveToMainActivitiy);
                 }
+            } catch(IllegalArgumentException e){
+                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

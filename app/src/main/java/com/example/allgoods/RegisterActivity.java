@@ -32,40 +32,35 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.buttonRegister);
         returnButton = findViewById(R.id.returnButton);
 
-        returnButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
+        returnButton.setOnClickListener(view -> {
 
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+        registerButton.setOnClickListener(view -> {
+            // Retrieve user input
+            String userEmail = email.getText().toString();
+            String userUsername = username.getText().toString();
+            String userPassword = password.getText().toString();
+
+            // Validate input
+            if (userEmail.isEmpty() || userUsername.isEmpty() || userPassword.isEmpty()) {
+                Toast.makeText(RegisterActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Create a new user
+            try {
+                UUID uniqueID = UUID.randomUUID();
+                User newUser = new User(uniqueID.toString(),userUsername, userPassword, userEmail);
+                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                // adds the user to the authentication Manager
+                authenticationManager.addUserCredentials(newUser);
+                // Navigate to the login page after successful registration
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
-            }
-        });
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Retrieve user input
-                String userEmail = email.getText().toString();
-                String userUsername = username.getText().toString();
-                String userPassword = password.getText().toString();
-
-                // Validate input
-                if (userEmail.isEmpty() || userUsername.isEmpty() || userPassword.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Create a new user
-                try {
-                    UUID uniqueID = UUID.randomUUID();
-                    User newUser = new User(uniqueID.toString(),userUsername, userPassword, userEmail);
-                    Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                    // adds the user to the authentication Manager
-                    authenticationManager.addUserCredentials(newUser);
-                    // Navigate to the login page after successful registration
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                } catch (IllegalArgumentException e) {
-                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

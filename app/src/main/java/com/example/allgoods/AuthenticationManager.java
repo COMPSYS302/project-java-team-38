@@ -13,10 +13,12 @@ public class AuthenticationManager {
     // Private constructor to prevent direct instantiation
     private AuthenticationManager() {
         users = new HashMap<>();
+
     }
 
     // Method to get the Singleton instance of AuthenticationManager
     public static AuthenticationManager getInstance() {
+
         if (instance == null) {
             instance = new AuthenticationManager();
         }
