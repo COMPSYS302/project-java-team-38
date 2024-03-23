@@ -4,43 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="26dp">
+    android:padding="1dp">
 
-    <LinearLayout
-        android:id="@+id/profileHomeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="0dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="0.4in"
+            android:layout_height="0.1in"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:weightSum="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/photo_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingBottom="2dp"
+                android:layout_weight="9"
+                android:text="@string/home"
+                android:textColor="@color/light_purple"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"/>
 
 
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="21dp"
-            android:layout_height="19dp"
-            android:layout_weight="2"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back"
-            android:paddingEnd="8dp"
-            android:src="@drawable/baseline_arrow_back_24" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/profileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Profile" />
-    </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/notificationButton"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/notifications"
-        android:src="@drawable/ic_notification_bell"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
