@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
-
+import android.content.Intent;
 
 
 
@@ -39,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 finish(); // Close current activity
             }
         });*/
+        ivNavigationButton = findViewById(R.id.ivProfileImage);
+        ivNavigationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class); // Replace with your target Activity class
+                startActivity(intent);
+            }
+        });
+
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override

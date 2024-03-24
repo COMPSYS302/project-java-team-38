@@ -3,36 +3,6 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="MainActivity">
-<<<<<<< HEAD
-=======
-        <State />
-      </entry>
-      <entry key="ProfileActivity">
->>>>>>> 6634700d157f33f1162e74bd065fba513527e12e
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-<<<<<<< HEAD
-                  <value value="C:\Users\rohan\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd" />
-=======
-                  <value value="C:\Users\deven\.android\avd\Pixel_7_Pro_API_30.avd" />
->>>>>>> 6634700d157f33f1162e74bd065fba513527e12e
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-<<<<<<< HEAD
-          <timeTargetWasSelectedWithDropDown value="2024-03-24T10:44:48.227733400Z" />
-=======
-          <timeTargetWasSelectedWithDropDown value="2024-03-24T10:40:48.188377300Z" />
->>>>>>> 6634700d157f33f1162e74bd065fba513527e12e
-        </State>
-      </entry>
-      <entry key="RegisterActivity">
         <State />
       </entry>
     </value>

@@ -14,5 +14,6 @@
     <color name="text_selected">#FF3F51B5</color> <!-- Blue for selected state -->
 
     <!-- Color state list for text -->
+    <color name="grey">#f3f4f6</color> <!-- Blue for selected state -->
 
 </resources>

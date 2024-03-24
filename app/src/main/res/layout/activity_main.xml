@@ -6,39 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/ivNavigationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_arrow_back_24"
-        android:padding="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/baseline_profile_picture_rohan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp" />
+
+    <!-- Search EditText -->
     <EditText
         android:id="@+id/etSearchProducts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/search_bar_bg"
         android:drawableEnd="@drawable/ic_search"
         android:hint="Search products..."
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/ivProfileImage"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="78dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tvFeaturedCategories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="2dp"
         android:text="Featured Categories"
+
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSearchProducts" />
@@ -46,10 +50,10 @@
     <HorizontalScrollView
         android:id="@+id/hsvCategories"
         android:layout_width="0dp"
+        android:paddingLeft="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvFeaturedCategories">
 
@@ -58,6 +62,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/featured_categories"
+                android:text="Category 1"
+                android:textColor="@color/black" />
+
+            <!-- Category Button 2 -->
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/featured_categories"
+                android:text="Category 2"
+                android:textColor="@color/black" />
+
 
             <!-- Dynamically add your category buttons here -->
 
@@ -71,6 +93,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:background="@color/white"
+        android:backgroundTint="@color/grey"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
