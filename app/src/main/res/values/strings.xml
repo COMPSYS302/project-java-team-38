@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AllGoods</string>
     <string name="home">Home</string>
+    <string name="user_details">User Details</string>
 </resources>

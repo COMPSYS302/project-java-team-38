@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
         });
-        // logic for login written over here
+
 // To do:
 // login validation with data base
 // once logged in go to main activity page
