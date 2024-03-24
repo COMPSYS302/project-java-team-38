@@ -26,8 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void initViews() {
         // Initialize your ImageView and TextView by finding them by their IDs
-        photoImageView = findViewById(R.id.photo_image_view);
-        titleTextView = findViewById(R.id.title_text_view);
+        photoImageView = findViewById(R.id.user_image);
+        titleTextView = findViewById(R.id.homeButton);
     }
 
     private void setupListeners() {
@@ -41,13 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         // Set an OnClickListener for the TextView
-        titleTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle the TextView click event here
-                onTitleTextViewClicked();
-            }
-        });
+
     }
 
     private void onPhotoImageViewClicked() {
