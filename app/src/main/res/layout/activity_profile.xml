@@ -24,8 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">>
-
+            app:layout_constraintTop_toTopOf="parent">
             <LinearLayout
                 android:id="@+id/profile_to_home_button"
                 android:layout_width="0.5in"
@@ -37,22 +36,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
                 <ImageView
                     android:id="@+id/back_image"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingTop="2dp"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:src="@drawable/baseline_arrow_back_24" />
-
                 <TextView
                     android:id="@+id/back_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:paddingBottom="2dp"
                     android:text="@string/home"
                     android:textColor="@color/Neon_purple"
@@ -62,25 +55,18 @@
                     android:paddingTop="2dp"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/notification_linear"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
+                android:layout_width="300dp"
                 android:layout_weight="9.9"
-                android:layout_marginRight="10dp"
-                tools:ignore="Suspicious0dp">
-
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp">
                 <ImageView
                     android:id="@+id/notification_button"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/baseline_all_inbox_24"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="230dp">
-
+                    android:paddingLeft="270dp">
                 </ImageView>
             </LinearLayout>
         </LinearLayout>
@@ -91,12 +77,10 @@
             android:layout_height="250dp"
             android:layout_below="@+id/top_profile_bar_linear"
             android:layout_marginTop="0dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:weightSum="100">
-
                 <LinearLayout
                     android:id="@+id/profile_picture_linear"
                     android:layout_width="100dp"
@@ -104,25 +88,18 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginLeft="25dp"
                     >
-
                     <ImageView
                         android:id="@+id/user_image"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/rohan_image_circle">
                     </ImageView>
-
-
                 </LinearLayout>
-
-
-
                 <RelativeLayout
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginLeft="10dp">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -132,9 +109,7 @@
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         android:textStyle="bold"></TextView>
-
                 </RelativeLayout>
-
                 <RelativeLayout
                     android:id="@+id/edit_profile_button"
                     android:layout_width="50dp"
@@ -150,26 +125,19 @@
                         android:paddingRight="10dp">
                     </ImageView>
                 </RelativeLayout>
-
                 <RelativeLayout
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="90dp"
                     android:layout_marginLeft="-245dp">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="16dp"
                         android:text="View user info quickly">
-
                     </TextView>
-
                 </RelativeLayout>
-
-
             </LinearLayout>
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -239,12 +207,88 @@
                 </RelativeLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/watchlistButton"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_alignTop="@id/managePaymentButton"
+                android:layout_marginTop="75dp"
+                android:clickable="true"
+                android:focusable="true">
+                <RelativeLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/watch_list"
+                        android:contentDescription="Watchlist" />
+                </RelativeLayout>
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/supportButton"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@+id/watchlistButton"
+                android:layout_marginTop="-1dp"
+                android:clickable="true"
+                android:focusable="true"
+                tools:ignore="NotSibling">
+
+                <RelativeLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Watchlist"
+                        android:src="@drawable/watch_list" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/signout_layout"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_alignBottom="@+id/option_buttons"
+            android:layout_marginBottom="-144dp"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/signoutButton"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/sign_out_card"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Sign out"
+                    android:textSize="30dp"
+                    android:textColor="@color/white">
+
+                </TextView>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
 
     </RelativeLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
