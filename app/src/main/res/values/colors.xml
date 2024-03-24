@@ -9,7 +9,10 @@
     <color name="default_color">#000000</color> <!-- black for not selected -->
 
 
+    <color name="text_normal">#FF000000</color> <!-- Black for normal state -->
+    <color name="text_pressed">#FF3F51B5</color> <!-- Blue for pressed state -->
+    <color name="text_selected">#FF3F51B5</color> <!-- Blue for selected state -->
 
+    <!-- Color state list for text -->
 
 </resources>
-

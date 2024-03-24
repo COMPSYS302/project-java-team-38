@@ -6,113 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="-212dp">
+    <!-- Title Text -->
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/custom_edittext" />
+    <!-- Search Bar -->
 
-        <EditText
-            android:id="@+id/search_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/backButton"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/search_bar_bg"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="12dp"
-            android:hint="Search products..."
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:paddingTop="12dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="12dp"
-            android:textColor="#000"
-            android:textColorHint="#AAA" />
-        `
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/custom_edittext"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="14dp" />
 
+    <!-- Featured Categories Label -->
+
+    <!-- Horizontal Scroll for Categories -->
+
+
+    <EditText
+        android:id="@+id/etSearchProducts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_bar_bg"
+        android:drawableEnd="@drawable/ic_search"
+        android:hint="Search products..."
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="74dp" />
+
+    <TextView
+        android:id="@+id/tvFeaturedCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Featured Categories"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearchProducts" />
+
+    <HorizontalScrollView
+        android:id="@+id/hsvCategories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFeaturedCategories">
 
         <LinearLayout
-            android:id="@+id/bottom_navigation_bar"
-            android:layout_width="match_parent"
+            android:id="@+id/llCategoryButtons"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:textColor="@color/white">
+            android:orientation="horizontal">
 
-
-            <Button
-                android:drawableBottom="@drawable/baseline_add_shopping_cart_24"
-                android:id="@+id/watchlistButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/custom_edittext"
-                android:backgroundTint="@color/purple"
-                android:text="Watchlist"
-                android:textColor="@color/white" />
-            <Button
-                android:id="@+id/plusButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/custom_edittext"
-                android:drawableBottom="@drawable/baseline_add_24"
-                android:backgroundTint="@color/purple"
-                android:text="+"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/homeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:drawableBottom="@drawable/baseline_home_24"
-                android:background="@drawable/custom_edittext"
-
-                android:backgroundTint="@color/purple"
-                android:text="Home"
-                android:textColor="@color/white" />
-
+            <!-- Dynamically add your category buttons here -->
 
         </LinearLayout>
-    </RelativeLayout>
+    </HorizontalScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:labelVisibilityMode="labeled"
-        android:background="?android:attr/windowBackground"
-        app:itemIconTint="@color/bottom_nav_item_color"
-        app:itemTextColor="@color/bottom_nav_item_color"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Your navigation buttons here -->
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_home_24"
+            android:text="Home"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector" />
+        <Button
+            android:id="@+id/plusButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_add_shopping_cart_24"
+            android:text="PLus"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector" />
+
+        <Button
+            android:id="@+id/watchlistButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_add_shopping_cart_24"
+            android:text="Watchlist"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector" />
+
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
