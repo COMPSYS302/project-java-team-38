@@ -7,7 +7,7 @@
     <color name="bottom_nav_item_color">#FF000000</color>
     <color name="selected_color">#FF0000</color> <!-- red for selected -->
     <color name="default_color">#000000</color> <!-- black for not selected -->
-
+    <color name="Neon_purple">#BC29C1</color>
 
 
 
