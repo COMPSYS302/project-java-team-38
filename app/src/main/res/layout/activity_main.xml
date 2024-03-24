@@ -6,24 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Title Text -->
-
-    <!-- Search Bar -->
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="50dp"
+    <ImageView
+        android:id="@+id/ivNavigationButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/custom_edittext"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="14dp" />
-
-    <!-- Featured Categories Label -->
-
-    <!-- Horizontal Scroll for Categories -->
-
+        android:src="@drawable/baseline_arrow_back_24"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/etSearchProducts"
@@ -38,14 +30,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="74dp" />
+        tools:layout_editor_absoluteY="78dp" />
 
     <TextView
         android:id="@+id/tvFeaturedCategories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="Featured Categories"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,8 +92,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableTop="@drawable/baseline_add_shopping_cart_24"
-            android:text="PLus"
+            android:drawableTop="@drawable/baseline_add_24"
+            android:text="Create Listing"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector" />
 

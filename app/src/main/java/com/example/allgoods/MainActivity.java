@@ -5,30 +5,40 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.ImageView;
+
+
+
+
 
 public class MainActivity extends AppCompatActivity {
-
     private Button backButton, homeButton, plusButton, watchlistButton;
-
+    private ImageView ivNavigationButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Initialize buttons
-        backButton = findViewById(R.id.backButton);
+        //backButton = findViewById(R.id.backButton);
+
         homeButton = findViewById(R.id.homeButton);
         plusButton = findViewById(R.id.plusButton);
         watchlistButton = findViewById(R.id.watchlistButton);
 
         // Set click listeners for each button
-        backButton.setOnClickListener(new View.OnClickListener() {
+        /*backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Simulate back navigation
                 finish(); // Close current activity
             }
-        });
+        });*/
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
