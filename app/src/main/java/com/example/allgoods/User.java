@@ -46,5 +46,8 @@ public class User {
     public String getPassword() {
         return  userHelper.decrypt(encryptedPassword);
     }
+    public void setUsername(String username){ this.username = username; }
+
+    public void setPassword()
 
 }

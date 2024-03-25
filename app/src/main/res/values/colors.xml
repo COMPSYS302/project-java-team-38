@@ -16,5 +16,6 @@
 
     <!-- Color state list for text -->
     <color name="grey">#d1d5db</color> <!-- Blue for selected state -->
+    <color name="faded_grey">#4D9E9E9E</color> <!-- faded background color -->
 
 </resources>

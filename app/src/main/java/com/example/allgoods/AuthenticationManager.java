@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class AuthenticationManager {
 
     private static AuthenticationManager instance; // Singleton instance
-    private HashMap<String, User> users; // HashMap to store user credentials
+    public HashMap<String, User> users; // HashMap to store user credentials
 
     // Private constructor to prevent direct instantiation
     private AuthenticationManager() {
