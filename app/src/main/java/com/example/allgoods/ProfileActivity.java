@@ -14,7 +14,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private LinearLayout backToHome;
     private ImageView notificationButton;
-    private RelativeLayout editProfileButton;
     private LinearLayout manageAccountIcon;
     private LinearLayout managePaymentIcon;
     private LinearLayout watchlistIcon;
@@ -33,7 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
         // Initialize UI components by their IDs
         backToHome = findViewById(R.id.profile_to_home_button);
         notificationButton = findViewById(R.id.notification_button);
-        editProfileButton = findViewById(R.id.edit_profile_button);
         manageAccountIcon = findViewById(R.id.manageAccountButton);
         managePaymentIcon = findViewById(R.id.managePaymentButton);
         watchlistIcon = findViewById(R.id.watchlistButton);
@@ -49,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         notificationButton.setOnClickListener(v -> onNotificationButtonClicked());
 
         // Edit Profile Button
-        editProfileButton.setOnClickListener(v -> onEditProfileButtonClicked());
+
 
         // Manage Account Icon
         manageAccountIcon.setOnClickListener(v -> onManageAccountClicked());
