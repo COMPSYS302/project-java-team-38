@@ -275,7 +275,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="350dp"
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
@@ -290,32 +290,54 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edit User Details"
+                android:text="Change Username"
                 android:id="@+id/loginText"
                 android:textSize="36sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/purple"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/userEmail"
+                android:background="@drawable/custom_edittext"
+                android:drawablePadding="8dp"
+                android:inputType="textEmailAddress"
+                android:hint="Enter Email"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="15dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/oldUsername"
+                android:background="@drawable/custom_edittext"
+                android:drawablePadding="8dp"
+                android:hint="Enter Old Username"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="15dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/newUsername"
+                android:background="@drawable/custom_edittext"
+                android:drawablePadding="8dp"
+                android:hint="Enter New Username"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="15dp"/>
             <Button
-                android:id="@+id/changeUsernameButton"
+                android:id="@+id/newUsernameButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/custom_edittext"
                 android:backgroundTint="@color/purple"
-                android:text="Change username"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:cornerRadius="20dp" />
-
-            <Button
-                android:id="@+id/changePasswordButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/custom_edittext"
-                android:backgroundTint="@color/purple"
-                android:text="Change Password"
+                android:text="Change Username"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
@@ -323,7 +345,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/backButtonToUserDetails"
+        android:id="@+id/backButtonToEditProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"

@@ -1,5 +1,7 @@
 package com.example.allgoods;
 
+import android.widget.Toast;
+
 public class User {
     private final String id;
     private String username;
@@ -8,13 +10,12 @@ public class User {
     //bring user helper class
     UserHelper userHelper;
 
-    public User(String id,String username, String password, String email) {
+    public User(String id, String username, String password, String email) {
         this.userHelper = new UserHelper();
         this.id = id;
-        if(!userHelper.isValidEmail(email)){
+        if (!userHelper.isValidEmail(email)) {
             throw new IllegalArgumentException("Please input a valid email address");
-        }
-        else{
+        } else {
             this.email = email;
         }
         if (!userHelper.isValidUsername(username)) {
@@ -27,7 +28,7 @@ public class User {
             throw new IllegalArgumentException("Be sure to include 8 letters which contain 2 " +
                     "numbers and a special character");
         } else {
-            this.encryptedPassword =userHelper.encrypt(password);
+            this.encryptedPassword = userHelper.encrypt(password);
         }
     }
 
@@ -39,15 +40,29 @@ public class User {
         return id;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
     public String getPassword() {
-        return  userHelper.decrypt(encryptedPassword);
+        return userHelper.decrypt(encryptedPassword);
     }
-    public void setUsername(String username){ this.username = username; }
 
-    public void setPassword()
+    public void setUsername(String username) {
+        try {
+            username = userHelper.changeUsername(username, this.username);
+            this.username = username;
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+    }
+
+    public void setPassword(String oldPassword, String newPassword, String newPassword2) {
+        try {
+            this.encryptedPassword = userHelper.changePassword(oldPassword, newPassword, newPassword2, encryptedPassword);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+    }
 
 }

@@ -14,6 +14,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private LinearLayout backToHome;
     private ImageView notificationButton;
+    private ImageView editUserDetails;
     private LinearLayout manageAccountIcon;
     private LinearLayout managePaymentIcon;
     private LinearLayout watchlistIcon;
@@ -37,6 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
         watchlistIcon = findViewById(R.id.watchlistButton);
         supportIcon = findViewById(R.id.supportButton);
         signoutButton = findViewById(R.id.signoutButton);
+        editUserDetails = findViewById(R.id.edit_profile_button);
+
     }
 
     private void setupListeners() {
@@ -47,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         notificationButton.setOnClickListener(v -> onNotificationButtonClicked());
 
         // Edit Profile Button
-
+        editUserDetails.setOnClickListener(v -> onEditProfileButtonClicked());
 
         // Manage Account Icon
         manageAccountIcon.setOnClickListener(v -> onManageAccountClicked());
@@ -82,7 +85,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void onEditProfileButtonClicked() {
-        // Handle the edit profile button click event here
+        Intent editProfile = new Intent(ProfileActivity.this, EditProfileActivity.class);
+        startActivity(editProfile);
     }
 
     private void onManageAccountClicked() {
