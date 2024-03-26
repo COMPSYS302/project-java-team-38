@@ -40,6 +40,9 @@ public class UserHelper {
         if (!isValidPassword(newPassword)) {
             throw new IllegalArgumentException("New Password does not meet the criteria");
         }
+        if(oldPasswordValidation.equals(newPassword)){
+            throw new IllegalArgumentException("Cannot change the password to your current password");
+        }
 
         return encrypt(newPassword);
     }

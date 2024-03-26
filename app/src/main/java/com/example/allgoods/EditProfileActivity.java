@@ -40,8 +40,11 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void handleChangePassword() {
+        Intent changeUsernameActivity = new Intent(EditProfileActivity.this, EditPasswordActivity.class);
+        startActivity(changeUsernameActivity);
 
-        // Additional logic for changing password
+        // Apply the fade-in and fade-out animations
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     private void handleBack() {
