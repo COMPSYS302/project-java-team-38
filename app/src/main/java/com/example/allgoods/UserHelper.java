@@ -16,6 +16,9 @@ public class UserHelper {
             throw new IllegalArgumentException("Please make sure your username does not have " +
                     "any special characters or spaces");
         }
+        if(newUsername.equals(username)){
+            throw new IllegalArgumentException("Username that is being changed is the same");
+        }
         return newUsername;
     }
     public String changePassword(String oldPassword, String newPassword, String newPassword2,String encryptedPassword) {

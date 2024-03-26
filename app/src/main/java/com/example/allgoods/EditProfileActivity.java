@@ -32,7 +32,8 @@ public class EditProfileActivity extends AppCompatActivity {
     // handleChangeUsername() function takes the user to the
     // activity_change_username.xml
     private void handleChangeUsername() {
-
+        Intent changeUsernameActivity = new Intent(EditProfileActivity.this, EditUsernameActivity.class);
+        startActivity(changeUsernameActivity);
     }
 
     private void handleChangePassword() {
