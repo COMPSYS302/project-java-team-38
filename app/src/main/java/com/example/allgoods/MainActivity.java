@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class); // Replace with your target Activity class
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
             }
         });
 

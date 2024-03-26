@@ -34,6 +34,7 @@
         <activity android:name=".ProfileActivity" android:exported="true"/>
         <activity android:name=".EditProfileActivity" android:exported="true"/>
         <activity android:name=".EditUsernameActivity" android:exported="true"/>
+        <activity android:name=".ConfirmUsernameChange" android:exported="true"/>
     </application>
 
 </manifest>

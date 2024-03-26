@@ -1,6 +1,9 @@
 package com.example.allgoods;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -8,61 +11,88 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
-
 public class EditUsernameActivity extends AppCompatActivity {
+
+    private EditText userEmailEditText;
+    private EditText oldUsernameEditText;
+    private EditText newUsernameEditText;
+    private Button changeUsernameButton;
+    private ImageView backButton;
+
+    // Instance variables for AuthenticationManager and UserHelper
+    private AuthenticationManager authManager;
+    private UserHelper userHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_username); // Ensure the layout name is correct
+        setContentView(R.layout.activity_change_username);
 
-        // Initialize the EditTexts
-        EditText userEmailEditText = findViewById(R.id.userEmail);
-        EditText oldUsernameEditText = findViewById(R.id.oldUsername);
-        EditText newUsernameEditText = findViewById(R.id.newUsername);
-        // instalise authenticationManager and UserHelper
-        AuthenticationManager authManager = AuthenticationManager.getInstance();
-        UserHelper userHelper = new UserHelper();
+        initViews();
+        setupListeners();
+    }
 
-        // Intitialize the back button
-        ImageView backButton = findViewById(R.id.backButtonToEditProfile);
+    private void initViews() {
+        // Initialize UI components
+        userEmailEditText = findViewById(R.id.userEmail);
+        oldUsernameEditText = findViewById(R.id.oldUsername);
+        newUsernameEditText = findViewById(R.id.newUsername);
+        changeUsernameButton = findViewById(R.id.newUsernameButton);
+        backButton = findViewById(R.id.backButtonToEditProfile);
 
-        // function goes back to the editProfileActivity
-        backButton.setOnClickListener(v -> {
-            finish();
-        });
+        // Initialize AuthenticationManager and UserHelper
+        authManager = AuthenticationManager.getInstance();
+        userHelper = new UserHelper();
+    }
 
-        // Initialize the "Change Username" button
-        Button changeUsernameButton = findViewById(R.id.newUsernameButton);
+    private void setupListeners() {
+        backButton.setOnClickListener(this::onBackButtonClicked);
+        changeUsernameButton.setOnClickListener(this::onChangeUsernameButtonClicked);
+    }
 
-        // Set a click listener on the button
-        changeUsernameButton.setOnClickListener(v -> {
-            // Retrieve text from EditTexts and convert to String
-            String userEmail = userEmailEditText.getText().toString();
-            String oldUsername = oldUsernameEditText.getText().toString();
-            String newUsername = newUsernameEditText.getText().toString();
-            User user = authManager.users.get(userEmail);
+    private void onBackButtonClicked(View v) {
+        finish();
 
+        // Apply the fade-in and fade-out animations
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 
-            // Implementing validation for username change
-            if(!authManager.users.containsKey(userEmail)){
-                Toast.makeText(this, "Please input a valid email", Toast.LENGTH_SHORT).show();
-            }
-            if(userEmail.isEmpty()){
-                Toast.makeText(this, "Please input an email address", Toast.LENGTH_SHORT).show();
-            }
-            assert user != null;
-            if(!oldUsername.equals(user.getUsername())){
-                Toast.makeText(this, "Old Username does not match", Toast.LENGTH_SHORT).show();
-            }
-            try{
-                user.setUsername(userHelper.changeUsername(newUsername,user.getUsername()));
-            }catch (IllegalArgumentException e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-            }
-            // shows username is changed
-            Toast.makeText(this, "Hi: " + newUsername + " nice name change!", Toast.LENGTH_SHORT).show();
-        });
+    private void onChangeUsernameButtonClicked(View v) {
+        String userEmail = userEmailEditText.getText().toString();
+        String oldUsername = oldUsernameEditText.getText().toString();
+        String newUsername = newUsernameEditText.getText().toString();
+        User user = authManager.users.get(userEmail);
+
+        // Validate inputs
+        if (userEmail.isEmpty() || oldUsername.isEmpty() || newUsername.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!authManager.users.containsKey(userEmail)) {
+            Toast.makeText(this, "Please input a valid email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!oldUsername.equals(user.getUsername())) {
+            Toast.makeText(this, "Old Username does not match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            user.setUsername(userHelper.changeUsername(newUsername, user.getUsername()));
+            Toast.makeText(this, "Hi: " + newUsername + ", nice name change!", Toast.LENGTH_SHORT).show();
+
+            // Handler to introduce a delay
+            new Handler().postDelayed(() -> {
+                Intent usernameConfirmChange = new Intent(EditUsernameActivity.this, ConfirmUsernameChange.class);
+                startActivity(usernameConfirmChange);
+                // Apply the custom animation
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }, 500); // 0.5 second delay
+
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

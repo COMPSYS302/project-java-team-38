@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(ProfileActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
         }
-
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 
     private void onNotificationButtonClicked() {
@@ -111,6 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
         try {
             Intent backToLoginIntent = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(backToLoginIntent);
+            overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
         }catch (Exception e){
             Toast.makeText(ProfileActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
         }

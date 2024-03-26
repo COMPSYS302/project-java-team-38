@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
         });
 
 // To do:
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent moveToMainActivitiy = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(moveToMainActivitiy);
+                    overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
                 }
             } catch(IllegalArgumentException e){
                 Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
