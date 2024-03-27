@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/top_bar_create_profile"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <ImageView
+            android:id="@+id/backCreateListing"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:layout_marginStart="15dp"/>
+
+        <TextView
+            android:id="@+id/confirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/backCreateListing"
+            android:layout_marginStart="280dp"
+            android:text="Create Listing"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/Neon_purple"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_create_listing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomMenuLayout"
+        android:layout_marginTop="55dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="always"
+            android:scrollbars="vertical">
+
+        <LinearLayout
+            android:id="@+id/fullscreen_header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="0dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/addPhotoCreateListing"
+                android:layout_height="250dp"
+                android:layout_width="325dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext">
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please click above to add photos"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"/>
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:id="@+id/ListingTitle"
+                android:drawablePadding="8dp"
+                android:inputType="textEmailAddress"
+                android:hint="Listing Title"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="15dp"
+                android:singleLine="true"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/CarMake"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="8dp"
+                android:hint="Make"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background" />
+
+            <EditText
+                android:id="@+id/Model"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="-50dp"
+                android:drawablePadding="8dp"
+                android:hint="Model"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background" />
+
+            <EditText
+                android:id="@+id/carYearEditText"
+                android:layout_width="85dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="-50dp"
+                android:hint="Year"
+                android:inputType="number"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <EditText
+                android:id="@+id/Milage"
+                android:layout_width="85dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:hint="Milage"
+                android:inputType="number"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"/>
+
+            <Spinner
+                android:id="@+id/carTypeSpinner"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="140dp"
+                android:translationY="-49dp"
+                android:padding="8dp"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:id="@+id/generateDiscriptionGpt"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Generate Discription"
+                android:layout_marginStart="30dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@drawable/sign_out_card"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"/>
+
+
+            <EditText
+                android:id="@+id/carDescription"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:hint="Car description"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:background="@drawable/custom_edittext"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <EditText
+                android:id="@+id/carPrice"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="8dp"
+                android:hint="Price"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/validateListing"
+                android:layout_width="160dp"
+                android:layout_height="45dp"
+                android:text="Validate Listing"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:background="@drawable/sign_out_card"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"/>
+
+        </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <!-- Bottom Menu Layout -->
+    <LinearLayout
+        android:id="@+id/bottomMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/grey"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:weightSum="6">
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/baseline_home_24"
+            android:text="Home"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector" />
+        <Button
+            android:id="@+id/plusButton"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/baseline_add_24"
+            android:text="Create Listing"
+            android:layout_weight="1"
+            android:background="@color/backgroundPurple"
+            android:textColor="@color/text_selector" />
+        <Button
+            android:id="@+id/watchlistmenu"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baseline_add_shopping_cart_24"
+            android:text="Watchlist"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector" />
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
