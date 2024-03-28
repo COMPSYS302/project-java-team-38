@@ -142,12 +142,28 @@
 
             <Spinner
                 android:id="@+id/carTypeSpinner"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="140dp"
+                android:layout_marginStart="120dp"
                 android:translationY="-49dp"
                 android:padding="8dp"
                 android:spinnerMode="dropdown" />
+
+            <EditText
+                android:id="@+id/NumberPlate"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:hint="Number Plate"
+                android:textAllCaps="true"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_gravity="end"
+                android:translationY="-105dp"/>
+
 
             <TextView
                 android:id="@+id/generateDiscriptionGpt"
@@ -181,6 +197,29 @@
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical"/>
 
+            <TextView
+                android:id="@+id/validateListing"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:text="Estimated Price"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@drawable/sign_out_card"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="left"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="30dp"/>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="An Incredible Ai tool which estimates your Cars Price, Thank you to our friends at OPTIFLEET."
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"/>
+
             <EditText
                 android:id="@+id/carPrice"
                 android:layout_width="200dp"
@@ -188,6 +227,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:drawablePadding="8dp"
+                android:layout_marginBottom="30dp"
                 android:hint="Price"
                 android:inputType="textEmailAddress"
                 android:padding="8dp"
@@ -195,20 +235,7 @@
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
 
-            <TextView
-                android:id="@+id/validateListing"
-                android:layout_width="160dp"
-                android:layout_height="45dp"
-                android:text="Validate Listing"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@drawable/sign_out_card"
-                android:gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"/>
+
 
         </LinearLayout>
 

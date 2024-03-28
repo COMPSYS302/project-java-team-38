@@ -4,4 +4,12 @@
     <string name="user_details">User Details</string>
     <string name="SignOutProfileString">Sign Out</string>
     <string name="user_name"></string>
+    <string-array name="car_types">
+        <item>Car Type</item>
+        <item>SUV</item>
+        <item>Sedan</item>
+        <item>Coupe</item>
+        <item>Minivan</item>
+        <item>Hatchback</item>
+    </string-array>
 </resources>

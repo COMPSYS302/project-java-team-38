@@ -1,6 +1,7 @@
 package com.example.allgoods;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -20,8 +21,12 @@ import java.io.IOException;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class CreateListingActivity extends AppCompatActivity {
 
+    private Spinner carTypeSpinner;
+    private final String fieldsNotFilled = "Code 404";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +40,28 @@ public class CreateListingActivity extends AppCompatActivity {
         TextView confirmButton = findViewById(R.id.confirmButton);
         TextView generateDescriptionGpt = findViewById(R.id.generateDiscriptionGpt);
         Spinner carTypeSpinner = findViewById(R.id.carTypeSpinner);
+        TextView validateListing = findViewById(R.id.validateListing);
 
-        backCreateListing.setOnClickListener(v -> finish());
+        backCreateListing.setOnClickListener(v -> onBack());
         confirmButton.setOnClickListener(v -> showToast("Listing confirmed!"));
-
+        validateListing.setOnClickListener(v -> validateListing());
         generateDescriptionGpt.setOnClickListener(v -> {
             String prompt = buildPrompt();
-            generateDescription(prompt);
+            if(prompt.equals(fieldsNotFilled)) {
+                showToast("Please fill in all fields");
+            }else {
+                generateDescription(prompt);
+            }
         });
+        // Initialize the carTypeSpinner and set up with ArrayAdapter
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.car_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carTypeSpinner.setAdapter(adapter);
+    }
+
+    private String getSelectedCarType() {
+        return carTypeSpinner.getSelectedItem().toString();
     }
 
     private void generateDescription(String userPrompt) {
@@ -126,7 +145,8 @@ public class CreateListingActivity extends AppCompatActivity {
     }
 
     private void showToast(String message) {
-        runOnUiThread(() -> Toast.makeText(CreateListingActivity.this, message, Toast.LENGTH_SHORT).show());
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+
     }
 
     private String buildPrompt() {
@@ -135,10 +155,80 @@ public class CreateListingActivity extends AppCompatActivity {
         EditText carYearEditText = findViewById(R.id.carYearEditText);
         EditText carMileageEditText = findViewById(R.id.Milage);
 
+        if(carMakeEditText.getText().toString().isEmpty() || carModelEditText.getText().toString().isEmpty() ||
+                carYearEditText.getText().toString().isEmpty() || carMileageEditText.getText().toString().isEmpty()){
+            return "Code 404";
+        }
+
         return "Generate a car listing description for a " +
                 carYearEditText.getText().toString() + " " +
                 carMakeEditText.getText().toString() + " " +
                 carModelEditText.getText().toString() +
                 " with " + carMileageEditText.getText().toString() + " miles.";
     }
+
+    private void onBack(){
+        finish();
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    }
+
+    private void validateListing(){
+        OkHttpClient client = new OkHttpClient();
+
+        // Retrieve values from EditText fields
+        EditText numberPlateEditText = findViewById(R.id.NumberPlate);
+        EditText mileageEditText = findViewById(R.id.Milage); // Make sure you have this EditText in your layout
+
+        // Get the text values from the EditTexts
+        String numberPlate = numberPlateEditText.getText().toString().trim().toUpperCase();
+        String mileage = mileageEditText.getText().toString().trim();
+
+        // Validate that the inputs are not empty
+        if(numberPlate.isEmpty() || mileage.isEmpty()) {
+            showToast("Please fill in all required fields");
+            return;
+        }
+
+        // Dynamically construct the URL with the input values
+        String url = "https://api.bestcar.co.nz/api/vehicle?request=residual_value_extended&accesskey=2EAVcz0nXJETK6kazPBGVnj6SeI3is&numberplate=" + numberPlate + "&odometer=" + mileage;
+
+        // Create a request object
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        // Enqueue the request to be executed asynchronously
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Handle failure cases, like network errors
+                runOnUiThread(() -> showToast("Failed to fetch data: " + e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Parse the response to extract the needed data
+                    String responseData = response.body().string();
+                    try {
+                        JSONObject jsonResponse = new JSONObject(responseData);
+                        JSONObject vehicle = jsonResponse.getJSONObject("vehicle");
+                        JSONObject residualValue = vehicle.getJSONObject("residualValue");
+                        int averagePrice = residualValue.getInt("avg");
+
+                        // Update the EditText with the average price on the UI thread
+                        EditText carPriceEditText = findViewById(R.id.carPrice);
+                        carPriceEditText.setText(String.valueOf(averagePrice));
+
+                    } catch (Exception e) {
+                        runOnUiThread(() -> showToast("Failed to parse the response: " + e.getMessage()));
+                    }
+                } else {
+                    // Handle response failure cases
+                    runOnUiThread(() -> showToast("Request failed: " + response.code() + ", " + response.message()));
+                }
+            }
+        });
+    }
+
 }

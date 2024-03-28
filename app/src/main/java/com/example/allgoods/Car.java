@@ -13,19 +13,18 @@ public class Car {
     private String model;
     private int year;
     private int odo;
-    private Set<String> carTags = new HashSet<>();
+
     // for generating unique id for each car
     private static final long BASE_TIMESTAMP = 1647657600000L; // Base timestamp (adjustable to your needs)
     private static final Random random = new Random();
 
-    public Car(User owner, String make, String model, int year, String[] carTags, int odo){
+    public Car(User owner, String make, String model, int year, int odo){
         this.carId = generateUniqueId();
         this.owner = owner;
         this.make = make;
         this.model = model;
         this.year = year;
         this.odo = odo;
-        Collections.addAll(this.carTags, carTags);
     } 
 
     // Getter methods
@@ -51,6 +50,9 @@ public class Car {
     public User getUser(){
         return owner;
     }
+    public int getOdo(){
+        return odo;
+    }
 
     public static String generateUniqueId() {
         long currentTimestamp = System.currentTimeMillis(); // Current timestamp
@@ -62,12 +64,5 @@ public class Car {
         return String.valueOf(uniquePart); // Convert to string
     }
 
-    public String[] getCarTagsArray() {
-        return carTags.toArray(new String[0]);
-    }
-
-    public void addTags(String tags){
-        Collections.addAll(this.carTags, tags);
-    }
 
 }
