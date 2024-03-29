@@ -1,13 +1,24 @@
 package com.example.allgoods;
 
+import androidx.annotation.Nullable;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import okhttp3.Call;
@@ -18,6 +29,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -25,7 +38,13 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class CreateListingActivity extends AppCompatActivity {
 
+    private ViewPager2 viewPager2;
+    private ImageSliderAdapter adapter;
+    private static final int PICK_IMAGE_REQUEST = 1; // Request code for picking an image
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
+
     private Spinner carTypeSpinner;
+
     private final String fieldsNotFilled = "Code 404";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +52,8 @@ public class CreateListingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_listing);
 
         initializeViews();
+        setupViewPager();
+        setupPhotoUploadFeature();
     }
 
     private void initializeViews() {
@@ -41,10 +62,13 @@ public class CreateListingActivity extends AppCompatActivity {
         TextView generateDescriptionGpt = findViewById(R.id.generateDiscriptionGpt);
         Spinner carTypeSpinner = findViewById(R.id.carTypeSpinner);
         TextView validateListing = findViewById(R.id.validateListing);
+        Button addPhotoButton = findViewById(R.id.addPhotoButton);
+
 
         backCreateListing.setOnClickListener(v -> onBack());
         confirmButton.setOnClickListener(v -> showToast("Listing confirmed!"));
         validateListing.setOnClickListener(v -> validateListing());
+        addPhotoButton.setOnClickListener(v -> openGallery());
         generateDescriptionGpt.setOnClickListener(v -> {
             String prompt = buildPrompt();
             if(prompt.equals(fieldsNotFilled)) {
@@ -230,5 +254,64 @@ public class CreateListingActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setupViewPager() {
+        viewPager2 = findViewById(R.id.addPhotoCreateListing);
+        adapter = new ImageSliderAdapter(this);
+        viewPager2.setAdapter(adapter);
+
+        // Optionally, add a page change callback for swipe actions
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                // Action to be taken when a new page is selected. For example:
+                // Update a TextView with the current image position or log messages
+                Log.d("ViewPager", "Selected page position: " + position);
+                // Example: updateTextView(position); // Implement this method to update text or perform other actions
+            }
+        });
+    }
+
+
+    private void setupPhotoUploadFeature() {
+        // Now viewPager2 should not be null
+        viewPager2.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else {
+                openGallery();
+            }
+        });
+    }
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+            List<Uri> imageUris = new ArrayList<>(adapter.getImageUris()); // Get current images
+            imageUris.add(imageUri); // Add new image
+            adapter.setImageUris(imageUris); // Update adapter with new list of images
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+            } else {
+                // Permission was denied. You can show a message to the user or disable the feature.
+                showToast("Permission denied to read your External storage");
+            }
+        }
+    }
+
 
 }

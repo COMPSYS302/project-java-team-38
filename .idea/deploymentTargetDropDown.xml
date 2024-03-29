@@ -15,59 +15,11 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-28T08:22:11.931406800Z" />
-        </State>
-      </entry>
-      <entry key="LoginActivity (1)">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\deven\.android\avd\Pixel_7_Pro_API_30.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-27T04:29:18.359205100Z" />
-        </State>
-      </entry>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="ProfileActivity">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\deven\.android\avd\Pixel_7_Pro_API_30.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-25T05:43:52.723909200Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-03-29T04:07:07.581998600Z" />
         </State>
       </entry>
       <entry key="RegisterActivity (2)">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\deven\.android\avd\Pixel_7_Pro_API_30.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-27T04:28:59.645815500Z" />
-        </State>
+        <State />
       </entry>
     </value>
   </component>
