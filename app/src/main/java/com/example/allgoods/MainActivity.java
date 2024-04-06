@@ -17,7 +17,7 @@ import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button backButton, homeButton, plusButton, watchlistButton;
+    private Button backButton, homeButton, plusButton, watchlistButton, watchlistAdd;
     private ImageView ivNavigationButton;
 
     RecyclerView rvCarListings;
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         plusButton = findViewById(R.id.plusButton);
         watchlistButton = findViewById(R.id.watchlistButton);
+        // Add Watchlist add
 
         // Set click listeners for each button
         /*backButton.setOnClickListener(new View.OnClickListener() {

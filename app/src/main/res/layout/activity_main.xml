@@ -101,7 +101,25 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:padding="16dp"
+            android:stretchMode="columnWidth">
+
+            <!-- For each category, add a Button or ImageButton here -->
+
+        </GridLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/bottom_navigation_bar"
