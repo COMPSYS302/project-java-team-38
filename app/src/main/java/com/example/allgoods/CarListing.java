@@ -1,4 +1,7 @@
 package com.example.allgoods;
+import android.net.Uri;
+
+import android.net.Uri;
 import java.util.Date;
 
 public class CarListing {
@@ -9,7 +12,7 @@ public class CarListing {
 
     CarListingHelper carListingHelper;
 
-    public CarListing(int id, Car car, double price, Date listingDate) {
+    public CarListing(int id, Car car, double price, Date listingDate, Uri uriImages) {
         this.carListingHelper = new CarListingHelper();
         this.id = id;
         this.car = car;
@@ -38,9 +41,12 @@ public class CarListing {
         return listingDate;
     }
 
-    //setter methods
-    public void setPrice(double newPrice){
-        price = newPrice;
+
+    public void setPrice(double newPrice) {
+        if (carListingHelper.validatePrice(newPrice)) {
+            price = newPrice;
+        }
     }
+
 
 }

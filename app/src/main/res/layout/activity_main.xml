@@ -66,8 +66,8 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="26dp"
+                android:layout_width="99dp"
+                android:layout_height="28dp"
                 android:layout_margin="3dp"
                 android:background="@drawable/featured_categories"
                 android:text="Category 1"
@@ -77,8 +77,8 @@
 
             <!-- Category Button 2 -->
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="26dp"
+                android:layout_width="99dp"
+                android:layout_height="27dp"
                 android:layout_margin="3dp"
                 android:background="@drawable/featured_categories"
                 android:text="Category 1"
@@ -100,26 +100,6 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-
-        <GridLayout
-            android:id="@+id/gridLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:padding="16dp"
-            android:stretchMode="columnWidth">
-
-            <!-- For each category, add a Button or ImageButton here -->
-
-        </GridLayout>
-    </ScrollView>
 
     <LinearLayout
         android:id="@+id/bottom_navigation_bar"
@@ -164,11 +144,7 @@
             android:text="Watchlist"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector" />
-
-
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

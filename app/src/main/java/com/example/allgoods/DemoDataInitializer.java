@@ -50,7 +50,7 @@ public class DemoDataInitializer {
         Date currentDate = new Date();
 
         // Sample car listings
-        CarListing listing1 = new CarListing(1, car1, 15000.00, currentDate);
+       /* CarListing listing1 = new CarListing(1, car1, 15000.00, currentDate);
         CarListing listing2 = new CarListing(2, car2, 14000.00, currentDate);
         CarListing listing3 = new CarListing(3, car3, 16000.00, currentDate);
         CarListing listing4 = new CarListing(4, car4, 13500.00, currentDate);
@@ -91,7 +91,7 @@ public class DemoDataInitializer {
         dbManager.addListing(DevenT16, listing16);
         dbManager.addListing(DevenT17, listing17);
         dbManager.addListing(DevenT18, listing18);
-        dbManager.addListing(DevenT19, listing19);
+        dbManager.addListing(DevenT19, listing19);*/
 
 
     }
