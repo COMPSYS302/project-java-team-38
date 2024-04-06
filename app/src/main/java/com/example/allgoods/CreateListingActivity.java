@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -62,11 +63,11 @@ public class CreateListingActivity extends AppCompatActivity {
         TextView generateDescriptionGpt = findViewById(R.id.generateDiscriptionGpt);
         Spinner carTypeSpinner = findViewById(R.id.carTypeSpinner);
         TextView validateListing = findViewById(R.id.validateListing);
-        Button addPhotoButton = findViewById(R.id.addPhotoButton);
+        ImageButton addPhotoButton = findViewById(R.id.addPhotoButton);
 
 
         backCreateListing.setOnClickListener(v -> onBack());
-        confirmButton.setOnClickListener(v -> showToast("Listing confirmed!"));
+        confirmButton.setOnClickListener(v -> onConfirmListing());
         validateListing.setOnClickListener(v -> validateListing());
         addPhotoButton.setOnClickListener(v -> openGallery());
         generateDescriptionGpt.setOnClickListener(v -> {
@@ -265,10 +266,7 @@ public class CreateListingActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                // Action to be taken when a new page is selected. For example:
-                // Update a TextView with the current image position or log messages
                 Log.d("ViewPager", "Selected page position: " + position);
-                // Example: updateTextView(position); // Implement this method to update text or perform other actions
             }
         });
     }
@@ -311,6 +309,11 @@ public class CreateListingActivity extends AppCompatActivity {
                 showToast("Permission denied to read your External storage");
             }
         }
+    }
+
+    public void onConfirmListing(){
+
+
     }
 
 
