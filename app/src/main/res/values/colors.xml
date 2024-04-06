@@ -15,7 +15,7 @@
     <color name="ButtonTheme">#9306A6</color> <!-- Blue for selected state -->
 
     <!-- Color state list for text -->
-    <color name="grey">#d1d5db</color> <!-- Blue for selected state -->
+    <color name="grey">#E8E8E8</color> <!-- Blue for selected state -->
     <color name="faded_grey">#4D9E9E9E</color> <!-- faded background color -->
     <color name="backgroundPurple">#EAD6EE</color>
 
