@@ -58,10 +58,23 @@
         android:text="$ "
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tvCarOdo"
-        app:layout_constraintStart_toEndOf= "@id/tvCarMakeModel"
+        app:layout_constraintStart_toEndOf="@id/tvCarMakeModel"
         app:layout_constraintEnd_toEndOf="@id/carDescription"
         android:layout_marginStart="10dp"
         android:background="@drawable/sign_out_card"
         android:gravity="center" />
 
+    <Button
+        android:id="@+id/AddWatchList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/baseline_add_shopping_cart_24"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

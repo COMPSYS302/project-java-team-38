@@ -81,7 +81,7 @@
                 android:layout_height="27dp"
                 android:layout_margin="3dp"
                 android:background="@drawable/featured_categories"
-                android:text="Category 1"
+                android:text="Category 2"
                 android:textColor="@color/black" />
 
             <!-- Dynamically add your category buttons here -->
@@ -100,6 +100,97 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+
+    <TextView
+        android:id="@+id/tvBrowseBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse by"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvCarListings" />
+
+    <GridLayout
+        android:id="@+id/glBrowseBy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="10dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:rowCount="4"
+        app:layout_constraintTop_toBottomOf="@id/tvBrowseBy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Example button -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_columnWeight="1"
+            android:text="Hatchback"
+            android:background="@drawable/browse_by_button"
+            android:padding="16dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_columnWeight="1"
+            android:text="Sedan"
+            android:background="@drawable/browse_by_button"
+            android:padding="16dp"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_columnWeight="1"
+            android:text="Rv/SUV"
+            android:background="@drawable/browse_by_button"
+            android:padding="16dp"
+            android:gravity="center" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_columnWeight="1"
+            android:text="Coupe"
+            android:background="@drawable/browse_by_button"
+            android:padding="16dp"
+            android:gravity="center" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_columnWeight="1"
+            android:text="Convertible"
+            android:background="@drawable/browse_by_button"
+            android:padding="16dp"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_columnWeight="1"
+            android:text="Other"
+            android:background="@drawable/browse_by_button"
+            android:padding="16dp"
+            android:gravity="center" />
+
+        <!-- Repeat buttons for each category, such as Special, Luxury, etc. -->
+        <!-- ... -->
+
+    </GridLayout>
 
     <LinearLayout
         android:id="@+id/bottom_navigation_bar"
@@ -145,6 +236,9 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector" />
     </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
