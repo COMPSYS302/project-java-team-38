@@ -4,7 +4,7 @@ public class CarListingHelper {
 
     // changePrice() function ensures that if user attempts to change price of listing
     // it is in the correct ranges and does not include any special characters or letters
-    public void changePrice(double newPrice, double oldPrice, CarListing carListing){
+    public void changePrice(Integer newPrice, Integer oldPrice, CarListing carListing){
         if(newPrice == oldPrice){
             throw new IllegalArgumentException("Price must change to a different price");
         }

@@ -2,17 +2,22 @@ package com.example.allgoods;
 import android.net.Uri;
 
 import android.net.Uri;
+
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CarListing {
-    private final int id;
+    private final String id;
     private final Car car;
-    private double price;
-    private final Date listingDate;
+    private Integer price;
+    private final ZonedDateTime listingDate;
 
     CarListingHelper carListingHelper;
 
-    public CarListing(int id, Car car, double price, Date listingDate, Uri uriImages) {
+    ArrayList<Uri> images = new ArrayList<>();
+
+    public CarListing(String id, Car car, Integer price, ZonedDateTime listingDate, ArrayList<Uri> uriImages) {
         this.carListingHelper = new CarListingHelper();
         this.id = id;
         this.car = car;
@@ -22,10 +27,11 @@ public class CarListing {
         }
         this.price = price;
         this.listingDate = listingDate;
+        images.addAll(uriImages);
     }
 
     // Getter methods
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -37,12 +43,12 @@ public class CarListing {
         return price;
     }
 
-    public Date getListingDate() {
+    public ZonedDateTime getListingDate() {
         return listingDate;
     }
 
 
-    public void setPrice(double newPrice) {
+    public void setPrice(Integer newPrice) {
         if (carListingHelper.validatePrice(newPrice)) {
             price = newPrice;
         }

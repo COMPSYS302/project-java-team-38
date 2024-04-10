@@ -31,9 +31,15 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import android.os.Handler;
 import android.os.Looper;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
+import java.util.UUID;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -45,13 +51,14 @@ public class CreateListingActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2;
 
     private Spinner carTypeSpinner;
+    private ArrayList<Uri> images;
 
     private final String fieldsNotFilled = "Code 404";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
-
+        images = new ArrayList<>();
         initializeViews();
         setupViewPager();
         setupPhotoUploadFeature();
@@ -292,7 +299,8 @@ public class CreateListingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
-            List<Uri> imageUris = new ArrayList<>(adapter.getImageUris()); // Get current images
+            ArrayList<Uri> imageUris = new ArrayList<>(adapter.getImageUris()); // Get current images
+            images.addAll(imageUris);
             imageUris.add(imageUri); // Add new image
             adapter.setImageUris(imageUris); // Update adapter with new list of images
         }
@@ -312,8 +320,20 @@ public class CreateListingActivity extends AppCompatActivity {
     }
 
     public void onConfirmListing(){
-
-
+        String carMake = findViewById(R.id.CarMake).toString();
+        String carModel = findViewById(R.id.Model).toString();
+        String carYear = findViewById(R.id.carYearEditText).toString();
+        String carMileage = findViewById(R.id.Milage).toString();
+        Integer carPrice = Integer.parseInt(findViewById(R.id.carPrice).toString());
+        UserSession user = UserSession.getInstance(this);
+        TimeZone timeZone = TimeZone.getDefault();
+        String timeZoneString = timeZone.toString();
+        String uniqueKey = UniqueIdGenerator.generateUniqueId();
+        ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneString));
+        Car userCar = new Car(user.getUser(),carMake,carModel,Integer.parseInt(carYear),Integer.parseInt(carMileage));
+        CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
+        CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
+        carListingAdder.addListing(user.getUser(),userCarListing);
     }
 
 
