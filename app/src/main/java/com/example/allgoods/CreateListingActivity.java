@@ -320,17 +320,22 @@ public class CreateListingActivity extends AppCompatActivity {
     }
 
     public void onConfirmListing(){
-        String carMake = findViewById(R.id.CarMake).toString();
-        String carModel = findViewById(R.id.Model).toString();
-        String carYear = findViewById(R.id.carYearEditText).toString();
-        String carMileage = findViewById(R.id.Milage).toString();
-        Integer carPrice = Integer.parseInt(findViewById(R.id.carPrice).toString());
+        EditText carMakeEditText = findViewById(R.id.CarMake);
+        EditText carModelEditText = findViewById(R.id.Model);
+        EditText carYearEditText = findViewById(R.id.carYearEditText);
+        EditText carMileageEditText = findViewById(R.id.Milage);
+        EditText carPriceEditText = findViewById(R.id.carPrice);
+        String carMake = carMakeEditText.getText().toString();
+        String carModel = carModelEditText.getText().toString();
+        int carYear = Integer.parseInt(carYearEditText.getText().toString());
+        int carMileage = Integer.parseInt(carMileageEditText.getText().toString());
+        Integer carPrice = Integer.parseInt(carPriceEditText.getText().toString());
         UserSession user = UserSession.getInstance(this);
         TimeZone timeZone = TimeZone.getDefault();
         String timeZoneString = timeZone.toString();
         String uniqueKey = UniqueIdGenerator.generateUniqueId();
         ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneString));
-        Car userCar = new Car(user.getUser(),carMake,carModel,Integer.parseInt(carYear),Integer.parseInt(carMileage));
+        Car userCar = new Car(user.getUser(),carMake,carModel,carYear,carMileage);
         CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
         CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
         carListingAdder.addListing(user.getUser(),userCarListing);
