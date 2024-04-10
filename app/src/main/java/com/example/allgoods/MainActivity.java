@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
     private Button backButton, homeButton, plusButton, watchlistButton, watchlistAdd;
     private ImageView ivNavigationButton;
+    private LinearLayout categoriesLayout;
 
     private EditText searchProducts;
 
@@ -31,6 +33,26 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        categoriesLayout = findViewById(R.id.llCategoryButtons);
+
+        // Get a dynamic list of categories. This could come from a database or a remote server.
+        List<Category> categories = Category.getRandomCategories(5);
+
+        for (Category category : categories) {
+            Button categoryButton = new Button(this);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(8, 8, 8, 8);
+            categoryButton.setLayoutParams(layoutParams);
+            categoryButton.setText(category.getDisplayName());
+            categoryButton.setOnClickListener(view -> {
+                // Handle the category click here
+                // For example, you might filter listings based on `category.name()`
+            });
+
+            categoriesLayout.addView(categoryButton);
+        }
 
          rvCarListings = findViewById(R.id.rvCarListings);
 
@@ -119,5 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 }
