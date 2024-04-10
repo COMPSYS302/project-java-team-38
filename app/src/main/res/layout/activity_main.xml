@@ -64,28 +64,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:layout_width="99dp"
-                android:layout_height="28dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/featured_categories"
-                android:text="Category 1"
-                android:textColor="@color/black" />
-
-
-
-            <!-- Category Button 2 -->
-            <Button
-                android:layout_width="99dp"
-                android:layout_height="27dp"
-                android:layout_margin="3dp"
-                android:background="@drawable/featured_categories"
-                android:text="Category 2"
-                android:textColor="@color/black" />
-
-            <!-- Dynamically add your category buttons here -->
-
         </LinearLayout>
     </HorizontalScrollView>
 
