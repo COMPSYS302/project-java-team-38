@@ -1,5 +1,6 @@
 package com.example.allgoods;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button backButton, homeButton, plusButton, watchlistButton, watchlistAdd;
     private ImageView ivNavigationButton;
     private LinearLayout categoriesLayout;
+    private EditText searchEditText;
 
     private EditText searchProducts;
 
@@ -35,9 +37,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         categoriesLayout = findViewById(R.id.llCategoryButtons);
 
+        searchEditText = findViewById(R.id.etSearchProducts);
+        updateFeaturedCategories(Category.getAllCategories());
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action required here for this use case
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // This method is called to notify you that, within s,
+                // the count characters beginning at start are about to be replaced by new text
+                // with length after.
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // This method is called to notify you that, somewhere within s, the text has been changed.
+                if (s.toString().isEmpty()) {
+                    // If search bar is empty, display all categories
+                    updateFeaturedCategories(Category.getAllCategories());
+                } else {
+                    // Otherwise, filter and update categories based on user input
+                    List<Category> filteredCategories = Category.filterCategoriesBasedOnInput(s.toString());
+                    updateFeaturedCategories(filteredCategories);
+                }
+            }
+        });
+
         // Get a dynamic list of categories. This could come from a database or a remote server.
         List<Category> categories = Category.getRandomCategories(5);
-
         for (Category category : categories) {
             Button categoryButton = new Button(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -53,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
             categoriesLayout.addView(categoryButton);
         }
+
+
 
          rvCarListings = findViewById(R.id.rvCarListings);
 
@@ -141,7 +173,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void updateFeaturedCategories(List<Category> categories) {
+        categoriesLayout.removeAllViews(); // Clear existing views
 
+        for (Category category : categories) {
+            Button categoryButton = new Button(this);
+            categoryButton.setText(category.getDisplayName());
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(8, 8, 8, 8); // Adjust margins as needed
+            categoryButton.setLayoutParams(layoutParams);
+            categoryButton.setOnClickListener(view -> {
+                // Handle the category click here
+                // For example, you could show a Toast or update a list based on the category clicked
+            });
+
+            categoriesLayout.addView(categoryButton);
+        }
     }
 }
