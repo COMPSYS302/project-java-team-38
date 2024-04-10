@@ -2,7 +2,9 @@ package com.example.allgoods;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,8 +19,10 @@ import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button backButton, homeButton, plusButton, watchlistButton;
+    private Button backButton, homeButton, plusButton, watchlistButton, watchlistAdd;
     private ImageView ivNavigationButton;
+
+    private EditText searchProducts;
 
     RecyclerView rvCarListings;
 
@@ -48,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize buttons
         //backButton = findViewById(R.id.backButton);
-
+        //searchButton = findViewById(R.id.etSearchProducts);
+        searchProducts = findViewById(R.id.etSearchProducts);
         homeButton = findViewById(R.id.homeButton);
         plusButton = findViewById(R.id.plusButton);
         watchlistButton = findViewById(R.id.watchlistButton);
+        // Add Watchlist add
 
         // Set click listeners for each button
         /*backButton.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +103,20 @@ public class MainActivity extends AppCompatActivity {
                 // Navigate to Watchlist
                 Toast.makeText(MainActivity.this, "Watchlist clicked", Toast.LENGTH_SHORT).show();
                 // Intent to navigate to Watchlist Activity could go here
+            }
+        });
+
+        searchProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the search results Activity
+                Intent intent = new Intent(MainActivity.this, SearchResultsActivity.class);
+                startActivity(intent);
+
+                // Optional: Bring up the keyboard automatically
+                if(v.requestFocus()) {
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
             }
         });
     }
