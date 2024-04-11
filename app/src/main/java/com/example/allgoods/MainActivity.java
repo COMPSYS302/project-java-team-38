@@ -38,16 +38,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         List<Category> categories = Category.getRandomCategories(5);
 
+        //Assigned Category buttons have an id which is manipulated through a variable called categoriesLayout
         categoriesLayout = findViewById(R.id.llCategoryButtons);
+        //Same explanation above but for search products.
         searchEditText = findViewById(R.id.etSearchProducts);
-
+        //As soon text is changed within search bar the following functions occur as a result
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
+            //before nothing in changed in the search bar
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
+            //whilst text being changed within the search bar
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
 
@@ -67,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                }
 //            }
+            // After text has been changed.
             public void afterTextChanged(Editable s) {
                 // Filter and update categories based on user input
                 List<Category> filteredCategories = Category.filterCategoriesBasedOnInput(s.toString());
@@ -79,14 +84,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Get a dynamic list of categories. This could come from a database or a remote server.
 
+        //For each categories Enums within the category enum class in Category class
         for (Category category : categories) {
+            //create a new button for each iteration
             Button categoryButton = new Button(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
+            //Set size
             layoutParams.setMargins(8, 8, 8, 8);
             categoryButton.setLayoutParams(layoutParams);
+            //Get the display name of the ENUM
             categoryButton.setText(category.getDisplayName());
+            // when button is clicked do the following
             categoryButton.setOnClickListener(view -> {
                 // Handle the category click here
                 // For example, you might filter listings based on `category.name()`
@@ -187,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
+    //this function is  to update the Featured Categories and its the code for all updated the buttons end destination page
     private void updateFeaturedCategories(List<Category> categories) {
         categoriesLayout.removeAllViews(); // Clear existing views
 

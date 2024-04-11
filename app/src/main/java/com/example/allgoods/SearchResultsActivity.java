@@ -20,7 +20,9 @@ public class SearchResultsActivity extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
-
+        //This is for Setting content view to activity search once clicked on search bar
+        //I was thinking to have this as soon as the search bar is clicked instead of ever
+        //thing being in the Main Activity.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
     }
