@@ -34,34 +34,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        categoriesLayout = findViewById(R.id.llCategoryButtons);
 
+        setContentView(R.layout.activity_main);
+
+        categoriesLayout = findViewById(R.id.llCategoryButtons);
         searchEditText = findViewById(R.id.etSearchProducts);
-        updateFeaturedCategories(Category.getAllCategories());
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action required here for this use case
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // This method is called to notify you that, within s,
-                // the count characters beginning at start are about to be replaced by new text
-                // with length after.
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
-                // This method is called to notify you that, somewhere within s, the text has been changed.
+                // If search bar is empty, display 7 random categories
                 if (s.toString().isEmpty()) {
-                    // If search bar is empty, display all categories
-                    updateFeaturedCategories(Category.getAllCategories());
+                    updateFeaturedCategories(Category.getRandomCategories(7));
                 } else {
                     // Otherwise, filter and update categories based on user input
                     List<Category> filteredCategories = Category.filterCategoriesBasedOnInput(s.toString());
-                    updateFeaturedCategories(filteredCategories);
+                    if (!filteredCategories.isEmpty()) {
+                        updateFeaturedCategories(filteredCategories);
+                    } else {
+                        // If no categories matched the input, keep or refresh the random categories
+                        updateFeaturedCategories(Category.getRandomCategories(7));
+                    }
                 }
             }
         });
@@ -188,10 +186,10 @@ public class MainActivity extends AppCompatActivity {
             categoryButton.setLayoutParams(layoutParams);
             categoryButton.setOnClickListener(view -> {
                 // Handle the category click here
-                // For example, you could show a Toast or update a list based on the category clicked
             });
-
             categoriesLayout.addView(categoryButton);
         }
     }
+
+
 }
