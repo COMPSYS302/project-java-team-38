@@ -56,9 +56,13 @@ public enum Category {
         return allCategories.subList(0, Math.min(count, allCategories.size()));
     }
 
+
+
     public static List<Category> filterCategoriesBasedOnInput(String input) {
+        String lowerInput = input.toLowerCase();
         return Arrays.stream(Category.values())
-                .filter(category -> category.displayName.toLowerCase().contains(input.toLowerCase()))
+                .filter(category -> category.displayName.toLowerCase().contains(lowerInput))
                 .collect(Collectors.toList());
     }
+
 }

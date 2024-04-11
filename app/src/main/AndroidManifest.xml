@@ -41,7 +41,7 @@
         <activity android:name=".ConfirmUsernameChange" android:exported="true"/>
         <activity android:name=".EditPasswordActivity" android:exported="true"/>
         <activity android:name=".CreateListingActivity" android:exported="true"/>
-
+        <activity android:name=".SearchResultsActivity" android:exported="true"/>
     </application>
 
 </manifest>
