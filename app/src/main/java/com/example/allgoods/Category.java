@@ -7,14 +7,33 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Category {
-    HATCHBACKS("Hatchbacks"),
+    LEXUS("Lexus"),
+    LOW_MILEAGE("Low Mileage"),
+    ELECTRIC("Electric"),
+    HYBRIDS("Hybrids"),
+    LUXURY("Luxury"),
+    SPORTS_CARS("Sports Cars"),
+    OFF_ROAD("Off-Road"),
+    PICKUP_TRUCKS("Pickup Trucks"),
+    VANS("Vans"),
+    ECONOMY("Economy"),
+    PERFORMANCE("Performance"),
+    SAFETY_FEATURES("Safety Features"),
+    NEW_MODELS("New Models"),
+    USED_CARS("Used Cars"),
     SEDANS("Sedans"),
     SUVS("SUVs"),
     CONVERTIBLES("Convertibles"),
     COUPES("Coupes"),
-    ELECTRIC("Electric"),
-    HYBRIDS("Hybrids");
-
+    // Brands and other specifics
+    TOYOTA("Toyota"),
+    HONDA("Honda"),
+    BMW("BMW"),
+    TESLA("Tesla"),
+    // Add more specific categories as needed
+    MANUAL_TRANSMISSION("Manual Transmission"),
+    AUTOMATIC_TRANSMISSION("Automatic Transmission"),
+    FOUR_WHEEL_DRIVE("Four-Wheel Drive");
     private final String displayName;
 
     Category(String displayName) {
