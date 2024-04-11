@@ -36,36 +36,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        List<Category> categories = Category.getRandomCategories(5);
 
         categoriesLayout = findViewById(R.id.llCategoryButtons);
         searchEditText = findViewById(R.id.etSearchProducts);
+
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
+//            public void afterTextChanged(Editable s) {
+//                // If search bar is empty, display 7 random categories
+//                if (s.toString().isEmpty()) {
+//                    updateFeaturedCategories(Category.getRandomCategories(7));
+//                } else {
+//                    // Otherwise, filter and update categories based on user input
+//                    List<Category> filteredCategories = Category.filterCategoriesBasedOnInput(s.toString());
+//                    if (!filteredCategories.isEmpty()) {
+//                        updateFeaturedCategories(filteredCategories);
+//                    } else {
+//                        // If no categories matched the input, keep or refresh the random categories
+//                        updateFeaturedCategories(Category.getRandomCategories(7));
+//                    }
+//                }
+//            }
             public void afterTextChanged(Editable s) {
-                // If search bar is empty, display 7 random categories
-                if (s.toString().isEmpty()) {
-                    updateFeaturedCategories(Category.getRandomCategories(7));
-                } else {
-                    // Otherwise, filter and update categories based on user input
-                    List<Category> filteredCategories = Category.filterCategoriesBasedOnInput(s.toString());
-                    if (!filteredCategories.isEmpty()) {
-                        updateFeaturedCategories(filteredCategories);
-                    } else {
-                        // If no categories matched the input, keep or refresh the random categories
-                        updateFeaturedCategories(Category.getRandomCategories(7));
-                    }
+                // Filter and update categories based on user input
+                List<Category> filteredCategories = Category.filterCategoriesBasedOnInput(s.toString());
+                // Only update if there are matches, otherwise show the default random categories
+                if (!filteredCategories.isEmpty()) {
+                    updateFeaturedCategories(filteredCategories);
                 }
             }
         });
 
         // Get a dynamic list of categories. This could come from a database or a remote server.
-        List<Category> categories = Category.getRandomCategories(5);
+
         for (Category category : categories) {
             Button categoryButton = new Button(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -77,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
             categoryButton.setOnClickListener(view -> {
                 // Handle the category click here
                 // For example, you might filter listings based on `category.name()`
+                // Create an Intent to start SearchActivity
+                Intent searchIntent = new Intent(MainActivity.this, SearchResultsActivity.class);
+                // Pass the category name with the Intent
+                searchIntent.putExtra("SEARCH_QUERY", category.getDisplayName());
+                startActivity(searchIntent);
             });
 
             categoriesLayout.addView(categoryButton);
@@ -112,13 +130,8 @@ public class MainActivity extends AppCompatActivity {
         // Add Watchlist add
 
         // Set click listeners for each button
-        /*backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Simulate back navigation
-                finish(); // Close current activity
-            }
-        });*/
+
+
         ivNavigationButton = findViewById(R.id.ivProfileImage);
         ivNavigationButton.setOnClickListener(new View.OnClickListener() {
             @Override
