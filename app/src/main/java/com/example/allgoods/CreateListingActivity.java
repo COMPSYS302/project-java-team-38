@@ -331,14 +331,18 @@ public class CreateListingActivity extends AppCompatActivity {
         int carMileage = Integer.parseInt(carMileageEditText.getText().toString());
         Integer carPrice = Integer.parseInt(carPriceEditText.getText().toString());
         UserSession user = UserSession.getInstance(this);
+        User userInSession = user.getUser();
         TimeZone timeZone = TimeZone.getDefault();
-        String timeZoneString = timeZone.toString();
+        String timeZoneID = timeZone.getID();
+        ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneID));
         String uniqueKey = UniqueIdGenerator.generateUniqueId();
-        ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneString));
         Car userCar = new Car(user.getUser(),carMake,carModel,carYear,carMileage);
         CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
         CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
         carListingAdder.addListing(user.getUser(),userCarListing);
+        Intent intent = new Intent(CreateListingActivity.this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 
 

@@ -2,6 +2,7 @@ package com.example.allgoods;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import android.util.Log;
 
@@ -28,7 +29,7 @@ public class CarDatabaseManager {
     }
 
     public void addListing(User user,CarListing carListing){
-        if(!carListing.getCar().getUser().equals(user)){
+        if (!Objects.equals(carListing.getCar().getUser(), user)) {
             throw new IllegalArgumentException("Invalid action");
         }
         carManager.put(user, carListing);
