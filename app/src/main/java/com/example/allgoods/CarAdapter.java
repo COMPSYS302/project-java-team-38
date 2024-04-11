@@ -38,7 +38,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.tvCarPrice.setText("$" + carListing.getPrice());
         holder.tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
         // Set the car photo if you have one
-        // holder.ivCarPhoto.setImageResource(...);
+        holder.ivCarPhoto.setImageURI(carListing.getFirstImage());
     }
 
     @Override
