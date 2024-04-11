@@ -54,5 +54,9 @@ public class CarListing {
         }
     }
 
+    public Uri getFirstImage(){
+        return images.get(0);
+    }
+
 
 }

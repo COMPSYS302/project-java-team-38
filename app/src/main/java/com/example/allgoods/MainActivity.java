@@ -104,9 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
          rvCarListings = findViewById(R.id.rvCarListings);
 
-        // Initialize demo data
+        /* Initialize demo data
         DemoDataInitializer demoDataInitializer = new DemoDataInitializer();
         demoDataInitializer.initializeDemoData();
+         */
         CarDatabaseManager dbManager = CarDatabaseManager.getInstance();
 
 
