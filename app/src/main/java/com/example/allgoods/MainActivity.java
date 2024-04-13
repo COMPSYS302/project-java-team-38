@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.content.Intent;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText searchProducts;
 
     RecyclerView rvCarListings;
+    private CarAdapter carAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,16 +121,12 @@ public class MainActivity extends AppCompatActivity {
         demoDataInitializer.initializeDemoData();
          */
         CarDatabaseManager dbManager = CarDatabaseManager.getInstance();
+        List<CarListing> carListings = dbManager.getAllListings();
+        carAdapter = CarAdapter.getInstance(this);
+        carAdapter.updateData(carListings);
+        rvCarListings.setAdapter(carAdapter);
+        rvCarListings.setLayoutManager(new LinearLayoutManager(this));
 
-
-        // Assuming CarDatabaseManager has a method to get all listings
-        // Convert Set to List if necessary
-        List<CarListing> carListings = new ArrayList<>(dbManager.getCarData().values());
-
-        // Set up the RecyclerView with the adapter
-        CarAdapter carAdapter = new CarAdapter(this, new ArrayList<>(carListings)); // Assuming carListings is correctly initialized
-        rvCarListings.setAdapter(carAdapter); // Corrected method call
-        rvCarListings.setLayoutManager(new LinearLayoutManager(this)); // Ensure LinearLayoutManager is imported
 
 
         // Initialize buttons
@@ -196,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
     //this function is  to update the Featured Categories and its the code for all updated the buttons end destination page

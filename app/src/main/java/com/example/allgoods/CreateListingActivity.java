@@ -336,10 +336,10 @@ public class CreateListingActivity extends AppCompatActivity {
         String timeZoneID = timeZone.getID();
         ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneID));
         String uniqueKey = UniqueIdGenerator.generateUniqueId();
-        Car userCar = new Car(user.getUser(),carMake,carModel,carYear,carMileage);
+        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage);
         CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
         CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
-        carListingAdder.addListing(user.getUser(),userCarListing);
+        carListingAdder.addListing(userInSession,userCarListing);
         Intent intent = new Intent(CreateListingActivity.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
