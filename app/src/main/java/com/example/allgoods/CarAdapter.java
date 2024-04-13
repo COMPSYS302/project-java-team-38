@@ -1,6 +1,7 @@
 package com.example.allgoods;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
+    private static CarAdapter instance;
     private Context context;
     private List<CarListing> carListings;
 
-    public CarAdapter(Context context, List<CarListing> carListings) {
+    // Private constructor
+    private CarAdapter(Context context) {
         this.context = context;
-        this.carListings = carListings;
+        this.carListings = new ArrayList<>(); // Initialize with an empty list
+    }
+
+    // Singleton getInstance method
+    public static CarAdapter getInstance(Context context) {
+        if (instance == null) {
+            instance = new CarAdapter(context);
+        }
+        return instance;
     }
 
     @NonNull
@@ -32,13 +44,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CarViewHolder holder, int position) {
         CarListing carListing = carListings.get(position);
-        // Assuming you have methods to get the car's details
         holder.tvCarMakeModel.setText(carListing.getCar().getMake() + " " + carListing.getCar().getModel());
         holder.tvCarYear.setText("Year: " + carListing.getCar().getYear());
         holder.tvCarPrice.setText("$" + carListing.getPrice());
         holder.tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
         // Set the car photo if you have one
-        holder.ivCarPhoto.setImageURI(carListing.getFirstImage());
+        holder.ivCarPhoto.setImageURI(carListing.getFirstImage()); // Assuming getFirstImage() returns a String
     }
 
     @Override
@@ -59,5 +70,10 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
             tvCarOdo = itemView.findViewById(R.id.tvCarOdo);
         }
     }
-}
 
+    public void updateData(List<CarListing> newCarListings) {
+        carListings.clear();
+        carListings.addAll(newCarListings);
+        notifyDataSetChanged();  // Notify the adapter that data has changed
+    }
+}
