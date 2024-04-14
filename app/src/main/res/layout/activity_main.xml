@@ -173,41 +173,43 @@
     <LinearLayout
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="@color/white"
+        android:backgroundTint="@color/grey"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Your navigation buttons here -->
-        <ImageButton
+
+        <Button
             android:id="@+id/homeButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/baseline_home_24"
+            android:drawableTop="@drawable/baseline_home_24"
             android:text="Home"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector" />
-        <ImageButton
+        <Button
             android:id="@+id/plusButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_add_24"
+            android:drawableTop="@drawable/baseline_add_24"
             android:text="Create Listing"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector" />
 
-        <ImageButton
+        <Button
             android:id="@+id/watchlistButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_add_shopping_cart_24"
+            android:drawableTop="@drawable/baseline_add_shopping_cart_24"
             android:text="Watchlist"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector" />
