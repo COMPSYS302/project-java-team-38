@@ -16,15 +16,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-<<<<<<< HEAD
-public class MainActivity extends AppCompatActivity {
+
+
+
+public class MainActivity extends AppCompatActivity implements CarAdapter.OnItemClickListener {
     private Button backButton,  watchlistAdd;
 
     private ImageButton homeButton, plusButton, watchlistButton;
-=======
-public class MainActivity extends AppCompatActivity implements CarAdapter.OnItemClickListener {
-    private Button backButton, homeButton, plusButton, watchlistButton;
->>>>>>> 2af49cda417cffcf1aed430dd05f2d540f446a78
+
+
     private ImageView ivNavigationButton;
     private LinearLayout categoriesLayout;
     private EditText searchEditText;
