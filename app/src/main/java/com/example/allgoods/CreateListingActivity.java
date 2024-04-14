@@ -336,7 +336,7 @@ public class CreateListingActivity extends AppCompatActivity {
         String timeZoneID = timeZone.getID();
         ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneID));
         String uniqueKey = UniqueIdGenerator.generateUniqueId();
-        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage);
+        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage,getSelectedCarType());
         CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
         CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
         carListingAdder.addListing(userInSession,userCarListing);

@@ -27,7 +27,7 @@ public class DemoDataInitializer {
         User DevenT18 = new User("18", "DevenT18", "Password18!", "DevenT18@example.com");
         User DevenT19 = new User("19", "DevenT19", "Password19!", "DevenT19@example.com");
 
-        Car car1 = new Car(DevenT1, "Toyota", "Camry", 2018, 25000);
+       /* Car car1 = new Car(DevenT1, "Toyota", "Camry", 2018, 25000);
         Car car2 = new Car(DevenT2, "Honda", "Civic", 2017, 30000);
         Car car3 = new Car(DevenT3, "Ford", "Fusion", 2019, 15000);
         Car car4 = new Car(DevenT4, "Nissan", "Altima", 2016, 28000);
@@ -47,7 +47,8 @@ public class DemoDataInitializer {
         Car car18 = new Car(DevenT18, "Jaguar", "XE", 2019, 32000);
         Car car19 = new Car(DevenT19, "Genesis", "G70", 2018, 33000);
                 // Current date for demo
-        Date currentDate = new Date();
+        Date currentDate = new Date()
+        */
 
         // Sample car listings
        /* CarListing listing1 = new CarListing(1, car1, 15000.00, currentDate);

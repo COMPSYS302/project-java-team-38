@@ -1,8 +1,12 @@
 package com.example.allgoods;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,14 +16,13 @@ import java.util.List;
 public class WatchListActivity extends AppCompatActivity {
 
     private RecyclerView rvCarListings;
-    private Button homeButton, plusButton, watchlistButton;
-
-    UserSession userSession;
+    private Button homeButton, plusButton;
+    private ImageView backButton; // Change type to Button if it's a button in your layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_watchlist); // Ensure the layout file name matches
+        setContentView(R.layout.activity_watchlist);
 
         initializeViews();
         setupRecyclerView();
@@ -30,41 +33,54 @@ public class WatchListActivity extends AppCompatActivity {
         rvCarListings = findViewById(R.id.rvCarListings);
         homeButton = findViewById(R.id.homeButton);
         plusButton = findViewById(R.id.plusButton);
-        watchlistButton = findViewById(R.id.watchlistmenu);
+        backButton = findViewById(R.id.back_watchList); // Ensure this ID exists in your layout
     }
 
     private void setupRecyclerView() {
-        // Setup the RecyclerView with a LinearLayoutManager and an adapter
-        User user = userSession.getUser();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvCarListings.setLayoutManager(layoutManager);
 
-        // Assuming you have a method to get your data:
-        List<CarListing> carListings = WatchlistHelper.getInstance().getWatchListUser(user); // currentUser needs to be defined or passed
-        //CarAdapter adapter = new CarAdapter(this, carListings);
-       // rvCarListings.setAdapter(adapter);
+        UserSession userSession = UserSession.getInstance(this);
+        User currentUser = userSession.getUser();
+
+        List<CarListing> carListings = WatchlistHelper.getInstance().getWatchListUser(currentUser);
+        Log.d("WatchListActivity", "Number of car listings: " + carListings.size());
+        CarAdapterWatchlist adapter = CarAdapterWatchlist.getInstance(this);
+        adapter.updateData(carListings);
+
+        rvCarListings.setAdapter(adapter);
     }
 
     private void setupButtonListeners() {
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle Home button click
-            }
-        });
+        if (backButton != null) {
+            backButton.setOnClickListener(v -> goBack());
+        } else {
+            // Log or handle the case where backButton is null
+        }
 
-        plusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle Plus button click
-            }
-        });
+        if (homeButton != null) {
+            homeButton.setOnClickListener(v -> navigateToHome());
+        }
 
-        watchlistButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle Watchlist button click
-            }
-        });
+        if (plusButton != null) {
+            plusButton.setOnClickListener(v -> goCreateListing());
+        }
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    }
+
+    private void goBack() {
+        finish();
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    }
+
+    private void goCreateListing() {
+        Intent intent = new Intent(this, CreateListingActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
 }

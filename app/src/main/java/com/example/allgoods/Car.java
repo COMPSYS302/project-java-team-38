@@ -14,17 +14,20 @@ public class Car {
     private int year;
     private int odo;
 
+    private String type;
+
     // for generating unique id for each car
     private static final long BASE_TIMESTAMP = 1647657600000L; // Base timestamp (adjustable to your needs)
     private static final Random random = new Random();
 
-    public Car(User owner, String make, String model, int year, int odo){
+    public Car(User owner, String make, String model, int year, int odo, String type){
         this.carId = generateUniqueId();
         this.owner = owner;
         this.make = make;
         this.model = model;
         this.year = year;
         this.odo = odo;
+        this.type = type;
     } 
 
     // Getter methods
