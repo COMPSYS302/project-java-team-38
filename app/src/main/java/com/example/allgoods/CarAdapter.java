@@ -5,33 +5,32 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
-
     private static CarAdapter instance;
     private Context context;
     private List<CarListing> carListings;
+    private OnItemClickListener listener;
 
-
-    // Private constructor
-    private CarAdapter(Context context) {
-        this.context = context;
-        this.carListings = new ArrayList<>(); // Initialize with an empty list
+    public interface OnItemClickListener {
+        void onAddWatchClick(int position);
     }
 
-    // Singleton getInstance method
-    public static CarAdapter getInstance(Context context) {
+    private CarAdapter(Context context, OnItemClickListener listener) {
+        this.context = context;
+        this.listener = listener;
+        this.carListings = new ArrayList<>();
+    }
+
+    public static CarAdapter getInstance(Context context, OnItemClickListener listener) {
         if (instance == null) {
-            instance = new CarAdapter(context);
+            instance = new CarAdapter(context, listener);
         }
         return instance;
     }
@@ -40,7 +39,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     @Override
     public CarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_car_listing, parent, false);
-        return new CarViewHolder(view);
+        return new CarViewHolder(view, listener);
     }
 
     @Override
@@ -50,8 +49,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         holder.tvCarYear.setText("Year: " + carListing.getCar().getYear());
         holder.tvCarPrice.setText("$" + carListing.getPrice());
         holder.tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
-        // Set the car photo if you have one
-        holder.ivCarPhoto.setImageURI(carListing.getFirstImage()); // Assuming getFirstImage() returns a String
+        holder.ivCarPhoto.setImageURI(carListing.getFirstImage());
     }
 
     @Override
@@ -59,12 +57,26 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         return carListings.size();
     }
 
+
+    public CarListing getItem(int position) {
+        if (position >= 0 && position < carListings.size()) {
+            return carListings.get(position);
+        }
+        return null; // Return null or handle the error as per your requirement
+    }
+
+
+    public void updateData(List<CarListing> newCarListings) {
+        carListings.clear();
+        carListings.addAll(newCarListings);
+        notifyDataSetChanged();
+    }
+
     static class CarViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCarPhoto;
         TextView tvCarMakeModel, tvCarYear, tvCarPrice, tvCarOdo;
 
-
-        public CarViewHolder(@NonNull View itemView) {
+        CarViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             ivCarPhoto = itemView.findViewById(R.id.ivCarPhoto);
             tvCarMakeModel = itemView.findViewById(R.id.tvCarMakeModel);
@@ -72,14 +84,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
             tvCarPrice = itemView.findViewById(R.id.tvCarPrice);
             tvCarOdo = itemView.findViewById(R.id.tvCarOdo);
 
+            itemView.findViewById(R.id.AddWatchList).setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onAddWatchClick(getAdapterPosition());
+
+                }
+            });
         }
     }
-
-    public void updateData(List<CarListing> newCarListings) {
-        carListings.clear();
-        carListings.addAll(newCarListings);
-        notifyDataSetChanged();  // Notify the adapter that data has changed
-    }
-
-
 }
