@@ -42,12 +42,9 @@
         <activity android:name=".EditPasswordActivity" android:exported="true"/>
         <activity android:name=".CreateListingActivity" android:exported="true"/>
         <activity android:name=".SearchResultsActivity" android:exported="true"/>
-<<<<<<< HEAD
         <activity android:name=".WatchListActivity" android:exported="true"/>
-=======
-
         <activity android:name="IndepthListingActivity" android:exported="true"/>
->>>>>>> 090d2d4c792431a00010053d8202d10814094a55
+
     </application>
 
 </manifest>

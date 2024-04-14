@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +10,7 @@
     <FrameLayout
         android:id="@+id/FrameLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivCarImage"
@@ -39,7 +36,6 @@
                 android:layout_marginBottom="3dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Back button"
-
                 android:src="@drawable/baseline_arrow_back_24" />
 
             <ImageButton
@@ -58,150 +54,196 @@
 
     <TextView
         android:id="@+id/tvCarModel"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/FrameLay"
         android:layout_marginTop="12dp"
         android:text="BMW M3"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/FrameLay"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/FrameLay"
-        app:layout_constraintTop_toBottomOf="@id/FrameLay" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/inquireBtn"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvCarModel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-37dp"
+        android:layout_marginEnd="18dp"
         android:backgroundTint="@color/purple"
         android:text="Inquire"
-        app:layout_constraintBottom_toBottomOf="@id/tvCarModel"
-        app:layout_constraintEnd_toEndOf="@+id/tvCarModel"
-        app:layout_constraintTop_toBottomOf="@+id/FrameLay"
-        app:layout_constraintWidth_percent="0.5" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/tvAskingPrice"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Asking Price: $39,000"
-        app:layout_constraintTop_toBottomOf="@id/tvCarModel"
-        app:layout_constraintStart_toStartOf="@id/tvCarModel"
-        app:layout_constraintEnd_toEndOf="@id/tvCarModel" />
+        android:layout_below="@id/inquireBtn"
+        android:text="Asking Price: $39,000" />
 
     <TextView
         android:id="@+id/tvCarDescription"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_below="@id/tvAskingPrice"
         android:text="Experience exhilarating performance and unparalleled luxury with the iconic BMW M3. Crafted with precision engineering and cutting-edge technology, the BMW M3 delivers an adrenaline-fueled driving experience like no other."
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@id/tvAskingPrice"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/tvAskingPrice"
-        app:layout_constraintTop_toBottomOf="@id/tvAskingPrice" />
+        android:textSize="14sp" />
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCarDescription"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvCarDescription"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="114dp">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_corner_background"
-                android:orientation="horizontal"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_corner_bg"
+                android:elevation="4dp"
                 android:padding="16dp">
 
+            <!-- Row for Make -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <TextView
-                    android:id="@+id/tvDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Description here" />
+                    android:text="Make"
+                    android:textStyle="bold" />
 
-                <LinearLayout
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="BMW" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvLabel1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Label 1" />
-
-                        <TextView
-                            android:id="@+id/tvInfo1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Info 1" />
-                    </LinearLayout>
-
-                    <!-- Repeat the above LinearLayout for other rows -->
-
-                </LinearLayout>
             </LinearLayout>
 
+            <!-- Row for Year -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Year"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2019" />
+
+            </LinearLayout>
+
+            <!-- Row for Engine Size -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Engine Size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2499 cc" />
+
+            </LinearLayout>
+
+            <!-- Row for Mileage -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Mileage"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="38,394" />
+
+            </LinearLayout>
+
+            <!-- Add more rows for additional details as needed -->
+
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btnContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_above="@+id/bottom_navigation_bar"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="8dp">
+
+            <!-- Watchlist Button -->
+            <Button
+                android:id="@+id/btnWatchlist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/purple"
+                android:text="Watchlist"
+                android:textColor="@color/white"
+                android:background="@drawable/itemlistingbutton"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Buy Now Button -->
+            <Button
+                android:id="@+id/btnBuyNow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/purple"
+                android:text="Buy now"
+                android:textColor="@color/white"
+                android:background="@drawable/itemlistingbutton" />
+        </LinearLayout>
+
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnWatchlist"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
-        android:backgroundTint="@color/purple"
-        android:text="Watchlist"
-        app:layout_constraintEnd_toStartOf="@id/btnBuyNow"
-        app:layout_constraintStart_toStartOf="@id/tvCarDescription"
-        app:layout_constraintTop_toBottomOf="@id/tvCarDescription"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <Button
-        android:id="@+id/btnBuyNow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
-        android:backgroundTint="@color/purple"
-        android:text="Buy now"
-        app:layout_constraintEnd_toEndOf="@id/tvCarDescription"
-        app:layout_constraintStart_toEndOf="@id/btnWatchlist"
-        app:layout_constraintTop_toBottomOf="@id/tvCarDescription"
-        app:layout_constraintWidth_percent="0.5" />
-
     <LinearLayout
-        android:id="@+id/bottom_navigation_bar"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:id="@+id/bottomMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@color/white"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:weightSum="3">
 
         <!-- Your navigation buttons here -->
         <ImageButton
@@ -218,7 +260,7 @@
         <ImageButton
             android:id="@+id/plusButton"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/baseline_add_24"
             android:text="Create Listing"
@@ -236,6 +278,11 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:textColor="@color/text_selector"
             android:contentDescription="Watchlist button"/>
+
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
+
+
+

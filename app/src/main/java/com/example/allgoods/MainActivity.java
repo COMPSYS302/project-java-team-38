@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -18,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Button backButton, homeButton, plusButton, watchlistButton, watchlistAdd;
+    private Button backButton,  watchlistAdd;
+
+    private ImageButton homeButton, plusButton, watchlistButton;
     private ImageView ivNavigationButton;
     private LinearLayout categoriesLayout;
     private EditText searchEditText, searchProducts;
