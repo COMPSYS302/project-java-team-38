@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/white"
+    >
 
 
     <FrameLayout
@@ -15,9 +16,10 @@
         <ImageView
             android:id="@+id/ivCarImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/pen_profile"
+            android:src="@drawable/car"
+            android:background="@drawable/rounded_corner_background"
             />
 
         <!-- Layout container for buttons -->
@@ -52,7 +54,10 @@
 
     </FrameLayout>
 
+
+
     <TextView
+        android:paddingLeft="20dp"
         android:id="@+id/tvCarModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,6 +68,7 @@
         android:textStyle="bold" />
 
     <Button
+        android:padding="3dp"
         android:id="@+id/inquireBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,168 +78,77 @@
         android:layout_marginEnd="18dp"
         android:backgroundTint="@color/purple"
         android:text="Inquire"
+        android:textAlignment="center"
         android:textColor="@color/white" />
 
     <TextView
+        android:paddingLeft="20dp"
         android:id="@+id/tvAskingPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/inquireBtn"
         android:text="Asking Price: $39,000" />
 
-    <TextView
-        android:id="@+id/tvCarDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_below="@id/tvAskingPrice"
-        android:text="Experience exhilarating performance and unparalleled luxury with the iconic BMW M3. Crafted with precision engineering and cutting-edge technology, the BMW M3 delivers an adrenaline-fueled driving experience like no other."
-        android:textSize="14sp" />
 
-    <ScrollView
+    <!--<ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvCarDescription"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="114dp">
+        android:layout_marginTop="102dp"
+        android:layout_marginBottom="53dp"
+        android:padding="6dp">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:elevation="4dp"
-                android:padding="16dp">
-
-            <!-- Row for Make -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Make"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="BMW" />
-
-            </LinearLayout>
-
-            <!-- Row for Year -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Year"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="2019" />
-
-            </LinearLayout>
-
-            <!-- Row for Engine Size -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Engine Size"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="2499 cc" />
-
-            </LinearLayout>
-
-            <!-- Row for Mileage -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mileage"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="38,394" />
-
-            </LinearLayout>
-
-            <!-- Add more rows for additional details as needed -->
-
-        </LinearLayout>
         <LinearLayout
             android:id="@+id/btnContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_above="@+id/bottom_navigation_bar"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:weightSum="2">
 
-            <!-- Watchlist Button -->
+
             <Button
                 android:id="@+id/btnWatchlist"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
+                android:background="@drawable/itemlistingbutton"
                 android:backgroundTint="@color/purple"
                 android:text="Watchlist"
-                android:textColor="@color/white"
-                android:background="@drawable/itemlistingbutton"
-                android:layout_marginEnd="8dp" />
+                android:textColor="@color/white" />
 
-            <!-- Buy Now Button -->
             <Button
                 android:id="@+id/btnBuyNow"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/itemlistingbutton"
                 android:backgroundTint="@color/purple"
                 android:text="Buy now"
-                android:textColor="@color/white"
-                android:background="@drawable/itemlistingbutton" />
+                android:textColor="@color/white" />
+
+
         </LinearLayout>
 
 
-    </ScrollView>
+    </ScrollView> -->
+    <!-- begining of the Details view -->
+
+    <TextView
+        android:id="@+id/tvCarDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAskingPrice"
+        android:layout_marginTop="29dp"
+        android:paddingLeft="20dp"
+        android:text="Experience exhilarating performance and unparalleled luxury with the iconic BMW M3. Crafted with precision engineering and cutting-edge technology, the BMW M3 delivers an adrenaline-fueled driving experience like no other."
+        android:textSize="14sp" />
 
     <LinearLayout
         android:id="@+id/bottomMenuLayout"
@@ -280,6 +195,192 @@
 
     </LinearLayout>
 
+
+    <!-- begining of the Details view -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvCarDescription"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/rounded_corner_background"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Details"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/purple" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Make"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="BMW"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Year"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2019"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Engine Size"
+                android:textStyle="bold" />
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2499 cc" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mileage"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="38,394"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Numberplate"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="38,394"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Model"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="38,394"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="KM"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="38,394"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!-- ending of the Details view -->
 
 </RelativeLayout>
 
