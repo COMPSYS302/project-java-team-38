@@ -24,14 +24,15 @@ public class SearchResultsActivity extends AppCompatActivity {
     private SearchAdapter searchAdapter;
     private EditText searchEditText;
 
+    private Button hatchback, sedan, suv, coupe, minivan, other;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         searchEditText = findViewById(R.id.etSearchProducts);
-
         recyclerView = findViewById(R.id.rvCarListingsSearches);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        initializeUIComponents();
         initializeAdapter();
 
         String searchQuery = getIntent().getStringExtra("searchQuery");
@@ -41,6 +42,15 @@ public class SearchResultsActivity extends AppCompatActivity {
         }
 
         setupSearchListener();
+    }
+
+    private void initializeUIComponents() {
+        hatchback = findViewById(R.id.search_hatchback);
+        sedan = findViewById(R.id.search_sedan);
+        suv = findViewById(R.id.search_suv);
+        coupe = findViewById(R.id.search_coupe);
+        minivan = findViewById(R.id.search_minivan);
+        other = findViewById(R.id.search_other);
     }
 
     private void initializeAdapter() {

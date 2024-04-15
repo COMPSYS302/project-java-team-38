@@ -83,7 +83,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                     for (CarListing listing : carListings) {
                         if (listing.getCar().getMake().toLowerCase().contains(searchQuery) ||
                                 listing.getCar().getModel().toLowerCase().contains(searchQuery) ||
-                                listing.getCar().getType().toLowerCase().contains(searchQuery)) {
+                                listing.getCar().getType().toLowerCase().contains(searchQuery)){
                             tempList.add(listing);
                         }
                     }
