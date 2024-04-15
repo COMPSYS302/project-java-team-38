@@ -49,6 +49,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSearchProducts" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCarListingsSearches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/featuredSearches"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
     <GridLayout
         android:id="@+id/glBrowseBy"
         android:layout_width="0dp"
@@ -60,9 +72,10 @@
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:rowCount="4"
-        app:layout_constraintTop_toBottomOf="@+id/featuredSearches"
+        app:layout_constraintTop_toBottomOf="@+id/rvCarListingsSearches"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp">
 
         <!-- Example button -->
         <Button

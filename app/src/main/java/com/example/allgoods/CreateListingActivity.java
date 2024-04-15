@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,8 @@ import java.util.Date;
 import java.util.List;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
+
 import java.time.ZonedDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -52,6 +56,8 @@ public class CreateListingActivity extends AppCompatActivity {
 
     private Spinner carTypeSpinner;
     private ArrayList<Uri> images;
+
+    private String selectedCarType;
 
     private final String fieldsNotFilled = "Code 404";
     @Override
@@ -90,7 +96,24 @@ public class CreateListingActivity extends AppCompatActivity {
                 R.array.car_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carTypeSpinner.setAdapter(adapter);
+
+        // Set up a listener for spinner item selection
+        carTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCarType = parent.getItemAtPosition(position).toString();
+                Toast.makeText(CreateListingActivity.this, "Selected: " + selectedCarType, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(CreateListingActivity.this, "Please Select a Car Type", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
 
     private String getSelectedCarType() {
         return carTypeSpinner.getSelectedItem().toString();
@@ -336,7 +359,7 @@ public class CreateListingActivity extends AppCompatActivity {
         String timeZoneID = timeZone.getID();
         ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneID));
         String uniqueKey = UniqueIdGenerator.generateUniqueId();
-        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage,getSelectedCarType());
+        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage,selectedCarType);
         CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
         CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
         carListingAdder.addListing(userInSession,userCarListing);

@@ -18,6 +18,22 @@
           <timeTargetWasSelectedWithDropDown value="2024-04-14T11:55:13.521258800Z" />
         </State>
       </entry>
+      <entry key="RegisterActivity (2)">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\deven\.android\avd\Pixel_7_Pro_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-15T11:04:06.671254900Z" />
+        </State>
+      </entry>
     </value>
   </component>
 </project>

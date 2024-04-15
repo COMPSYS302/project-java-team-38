@@ -108,8 +108,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Example button -->
         <Button
+            android:id="@+id/main_hatchback"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -119,6 +119,7 @@
             android:padding="16dp" />
 
         <Button
+            android:id="@+id/main_sedan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -129,6 +130,7 @@
             android:gravity="center" />
 
         <Button
+            android:id="@+id/main_suv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -138,6 +140,7 @@
             android:padding="16dp"
             android:gravity="center" />
         <Button
+            android:id="@+id/main_coupe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -147,16 +150,18 @@
             android:padding="16dp"
             android:gravity="center" />
         <Button
+            android:id="@+id/main_minivan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_columnWeight="1"
-            android:text="Convertible"
+            android:text="Minivan"
             android:background="@drawable/browse_by_button"
             android:padding="16dp"
             android:gravity="center" />
 
         <Button
+            android:id="@+id/main_other"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -165,9 +170,6 @@
             android:background="@drawable/browse_by_button"
             android:padding="16dp"
             android:gravity="center" />
-
-        <!-- Repeat buttons for each category, such as Special, Luxury, etc. -->
-        <!-- ... -->
 
     </GridLayout>
 
