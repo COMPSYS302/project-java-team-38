@@ -37,14 +37,14 @@
                 android:layout_marginBottom="3dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Back button"
-                android:src="@drawable/baseline_arrow_back_24" />
+                android:src="@drawable/back_square_svgrepo_com__2_" />
 
             <ImageButton
                 android:id="@+id/watchlistbtn"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/baseline_add_shopping_cart_24"
+                android:src="@drawable/cart_svgrepo_com__3_"
                 android:contentDescription="Watchlist button"/>
 
 
@@ -93,7 +93,8 @@
     <androidx.cardview.widget.CardView
         android:layout_marginTop="10dp"
         android:id="@+id/cvInquiry"
-        android:layout_below="@id/tvAskingPrice"
+
+        android:layout_above="@id/bottomMenuLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -126,9 +127,23 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
+            <ImageButton
+                android:id="@+id/ivCross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tvCarModelCard"
+                android:layout_toStartOf="@id/btnMessage"
+                android:background="@color/purple"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="15dp"
+                android:src = "@drawable/cross_square_svgrepo_com__1_"
+            />
+
             <!-- Top-right aligned Button for Message -->
             <Button
                 android:id="@+id/btnMessage"
+                android:layout_marginRight="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
