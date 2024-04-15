@@ -260,6 +260,7 @@
 
 
                     <TextView
+                        android:id="@+id/MakeofCar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -281,6 +282,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/YearofCar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -296,6 +298,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/EngineSizeofCar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -318,6 +321,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/MileageofCar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -340,6 +344,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/NumberPlateofCar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
