@@ -18,5 +18,6 @@
     <color name="grey">#E8E8E8</color> <!-- Blue for selected state -->
     <color name="faded_grey">#4D9E9E9E</color> <!-- faded background color -->
     <color name="backgroundPurple">#EAD6EE</color>
+    <color name="LightGrey">#f2f2f2</color>
 
 </resources>

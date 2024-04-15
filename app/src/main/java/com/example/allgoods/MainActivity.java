@@ -18,13 +18,13 @@ import java.util.List;
 
 
 
-
 public class MainActivity extends AppCompatActivity implements CarAdapter.OnItemClickListener {
     private Button backButton, watchlistAdd;
 
     private ImageButton homeButton, plusButton, watchlistButton;
 
     private Button hatchback, sedan, suv, coupe, minivan, other;
+
     private ImageView ivNavigationButton;
     private LinearLayout categoriesLayout;
     private EditText searchEditText;
