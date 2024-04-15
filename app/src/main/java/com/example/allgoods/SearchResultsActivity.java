@@ -7,23 +7,81 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+    private SearchAdapter searchAdapter;
+    private EditText searchEditText;
+
+    private Button hatchback, sedan, suv, coupe, minivan, other;
 
     protected void onCreate(Bundle savedInstanceState) {
-        //This is for Setting content view to activity search once clicked on search bar
-        //I was thinking to have this as soon as the search bar is clicked instead of ever
-        //thing being in the Main Activity.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        searchEditText = findViewById(R.id.etSearchProducts);
+        recyclerView = findViewById(R.id.rvCarListingsSearches);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        initializeUIComponents();
+        initializeAdapter();
+
+        String searchQuery = getIntent().getStringExtra("searchQuery");
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            searchEditText.setText(searchQuery);
+            searchAdapter.getFilter().filter(searchQuery);
+        }
+
+        setupSearchListener();
+    }
+
+    private void initializeUIComponents() {
+        hatchback = findViewById(R.id.search_hatchback);
+        sedan = findViewById(R.id.search_sedan);
+        suv = findViewById(R.id.search_suv);
+        coupe = findViewById(R.id.search_coupe);
+        minivan = findViewById(R.id.search_minivan);
+        other = findViewById(R.id.search_other);
+    }
+
+    private void initializeAdapter() {
+        List<CarListing> carListings = CarDatabaseManager.getInstance().getAllListings();
+        searchAdapter = new SearchAdapter(this, carListings, position -> {
+            // Handle click event, e.g., adding to watchlist
+            Toast.makeText(this, "Added to watchlist: " + searchAdapter.getItem(position).getCar().getModel(), Toast.LENGTH_SHORT).show();
+        });
+        recyclerView.setAdapter(searchAdapter);
+    }
+
+    private List<CarListing> fetchCarListings() {
+
+        return new ArrayList<>();
+    }
+
+    private void setupSearchListener() {
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                searchAdapter.getFilter().filter(s.toString());
+            }
+        });
     }
 }

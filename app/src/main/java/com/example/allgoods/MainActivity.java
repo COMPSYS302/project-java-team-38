@@ -19,9 +19,11 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements CarAdapter.OnItemClickListener {
-    private Button backButton,  watchlistAdd;
+    private Button backButton, watchlistAdd;
 
     private ImageButton homeButton, plusButton, watchlistButton;
+
+    private Button hatchback, sedan, suv, coupe, minivan, other;
 
     private ImageView ivNavigationButton;
     private LinearLayout categoriesLayout;
@@ -45,6 +47,12 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         homeButton = findViewById(R.id.homeButton);
         plusButton = findViewById(R.id.plusButton);
         watchlistButton = findViewById(R.id.watchlistButton);
+        hatchback = findViewById(R.id.main_hatchback);
+        sedan = findViewById(R.id.main_sedan);
+        suv = findViewById(R.id.main_suv);
+        coupe = findViewById(R.id.main_coupe);
+        minivan = findViewById(R.id.main_minivan);
+        other = findViewById(R.id.main_other);
 
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -75,6 +83,13 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         homeButton.setOnClickListener(v -> showToast("Home clicked"));
         plusButton.setOnClickListener(v -> navigateToCreateListing());
         watchlistButton.setOnClickListener(v -> navigateToWatchList());
+        searchEditText.setOnClickListener(v -> navigateToSearchActivity());
+        hatchback.setOnClickListener(v -> onHatchbackClicked());
+        sedan.setOnClickListener(v -> onSedanClicked());
+        suv.setOnClickListener(v -> onSuvClicked());
+        coupe.setOnClickListener(v -> onCoupeClicked());
+        minivan.setOnClickListener(v -> onMinivanClicked());
+        other.setOnClickListener(v -> onOtherClicked());
     }
 
     private void navigateToProfile() {
@@ -112,4 +127,44 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         }
     }
 
+    private void navigateToSearchActivity(){
+        Intent intent = new Intent(MainActivity.this, SearchResultsActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
+
+    private void onHatchbackClicked(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("searchQuery", "Hatchback");
+        startActivity(intent);
+    }
+
+    private void onSedanClicked(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("searchQuery", "Sedan");
+        startActivity(intent);
+    }
+
+    private void onSuvClicked(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("searchQuery", "Suv");
+        startActivity(intent);
+    }
+
+    private void onCoupeClicked(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("searchQuery", "Coupe");
+        startActivity(intent);
+    }
+
+    private void onMinivanClicked(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("searchQuery", "Minivan");
+        startActivity(intent);
+    }
+    private void onOtherClicked(){
+        Intent intent = new Intent(this, SearchResultsActivity.class);
+        intent.putExtra("searchQuery", "Other");
+        startActivity(intent);
+    }
 }

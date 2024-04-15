@@ -57,6 +57,10 @@ public class Car {
         return odo;
     }
 
+    public String getType(){
+        return this.type;
+    }
+
     public static String generateUniqueId() {
         long currentTimestamp = System.currentTimeMillis(); // Current timestamp
         long uniquePart = currentTimestamp - BASE_TIMESTAMP; // Subtracting base timestamp

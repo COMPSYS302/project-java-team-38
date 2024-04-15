@@ -49,6 +49,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSearchProducts" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCarListingsSearches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/featuredSearches"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
     <GridLayout
         android:id="@+id/glBrowseBy"
         android:layout_width="0dp"
@@ -60,12 +72,13 @@
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:rowCount="4"
-        app:layout_constraintTop_toBottomOf="@+id/featuredSearches"
+        app:layout_constraintTop_toBottomOf="@+id/rvCarListingsSearches"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp">
 
-        <!-- Example button -->
         <Button
+            android:id="@+id/search_hatchback"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -75,6 +88,7 @@
             android:padding="16dp" />
 
         <Button
+            android:id="@+id/search_sedan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -85,6 +99,7 @@
             android:gravity="center" />
 
         <Button
+            android:id="@+id/search_suv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -94,6 +109,7 @@
             android:padding="16dp"
             android:gravity="center" />
         <Button
+            android:id="@+id/search_coupe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -103,16 +119,18 @@
             android:padding="16dp"
             android:gravity="center" />
         <Button
+            android:id="@+id/search_minivan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_columnWeight="1"
-            android:text="Convertible"
+            android:text="Minivan"
             android:background="@drawable/browse_by_button"
             android:padding="16dp"
             android:gravity="center" />
 
         <Button
+            android:id="@+id/search_other"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -121,9 +139,6 @@
             android:background="@drawable/browse_by_button"
             android:padding="16dp"
             android:gravity="center" />
-
-        <!-- Repeat buttons for each category, such as Special, Luxury, etc. -->
-        <!-- ... -->
 
     </GridLayout>
 
