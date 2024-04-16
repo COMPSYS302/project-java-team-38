@@ -1,8 +1,11 @@
 package com.example.allgoods;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -10,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-public class IndepthListingActivity extends AppCompatActivity {
+public class IndepthListingActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,8 @@ public class IndepthListingActivity extends AppCompatActivity {
 
         // Set the back button click listener
         ImageButton btnBack = findViewById(R.id.btnBack);
+
+        ImageButton CrossButton = findViewById(R.id.ivCross);
 
         ImageButton watchlistbtn= findViewById(R.id.watchlistbtn);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -48,13 +53,64 @@ public class IndepthListingActivity extends AppCompatActivity {
         inquireButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle the visibility of the CardView
                 if (inquiryCardView.getVisibility() == View.GONE) {
+                    Animation slideUp = AnimationUtils.loadAnimation(v.getContext(), R.anim.slide_up); // Use v.getContext() to get the context from the view
+                    inquiryCardView.startAnimation(slideUp);
                     inquiryCardView.setVisibility(View.VISIBLE);
                 } else {
-                    inquiryCardView.setVisibility(View.GONE);
+                    Animation slideDown = AnimationUtils.loadAnimation(v.getContext(), R.anim.slide_down); // Use v.getContext() to get the context from the view
+                    slideDown.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            // Animation started event
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            inquiryCardView.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            // Animation repeat event
+                        }
+                    });
+                    inquiryCardView.startAnimation(slideDown);
                 }
             }
         });
+
+
+        CrossButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (inquiryCardView.getVisibility() == View.GONE) {
+                    Animation slideUp = AnimationUtils.loadAnimation(v.getContext(), R.anim.slide_up); // Use v.getContext() to get the context from the view
+                    inquiryCardView.startAnimation(slideUp);
+                    inquiryCardView.setVisibility(View.VISIBLE);
+                } else {
+                    Animation slideDown = AnimationUtils.loadAnimation(v.getContext(), R.anim.slide_down); // Use v.getContext() to get the context from the view
+                    slideDown.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            // Animation started event
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            inquiryCardView.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            // Animation repeat event
+                        }
+                    });
+                    inquiryCardView.startAnimation(slideDown);
+                }
+            }
+        });
+
+
     }
 }
