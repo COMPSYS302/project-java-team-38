@@ -142,6 +142,52 @@
 
     </GridLayout>
 
+    <LinearLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/homeButtonSearch"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_home_24"
+            android:text="Home"
+            android:textColor="@color/text_selector"
+            android:contentDescription="Home button"/>
+
+        <ImageButton
+            android:id="@+id/plusButtonSearch"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_add_24"
+            android:text="Create Listing"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector"
+            android:contentDescription="Create Task button"/>
+
+        <ImageButton
+            android:id="@+id/watchlistButtonSearch"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_add_shopping_cart_24"
+            android:text="Watchlist"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector"
+            android:contentDescription="Watchlist button"/>
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 if(authenticationManager.loginAuthenticator(username.getText().toString(), password.getText().toString()) && authenticationManager.databaseValidator()) {
                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    User currentUser = authenticationManager.users.get(username);
+                    User currentUser = authenticationManager.users.get(username.getText().toString());
                     UserSession session = UserSession.getInstance(LoginActivity.this);
                     session.createLoginSession(currentUser);
                     Intent moveToMainActivitiy = new Intent(LoginActivity.this, MainActivity.class);

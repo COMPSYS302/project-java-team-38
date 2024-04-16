@@ -51,5 +51,6 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     //Card View
+    implementation ("org.apache.commons:commons-imaging:1.0-alpha2")
 
 }

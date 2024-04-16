@@ -322,10 +322,10 @@ public class CreateListingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
-            ArrayList<Uri> imageUris = new ArrayList<>(adapter.getImageUris()); // Get current images
+            ArrayList<Uri> imageUris = new ArrayList<>(adapter.getImageUris());
             images.addAll(imageUris);
-            imageUris.add(imageUri); // Add new image
-            adapter.setImageUris(imageUris); // Update adapter with new list of images
+            imageUris.add(imageUri);
+            adapter.setImageUris(imageUris);
         }
     }
 

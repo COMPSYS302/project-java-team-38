@@ -20,6 +20,13 @@
             android:layout_marginStart="15dp"
             android:clickable="true"
             android:focusable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WatchList"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
