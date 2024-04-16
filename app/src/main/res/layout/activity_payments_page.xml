@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     >
 
@@ -19,17 +19,6 @@
 
         <!-- Layout container for buttons A-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:text="Payments"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge">
-
-
-        </TextView>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,15 +28,6 @@
 
 
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="3dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Back button"
-            android:src="@drawable/back_square_svgrepo_com__2_" />
 
 
     </FrameLayout>
@@ -69,6 +49,7 @@
         android:fillViewport="true">
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+
                 android:text="Car Details"
                 android:textColor="@color/purple"
                 android:textSize="18sp"
@@ -100,13 +82,22 @@
                 android:background="@color/purple"
                 />
 
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                android:layout_gravity="center">
+
             <ImageView
                 android:id="@+id/ivCarImage1"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@drawable/rounded_corner_background"
-                android:scaleType="centerCrop"
-                android:src="@drawable/car" />
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@drawable/car"
+                />
+        </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/CarModelAndBrand"
@@ -288,6 +279,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+
             android:text="Confirmation"
             android:textColor="@color/purple"
             android:textSize="18sp"
@@ -334,10 +326,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Confirm Purchase"
+                android:background="@drawable/rounded_corner_background"
                 android:backgroundTint="@color/purple"
                 android:textColor="@android:color/white"
                 android:layout_marginEnd="8dp"
-                android:/>
+                />
 
             <!-- Cancel Button -->
             <Button
@@ -346,7 +339,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="cancel purchase"
-                android:textColorHighlight="@color/black"
                 android:drawableLeft= "@drawable/cross_square_svgrepo_com__1_"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:textColor="@android:color/black"
@@ -420,6 +412,28 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back button"
+        android:src="@drawable/back_square_svgrepo_com__2_" />
+
+    <TextView
+        android:id="@+id/tvPayments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
+        android:background="?attr/selectableItemBackgroundBorderless"
+
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="7dp"
+        android:text="Payments"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
 
 </RelativeLayout>
