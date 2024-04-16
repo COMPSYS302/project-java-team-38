@@ -7,14 +7,14 @@ import com.google.gson.Gson;
 public class UserSession {
     private static volatile UserSession instance;
     private SharedPreferences prefs;
-    private SharedPreferences.Editor editor;
     private static final String PREF_NAME = "UserSession";
     private static final String KEY_USER = "user";
-    private Gson gson = new Gson(); // Gson instance
+    private User currentUser;
+    private Gson gson = new Gson();
 
     private UserSession(Context context) {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        editor = prefs.edit();
+        loadUser();  // Load user when instance is created
     }
 
     public static UserSession getInstance(Context context) {
@@ -28,23 +28,22 @@ public class UserSession {
         return instance;
     }
 
+    private void loadUser() {
+        String userJson = prefs.getString(KEY_USER, null);
+        currentUser = gson.fromJson(userJson, User.class);  // Load user once and reuse
+    }
+
     public void createLoginSession(User user) {
-        String userJson = gson.toJson(user); // Serialize the User object to JSON
-        editor.putString(KEY_USER, userJson);
-        editor.apply(); // Save the user JSON asynchronously
+        currentUser = user;
     }
 
     public User getUser() {
-        String userJson = prefs.getString(KEY_USER, null);
-        return gson.fromJson(userJson, User.class); // Deserialize the JSON back to a User object
+        return currentUser;
     }
 
     public void logoutUser() {
-        editor.clear();
-        editor.apply(); // Clear the session asynchronously
-    }
-
-    public boolean isUserLoggedIn() {
-        return getUser() != null;
+        currentUser = null;
+        prefs.edit().clear().apply();
     }
 }
+

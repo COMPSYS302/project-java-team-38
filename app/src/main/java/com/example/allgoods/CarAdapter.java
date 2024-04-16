@@ -62,7 +62,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         if (position >= 0 && position < carListings.size()) {
             return carListings.get(position);
         }
-        return null; // Return null or handle the error as per your requirement
+        return null;
     }
 
 

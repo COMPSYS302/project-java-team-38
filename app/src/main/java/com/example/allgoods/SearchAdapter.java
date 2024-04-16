@@ -15,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> implements Filterable {
+public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+    private static final int ITEM_VIEW_TYPE_RESULT = 0;
+    private static final int ITEM_VIEW_TYPE_EMPTY = 1;
+
     private Context context;
     private List<CarListing> carListings;
     private List<CarListing> filteredCarListings;
@@ -32,33 +35,53 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         this.listener = listener;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return filteredCarListings.isEmpty() ? ITEM_VIEW_TYPE_EMPTY : ITEM_VIEW_TYPE_RESULT;
+    }
+
     @NonNull
     @Override
-    public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_car_listing, parent, false);
-        return new SearchViewHolder(view, listener);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == ITEM_VIEW_TYPE_EMPTY) {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_no_result, parent, false);
+            return new EmptyViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_car_listing, parent, false);
+            return new SearchViewHolder(view, listener);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
-        CarListing carListing = filteredCarListings.get(position);
-        holder.tvCarMakeModel.setText(carListing.getCar().getMake() + " " + carListing.getCar().getModel());
-        holder.tvCarYear.setText("Year: " + carListing.getCar().getYear());
-        holder.tvCarPrice.setText("$" + carListing.getPrice());
-        holder.tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
-        if (carListing.getFirstImage() != null) {
-            holder.ivCarPhoto.setImageURI(carListing.getFirstImage());
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (getItemViewType(position) == ITEM_VIEW_TYPE_RESULT) {
+            CarListing carListing = filteredCarListings.get(position);
+            SearchViewHolder viewHolder = (SearchViewHolder) holder;
+            viewHolder.tvCarMakeModel.setText(carListing.getCar().getMake() + " " + carListing.getCar().getModel());
+            viewHolder.tvCarYear.setText("Year: " + carListing.getCar().getYear());
+            viewHolder.tvCarPrice.setText("$" + carListing.getPrice());
+            viewHolder.tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
+            if (carListing.getFirstImage() != null) {
+                viewHolder.ivCarPhoto.setImageURI(carListing.getFirstImage());
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return filteredCarListings.size();
+        return filteredCarListings.isEmpty() ? 1 : filteredCarListings.size();
+    }
+
+    public int getListingCount() {
+        if(carListings != null){
+            return 1;
+        }
+        return 0;
     }
 
     public CarListing getItem(int position) {
-        if (position >= 0 && position < carListings.size()) {
-            return carListings.get(position);
+        if (!filteredCarListings.isEmpty() && position >= 0 && position < filteredCarListings.size()) {
+            return filteredCarListings.get(position);
         }
         return null;
     }
@@ -66,7 +89,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     public void updateData(List<CarListing> newCarListings) {
         carListings.clear();
         carListings.addAll(newCarListings);
-        this.filteredCarListings = new ArrayList<>(carListings);
+        filteredCarListings = new ArrayList<>(carListings);
         notifyDataSetChanged();
     }
 
@@ -76,20 +99,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String searchQuery = constraint.toString().toLowerCase();
-                if (searchQuery.isEmpty()) {
-                    filteredCarListings = new ArrayList<>(carListings);
-                } else {
-                    List<CarListing> tempList = new ArrayList<>();
+                List<CarListing> tempList = new ArrayList<>();
+                if (!searchQuery.isEmpty()) {
                     for (CarListing listing : carListings) {
                         if (listing.getCar().getMake().toLowerCase().contains(searchQuery) ||
                                 listing.getCar().getModel().toLowerCase().contains(searchQuery) ||
-                                listing.getCar().getType().toLowerCase().contains(searchQuery)){
+                                listing.getCar().getType().toLowerCase().contains(searchQuery)) {
                             tempList.add(listing);
                         }
                     }
-                    filteredCarListings = tempList;
                 }
-
+                filteredCarListings = tempList;
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredCarListings;
                 return filterResults;
@@ -122,4 +142,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             });
         }
     }
+
+    static class EmptyViewHolder extends RecyclerView.ViewHolder {
+        ImageView noResultsImageView;
+
+        public EmptyViewHolder(View itemView) {
+            super(itemView);
+            noResultsImageView = itemView.findViewById(R.id.noSearchResults);
+
+        }
+    }
+
 }
