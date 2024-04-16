@@ -4,14 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -31,6 +35,7 @@ import java.util.TimeZone;
 public class MainActivity extends AppCompatActivity implements CarAdapter.OnItemClickListener {
     private Button backButton, watchlistAdd;
 
+    private boolean showAll = false;
     private ImageButton homeButton, plusButton, watchlistButton;
 
     private Button hatchback, sedan, suv, coupe, minivan, other;
@@ -40,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
     private EditText searchEditText;
     private RecyclerView rvCarListings;
     private CarAdapter carAdapter;
+
+    TextView mainViewAll;
 
     CarDatabaseManager dbManager;
 
@@ -94,6 +101,20 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         coupe = findViewById(R.id.main_coupe);
         minivan = findViewById(R.id.main_minivan);
         other = findViewById(R.id.main_other);
+        mainViewAll = findViewById(R.id.main_view_all);
+        mainViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAll = !showAll;
+                toggleShowAll();
+                animateButton();
+                if (showAll) {
+                    animateListingViews();
+                }
+            }
+        });
+
+
 
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -107,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         });
 
         setupButtonListeners();
+
     }
 
     private void setupRecyclerView() {
@@ -117,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         carAdapter.updateData(carListings);
         rvCarListings.setAdapter(carAdapter);
         rvCarListings.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private void setupButtonListeners() {
@@ -209,6 +232,67 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         startActivity(intent);
     }
 
+    private void toggleShowAll() {
+        if (carAdapter != null) {
+            carAdapter.setShowAll(showAll);
+        }
+    }
+
+    private void animateButton() {
+        // Add animation to the button (example: fade in/out)
+        Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+        Animation fadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
+
+        if (showAll) {
+            mainViewAll.startAnimation(fadeOut);
+        } else {
+            mainViewAll.startAnimation(fadeIn);
+        }
+    }
+
+    private void animateListings(List<View> listingViews) {
+        // Delay between animations
+        final int delayMillis = 200;
+
+        // Initialize delay
+        int delay = 0;
+
+        // Iterate over listing views
+        for (final View listingView : listingViews) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Apply animation
+                    Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.waterfall);
+                    listingView.startAnimation(animation);
+                }
+            }, delay);
+
+            // Increment delay for next item
+            delay += delayMillis;
+        }
+    }
+
+    // Renamed method for animating individual listing views
+    private void animateListingViews() {
+        LinearLayoutManager layoutManager = (LinearLayoutManager) rvCarListings.getLayoutManager();
+        int itemCount = layoutManager.getItemCount();
+        List<View> listings = new ArrayList<>();
+        for (int i = 0; i < itemCount; i++) {
+            View listingView = layoutManager.findViewByPosition(i);
+            if (listingView != null) {
+                // Add only non-null views to the list
+                listings.add(listingView);
+                // Apply animation to all listing views
+                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.waterfall);
+                listingView.startAnimation(animation);
+            }
+        }
+
+        // Now call animateListings with the list of visible listing views
+        animateListings(listings);
+    }
+
     private void initializeDemoData() {
 
         TimeZone timeZone = TimeZone.getDefault();
@@ -250,6 +334,67 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         CarListing listing3 = new CarListing("3", car3, 15500, currentDateTimeWithZone, listing3img);
         dbManager = CarDatabaseManager.getInstance();
         dbManager.addListing(DevenT3, listing3);
+
+        ArrayList<Uri> listing4img = new ArrayList<>();
+        Uri imageKia = ImageToDataURI.drawableToUri(this, R.drawable.kia_front);
+        Uri imageKiaBack = ImageToDataURI.drawableToUri(this, R.drawable.kia_back);
+        listing4img.add(imageKia);
+        listing4img.add(imageKiaBack);
+
+        User DevenT4 = new User("4", "DevenT4", "Password145!", "DevenT4@example.com");
+        Car car4 = new Car(DevenT4, "Kia", "Sportage", 2014, 170982, "suv");
+        CarListing listing4 = new CarListing("4", car4, 11900, currentDateTimeWithZone, listing4img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT4, listing4);
+
+        ArrayList<Uri> listing5img = new ArrayList<>();
+        Uri imageLexus = ImageToDataURI.drawableToUri(this, R.drawable.lexus_f_is350);
+        Uri imageLexusBack= ImageToDataURI.drawableToUri(this, R.drawable.lexus_back_f);
+        listing5img.add(imageLexus);
+        listing5img.add(imageLexusBack);
+
+        User DevenT5 = new User("5", "DevenT5", "Password145!", "DevenT5@example.com");
+        Car car5 = new Car(DevenT5, "Lexus", "IS350 F Sport", 2013, 56538, "Sedan");
+        CarListing listing5 = new CarListing("5", car5, 28950, currentDateTimeWithZone, listing5img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT5, listing5);
+
+        ArrayList<Uri> listing6img = new ArrayList<>();
+        Uri imageHondaAccord2Front = ImageToDataURI.drawableToUri(this, R.drawable.honda2_front);
+        Uri imageHondaAccord2Back= ImageToDataURI.drawableToUri(this, R.drawable.honda2_front);
+        listing6img.add(imageHondaAccord2Front);
+        listing6img.add(imageHondaAccord2Back);
+
+        User DevenT6 = new User("6", "DevenT6", "Password145!", "DevenT6@example.com");
+        Car car6 = new Car(DevenT6, "Honda", "Accord Euro L", 2011, 189500, "Sedan");
+        CarListing listing6 = new CarListing("6", car6, 7500, currentDateTimeWithZone, listing6img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT6, listing6);
+
+        ArrayList<Uri> listing7img = new ArrayList<>();
+        Uri imageNissianCube = ImageToDataURI.drawableToUri(this, R.drawable.nissan_cube_front);
+        Uri imageNissianCubeBack= ImageToDataURI.drawableToUri(this, R.drawable.nissan_cube_front);
+        listing7img.add(imageNissianCube);
+        listing7img.add(imageNissianCubeBack);
+
+        User DevenT7 = new User("7", "DevenT7", "Password145!", "DevenT7@example.com");
+        Car car7 = new Car(DevenT7, "Nissian", "Cube", 2012, 51000, "Hatchback");
+        CarListing listing7 = new CarListing("7", car7, 8488, currentDateTimeWithZone, listing7img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT7, listing7);
+
+        ArrayList<Uri> listing8img = new ArrayList<>();
+        Uri imagePorsche = ImageToDataURI.drawableToUri(this, R.drawable.porsche_front);
+        Uri imageporscheBack = ImageToDataURI.drawableToUri(this, R.drawable.porsche_back);
+        listing8img.add(imagePorsche);
+        listing8img.add(imageporscheBack);
+
+        User DevenT8 = new User("8", "DevenT8", "Password145!", "DevenT8@example.com");
+        Car car8 = new Car(DevenT8, "Porsche", "911 GT3 RS", 2016, 6050, "Coupe");
+        CarListing listing8 = new CarListing("8", car8, 325000, currentDateTimeWithZone, listing8img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT8, listing8);
+
 
     }
 }
