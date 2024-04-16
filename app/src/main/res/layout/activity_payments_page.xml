@@ -90,14 +90,14 @@
                 app:cardElevation="0dp"
                 android:layout_gravity="center">
 
-            <ImageView
-                android:id="@+id/ivCarImage1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:src="@drawable/car"
-                />
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/ivCarImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/car"
+                    />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/CarModelAndBrand"
@@ -249,11 +249,7 @@
                         android:padding="12dp"/>
                 </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/EngineSizeofCar"
-
-
+                <!-- Billing Address Input -->
                 <EditText
                     android:id="@+id/etBillingAddress"
                     android:layout_width="match_parent"
@@ -266,6 +262,7 @@
                     android:drawablePadding="8dp"
                     android:padding="12dp"/>
 
+                <!-- Save Payment Information Checkbox -->
                 <CheckBox
                     android:id="@+id/cbSaveInfo"
                     android:layout_width="match_parent"
@@ -276,78 +273,78 @@
 
 
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/ConfirmationofPayment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-
-            android:text="Confirmation"
-            android:textColor="@color/purple"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/purple"
-            />
-
-
-
-
-        <!-- Confirmation Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-        <!-- Total Price -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total Price: $75,000"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Confirm and Cancel Buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="16dp">
-
-            <!-- Confirm Purchase Button -->
-            <Button
-                android:id="@+id/btnConfirmPurchase"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ConfirmationofPayment"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Confirm Purchase"
-                android:background="@drawable/rounded_corner_background"
-                android:backgroundTint="@color/purple"
-                android:textColor="@android:color/white"
-                android:layout_marginEnd="8dp"
+
+
+                android:text="Confirmation"
+                android:textColor="@color/purple"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/purple"
                 />
 
-            <!-- Cancel Button -->
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="0dp"
+
+
+
+            <!-- Confirmation Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="cancel purchase"
-                android:drawableLeft= "@drawable/cross_square_svgrepo_com__1_"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:textColor="@android:color/black"
-                android:layout_marginStart = "8dp"/>
-        </LinearLayout>
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Total Price -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price: $75,000"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Confirm and Cancel Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Confirm Purchase Button -->
+                    <Button
+                        android:id="@+id/btnConfirmPurchase"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Confirm Purchase"
+                        android:background="@drawable/rounded_corner_background"
+                        android:backgroundTint="@color/purple"
+                        android:textColor="@android:color/white"
+                        android:layout_marginEnd="8dp"
+                        />
+
+                    <!-- Cancel Button -->
+                    <Button
+                        android:id="@+id/btnCancel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="cancel purchase"
+                        android:drawableLeft= "@drawable/cross_square_svgrepo_com__1_"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:textColor="@android:color/black"
+                        android:layout_marginStart = "8dp"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- Purchase Success Message -->
             <TextView
