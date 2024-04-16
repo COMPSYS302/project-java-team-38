@@ -39,34 +39,51 @@
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:autoStart="true"
-        android:flipInterval="5000"
+        android:flipInterval="3000"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:inAnimation="@anim/slide_in_from_left"
         android:outAnimation="@anim/slide_out_to_right">
 
-        <ImageView
-            android:id="@+id/ImageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/watch_list"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/ImageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/credit_card_profile"
+            android:src="@drawable/toyota_1_logo_svgrepo_com"
             android:scaleType="centerCrop"
             android:layout_gravity="center"/>
+        <ImageView
+            android:id="@+id/ImageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lexus_logo_svgrepo_com"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"/>
+
 
         <ImageView
             android:id="@+id/ImageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/credit_card_profile"
+            android:src="@drawable/ferrari_ges_logo_svgrepo_com"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/ImageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/peugeot_svgrepo_com"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/ImageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ferrari_ges_logo_svgrepo_com"
             android:scaleType="centerCrop"
             android:layout_gravity="center"/>
     </ViewFlipper>
