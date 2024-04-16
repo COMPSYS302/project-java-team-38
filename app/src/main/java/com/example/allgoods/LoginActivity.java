@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button loginButton;
     Button signupText;
+    ImageButton backButton;
     AuthenticationManager authenticationManager = AuthenticationManager.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         signupText = findViewById(R.id.signupText);
+        backButton = findViewById(R.id.ButtonReturn);
 
         signupText.setOnClickListener(view -> {
 
@@ -48,5 +51,17 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle register button click
+                Intent intent = new Intent(LoginActivity.this, StartingPageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
+
+

@@ -57,9 +57,10 @@
             android:id="@+id/ImageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ferrari_ges_logo_svgrepo_com"
+            android:src="@drawable/porsche_6_logo_svgrepo_com"
             android:scaleType="centerCrop"
             android:layout_gravity="center"/>
+
     </ViewFlipper>
 
 
@@ -99,6 +100,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/purple"
              />
 
@@ -107,7 +109,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="50dp"
+
                 android:background="@drawable/browse_by_button"
                 android:drawablePadding="8dp"
                 android:hint="Username"
