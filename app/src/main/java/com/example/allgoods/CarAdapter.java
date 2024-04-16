@@ -18,6 +18,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     private List<CarListing> carListings;
     private OnItemClickListener listener;
 
+    private boolean showAll;
+
+    // Constructor and other methods remain the same
+
+    public void setShowAll(boolean showAll) {
+        this.showAll = showAll;
+        notifyDataSetChanged();
+    }
+
     public interface OnItemClickListener {
         void onAddWatchClick(int position);
     }
@@ -54,7 +63,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
     @Override
     public int getItemCount() {
-        return carListings.size();
+        if (showAll) {
+            return carListings.size();
+        } else {
+            // Show only 3 listings if not in "View All" mode
+            return Math.min(carListings.size(), 3);
+        }
     }
 
 

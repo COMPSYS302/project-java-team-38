@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="All Tests">
+        <State />
+      </entry>
       <entry key="IndepthListingActivity">
         <State>
           <targetSelectedWithDropDown>
@@ -35,6 +38,9 @@
         </State>
       </entry>
       <entry key="RegisterActivity (2)">
+        <State />
+      </entry>
+      <entry key="app">
         <State />
       </entry>
     </value>
