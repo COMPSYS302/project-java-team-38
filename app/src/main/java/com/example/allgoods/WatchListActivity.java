@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import java.util.List;
 public class WatchListActivity extends AppCompatActivity {
 
     private RecyclerView rvCarListings;
-    private Button homeButton, plusButton;
+    private ImageButton homeButton, plusButton;
     private ImageView backButton; // Change type to Button if it's a button in your layout
 
     @Override

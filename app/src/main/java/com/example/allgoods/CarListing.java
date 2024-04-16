@@ -49,6 +49,7 @@ public class CarListing implements Parcelable {
         dest.writeTypedList(images);
     }
 
+
     @Override
     public int describeContents() {
         return 0;

@@ -5,6 +5,9 @@
       <entry key="All Tests">
         <State />
       </entry>
+      <entry key="CreateListingActivity">
+        <State />
+      </entry>
       <entry key="IndepthListingActivity">
         <State>
           <targetSelectedWithDropDown>
@@ -36,12 +39,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-04-15T11:47:15.775540Z" />
         </State>
-      </entry>
-      <entry key="PaymentsActivity">
-        <State />
-      </entry>
-      <entry key="StartingPageActivity">
-        <State />
       </entry>
       <entry key="app">
         <State />

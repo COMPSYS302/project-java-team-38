@@ -36,7 +36,7 @@
                 android:layout_marginBottom="3dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Back button"
-                android:src="@drawable/back_square_svgrepo_com__2_" />
+                android:src="@drawable/back_square_svgrepo_com" />
 
             <ImageButton
                 android:id="@+id/watchlistbtn"
@@ -69,12 +69,12 @@
         android:padding="3dp"
         android:id="@+id/inquireBtn"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/tvCarModelTitle"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="-37dp"
         android:layout_marginEnd="18dp"
-        android:backgroundTint="@color/purple"
+        android:background="@drawable/sign_out_card"
         android:text="Inquire"
         android:textAlignment="center"
         android:textColor="@color/white" />
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:background="@color/purple"
+                android:background="@drawable/sign_out_card"
                 android:textColor="@color/white"
                 android:layout_alignParentEnd="true"
                 android:text="Message"/>
@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Watchlist"
-                    android:backgroundTint="@color/purple"
+                    android:background="@drawable/sign_out_card"
                     android:textColor="@color/white"
                     android:layout_marginEnd="8dp"/>
 
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Buy now"
-                    android:backgroundTint="@color/purple"
+                    android:background="@drawable/sign_out_card"
                     android:textColor="@color/white"
                     android:layout_marginStart="8dp"/>
             </LinearLayout>
