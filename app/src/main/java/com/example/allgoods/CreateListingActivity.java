@@ -348,6 +348,10 @@ public class CreateListingActivity extends AppCompatActivity {
         EditText carYearEditText = findViewById(R.id.carYearEditText);
         EditText carMileageEditText = findViewById(R.id.Milage);
         EditText carPriceEditText = findViewById(R.id.carPrice);
+        EditText carDescriptionEditText = findViewById(R.id.carDescription);
+        EditText carNumberPlateEditText = findViewById(R.id.NumberPlate);
+        String carNumberPlate = carNumberPlateEditText.getText().toString();
+        String carDescription = carDescriptionEditText.getText().toString();
         String carMake = carMakeEditText.getText().toString();
         String carModel = carModelEditText.getText().toString();
         int carYear = Integer.parseInt(carYearEditText.getText().toString());
@@ -359,8 +363,8 @@ public class CreateListingActivity extends AppCompatActivity {
         String timeZoneID = timeZone.getID();
         ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneID));
         String uniqueKey = UniqueIdGenerator.generateUniqueId();
-        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage,selectedCarType);
-        CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images);
+        Car userCar = new Car(userInSession,carMake,carModel,carYear,carMileage,selectedCarType, carNumberPlate);
+        CarListing userCarListing = new CarListing(uniqueKey,userCar,carPrice,currentDateTimeWithZone,images,carDescription);
         CarDatabaseManager carListingAdder = CarDatabaseManager.getInstance();
         carListingAdder.addListing(userInSession,userCarListing);
         Intent intent = new Intent(CreateListingActivity.this, MainActivity.class);
