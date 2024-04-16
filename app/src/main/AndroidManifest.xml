@@ -45,7 +45,8 @@
         <activity android:name=".WatchListActivity" android:exported="true"/>
         <activity android:name="IndepthListingActivity" android:exported="true"/>
         <activity android:name=".StartingPageActivity" android:exported="true"/>
-
+        <activity android:name=".PaymentsActivity" android:exported="true"/>
+        <activity android:name=".PaymentSuccesful" android:exported="true"/>
     </application>
 
 </manifest>
