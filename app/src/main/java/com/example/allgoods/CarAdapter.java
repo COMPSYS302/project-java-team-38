@@ -26,6 +26,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         this.context = context;
         this.listener = listener;
         this.carListings = new ArrayList<>();
+        setHasStableIds(true);
     }
 
     public static CarAdapter getInstance(Context context, OnItemClickListener listener) {
@@ -33,6 +34,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
             instance = new CarAdapter(context, listener);
         }
         return instance;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        // Assuming each CarListing has a unique identifier
+        return showAll ? carListings.get(position).hashCode() : weightedList.get(position).hashCode();
     }
 
     @NonNull
@@ -69,36 +76,30 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     }
 
     public void updateRecentlyViewed(int position) {
-        CarListing clickedListing = carListings.get(position);
+        CarListing clickedListing = getItem(position);
         User user = UserSession.getInstance(context).getUser();
         user.addViewedCarListing(clickedListing);
     }
 
     public void updateWeightedList() {
-        weightedList.clear();
+        HashMap<CarListing, Integer> weightMap = new HashMap<>();
+        List<CarListing> newList = new ArrayList<>(carListings);
         List<CarListing> recentlyViewed = UserSession.getInstance(this.context).getUser().getRecentViewedCarListings();
 
-        if (recentlyViewed.isEmpty()) {
-            // If no cars have been viewed, use default sorting or a subset of carListings
-            weightedList.addAll(carListings); // Optionally, you can shuffle or sort based on another criteria
-        } else {
-            HashMap<CarListing, Integer> weightMap = new HashMap<>();
+        if (!recentlyViewed.isEmpty()) {
             for (CarListing viewed : recentlyViewed) {
                 for (CarListing listing : carListings) {
                     int weight = calculateWeight(viewed, listing);
-                    int currentWeight = weightMap.getOrDefault(listing, 0);
-                    weightMap.put(listing, currentWeight + weight);
+                    weightMap.put(listing, weightMap.getOrDefault(listing, 0) + weight);
                 }
             }
-
-            weightedList.addAll(carListings);
-            // Sort based on weights; handle null safely with comparing by default to 0 if not found
-            Collections.sort(weightedList, (a, b) -> weightMap.getOrDefault(b, 0) - weightMap.getOrDefault(a, 0));
+            Collections.sort(newList, (a, b) -> weightMap.getOrDefault(b, 0) - weightMap.getOrDefault(a, 0));
         }
 
+        weightedList.clear();
+        weightedList.addAll(newList);
         notifyDataSetChanged();
     }
-
 
     private int calculateWeight(CarListing viewed, CarListing listing) {
         int weight = 0;
@@ -107,11 +108,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         if (viewed.getCar().getType().equals(listing.getCar().getType())) weight++;
         return weight;
     }
+
     public CarListing getItem(int position) {
-        if (position >= 0 && position < carListings.size()) {
-            return carListings.get(position);
-        }
-        return null;
+        return showAll ? carListings.get(position) : weightedList.get(position);
     }
 
     public interface OnItemClickListener {
@@ -123,7 +122,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         void onOdoClick(int position);
     }
 
-     static class CarViewHolder extends RecyclerView.ViewHolder {
+    static class CarViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCarPhoto;
         TextView tvCarMakeModel, tvCarYear, tvCarPrice, tvCarOdo;
 
@@ -138,42 +137,38 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
             itemView.findViewById(R.id.AddWatchList).setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
                     listener.onAddWatchClick(getAdapterPosition());
-
                 }
             });
 
-        ivCarPhoto.setOnClickListener(v -> {
-            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                listener.onImageClick(getAdapterPosition());
-            }
-        });
+            ivCarPhoto.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onImageClick(getAdapterPosition());
+                }
+            });
 
-        tvCarPrice.setOnClickListener(v -> {
-            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                listener.onPriceClick(getAdapterPosition());
-            }
-        });
+            tvCarPrice.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onPriceClick(getAdapterPosition());
+                }
+            });
 
-        tvCarMakeModel.setOnClickListener(v -> {
-            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                listener.onMakeModelClick(getAdapterPosition());
-            }
-        });
+            tvCarMakeModel.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onMakeModelClick(getAdapterPosition());
+                }
+            });
 
-        tvCarYear.setOnClickListener(v -> {
-            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                listener.onYearClick(getAdapterPosition());
+            tvCarYear.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onYearClick(getAdapterPosition());
+                }
+            });
 
-            }
-        });
-
-        tvCarOdo.setOnClickListener(v -> {
-            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
-                listener.onOdoClick(getAdapterPosition());
-            }
-        });
-
+            tvCarOdo.setOnClickListener(v -> {
+                if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    listener.onOdoClick(getAdapterPosition());
+                }
+            });
         }
     }
-
 }
