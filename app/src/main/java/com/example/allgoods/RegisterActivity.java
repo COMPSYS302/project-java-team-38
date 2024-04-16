@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     Button registerButton;
     Button returnButton;
+    ImageButton backButton;
 
     // Instance of AuthenticationManager to handle user authentication tasks
     AuthenticationManager authenticationManager = AuthenticationManager.getInstance();
@@ -34,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextPassword);
         registerButton = findViewById(R.id.buttonRegister);
         returnButton = findViewById(R.id.returnButton);
+        backButton  = findViewById(R.id.ButtonReturn);
 
         // Listener for the return button to navigate back to the LoginActivity
         returnButton.setOnClickListener(view -> {
@@ -71,6 +74,15 @@ public class RegisterActivity extends AppCompatActivity {
             } catch (IllegalArgumentException e) {
                 // Display error message if user creation fails due to invalid input
                 Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle register button click
+                Intent intent = new Intent(RegisterActivity.this, StartingPageActivity.class);
+                startActivity(intent);
             }
         });
     }
