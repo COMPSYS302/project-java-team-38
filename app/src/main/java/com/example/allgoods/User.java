@@ -12,15 +12,15 @@ public class User implements Parcelable {
     private String encryptedPassword;
     private List<CarListing> recentViewedCarListings;  // List to store recently viewed car listings
 
-    transient UserHelper userHelper;  // Helper class for user operations, not part of the parcel
+    transient UserHelper userHelper = new UserHelper();  // Helper class for user operations, not part of the parcel
 
     public User(String id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.encryptedPassword = userHelper.encrypt(password);  // Encrypt password upon initialization
-        this.recentViewedCarListings = new ArrayList<>(3);  // Initialize with capacity of 3
-        this.userHelper = new UserHelper();  // Initialize user helper
+        this.encryptedPassword = userHelper.encrypt(password);
+        this.recentViewedCarListings = new ArrayList<>(3);
+        this.userHelper = new UserHelper();
     }
 
     // Constructor used for parceling

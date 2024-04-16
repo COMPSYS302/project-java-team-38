@@ -68,22 +68,37 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         updateWeightedList();
     }
 
-    private void updateWeightedList() {
+    public void updateRecentlyViewed(int position) {
+        CarListing clickedListing = carListings.get(position);
+        User user = UserSession.getInstance(context).getUser();
+        user.addViewedCarListing(clickedListing);
+    }
+
+    public void updateWeightedList() {
         weightedList.clear();
         List<CarListing> recentlyViewed = UserSession.getInstance(this.context).getUser().getRecentViewedCarListings();
-        HashMap<CarListing, Integer> weightMap = new HashMap<>();
 
-        for (CarListing viewed : recentlyViewed) {
-            for (CarListing listing : carListings) {
-                int weight = calculateWeight(viewed, listing);
-                weightMap.put(listing, weightMap.getOrDefault(listing, 0) + weight);
+        if (recentlyViewed.isEmpty()) {
+            // If no cars have been viewed, use default sorting or a subset of carListings
+            weightedList.addAll(carListings); // Optionally, you can shuffle or sort based on another criteria
+        } else {
+            HashMap<CarListing, Integer> weightMap = new HashMap<>();
+            for (CarListing viewed : recentlyViewed) {
+                for (CarListing listing : carListings) {
+                    int weight = calculateWeight(viewed, listing);
+                    int currentWeight = weightMap.getOrDefault(listing, 0);
+                    weightMap.put(listing, currentWeight + weight);
+                }
             }
+
+            weightedList.addAll(carListings);
+            // Sort based on weights; handle null safely with comparing by default to 0 if not found
+            Collections.sort(weightedList, (a, b) -> weightMap.getOrDefault(b, 0) - weightMap.getOrDefault(a, 0));
         }
 
-        weightedList.addAll(carListings);
-        Collections.sort(weightedList, (a, b) -> weightMap.get(b) - weightMap.get(a));
         notifyDataSetChanged();
     }
+
 
     private int calculateWeight(CarListing viewed, CarListing listing) {
         int weight = 0;
@@ -91,6 +106,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         if (viewed.getCar().getModel().equals(listing.getCar().getModel())) weight++;
         if (viewed.getCar().getType().equals(listing.getCar().getType())) weight++;
         return weight;
+    }
+    public CarListing getItem(int position) {
+        if (position >= 0 && position < carListings.size()) {
+            return carListings.get(position);
+        }
+        return null;
     }
 
     public interface OnItemClickListener {
@@ -102,7 +123,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         void onOdoClick(int position);
     }
 
-    static class CarViewHolder extends RecyclerView.ViewHolder {
+     static class CarViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCarPhoto;
         TextView tvCarMakeModel, tvCarYear, tvCarPrice, tvCarOdo;
 
@@ -142,6 +163,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         tvCarYear.setOnClickListener(v -> {
             if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
                 listener.onYearClick(getAdapterPosition());
+
             }
         });
 
@@ -153,10 +175,5 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
         }
     }
-    public CarListing getItem(int position) {
-        if (position >= 0 && position < carListings.size()) {
-            return carListings.get(position);
-        }
-        return null;
-    }
+
 }

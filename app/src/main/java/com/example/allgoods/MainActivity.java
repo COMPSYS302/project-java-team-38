@@ -59,9 +59,13 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
             initializeDemoDataInBackground();
 
     }
+        try{
+            updateListingsBasedOnViews();
+        }catch(Exception e){
+            showToast("Please Wait");
+        }
     initializeUIComponents();
     setupRecyclerView();
-
     }
 
     private void initializeDemoDataInBackground() {
@@ -87,6 +91,22 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         executor.shutdown();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try{
+            updateListingsBasedOnViews();
+        }catch(Exception e){
+            showToast("Please Wait");
+        }
+    }
+
+    private void updateListingsBasedOnViews() {
+        // Fetch the latest listings perhaps from a database or a service
+        List<CarListing> carListings = dbManager.getAllListings();
+        carAdapter.updateData(carListings);
+        carAdapter.updateWeightedList();
+    }
 
     private void initializeUIComponents() {
         categoriesLayout = findViewById(R.id.llCategoryButtons);
@@ -194,30 +214,35 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
 
     @Override
     public void onImageClick(int position) {
+        carAdapter.updateRecentlyViewed(position);
         CarListing carListing = carAdapter.getItem(position);
         navigateToCarDetails(carListing);
     }
 
     @Override
     public void onPriceClick(int position) {
+        carAdapter.updateRecentlyViewed(position);
         CarListing carListing = carAdapter.getItem(position);
         navigateToCarDetails(carListing);
     }
 
     @Override
     public void onMakeModelClick(int position) {
+        carAdapter.updateRecentlyViewed(position);
         CarListing carListing = carAdapter.getItem(position);
         navigateToCarDetails(carListing);
     }
 
     @Override
     public void onYearClick(int position) {
+        carAdapter.updateRecentlyViewed(position);
         CarListing carListing = carAdapter.getItem(position);
         navigateToCarDetails(carListing);
     }
 
     @Override
     public void onOdoClick(int position) {
+        carAdapter.updateRecentlyViewed(position);
         CarListing carListing = carAdapter.getItem(position);
         navigateToCarDetails(carListing);
     }
@@ -273,6 +298,10 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
     private void toggleShowAll() {
         if (carAdapter != null) {
             carAdapter.setShowAll(showAll);
+            showAll = !showAll;
+            carAdapter.setShowAll(showAll);  // Tell the adapter to switch mode
+            carAdapter.notifyDataSetChanged();  // Ensure the RecyclerView updates
+            animateButton();  // Handle any UI animation for toggling
         }
     }
 
