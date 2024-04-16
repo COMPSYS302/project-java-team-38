@@ -18,13 +18,14 @@
 
 
         <!-- Layout container for buttons A-->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:gravity="right"
-            android:text="Payment"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-            android:layout_gravity="right">
+            android:text="Payments"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge">
 
 
         </TextView>
@@ -41,8 +42,8 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginBottom="3dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back button"
@@ -55,136 +56,325 @@
 
     <!-- begining of the Details view -->
     <ScrollView
-        android:layout_margin="10dp"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/FrameLay1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:backgroundTint="@color/white"
         android:fillViewport="true">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCarDescription"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rounded_corner_background"
+            android:backgroundTint="@color/white"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/CarDetailsPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Car Details"
+                android:textColor="@color/purple"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/purple"
+                />
+
+            <ImageView
+                android:id="@+id/ivCarImage1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/rounded_corner_background"
+                android:scaleType="centerCrop"
+                android:src="@drawable/car" />
+
+            <TextView
+                android:id="@+id/CarModelAndBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/FrameLay"
+                android:layout_marginTop="12dp"
+                android:text="BMW M3"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvCarDescription"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/rounded_corner_background"
-                android:backgroundTint="@color/white"
-                android:elevation="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/YearofCar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Make"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="BMW" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ColorOfCar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Color"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2019" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/EngineSizeofCar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Engine Size"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2499 cc" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/CarDetailsPaym"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Payment Information"
+                android:textColor="@color/purple"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/purple"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/CarDetailsPayment"
+                <!-- Card Number Input -->
+                <EditText
+                    android:id="@+id/etCardNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="Car Details"
-                    android:textColor="@color/purple"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:hint="Card Number"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:drawableStart="@drawable/credit_card_svgrepo_com"
+                    android:drawablePadding="8dp"
+                    android:padding="12dp"/>
 
-
-
-                <ImageView
-                    android:id="@+id/ivCarImage1"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/car"
-                    android:background="@drawable/rounded_corner_background"
-                    />
-
-                <TextView
-                    android:id="@+id/CarModelAndBrand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/FrameLay"
-                    android:layout_marginTop="12dp"
-                    android:text="BMW M3"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                <!-- Expiration Date and CVV Container -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-
-                    <TextView
-                        android:id="@+id/YearofCar"
+                    <!-- Expiration Date Input -->
+                    <EditText
+                        android:id="@+id/etExpirationDate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Make"
-                        android:textStyle="bold" />
+                        android:hint="Expiration "
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:drawableStart="@drawable/calender_svgrepo_com"
+                        android:drawablePadding="8dp"
+                        android:padding="12dp"/>
 
-                    <TextView
-                        android:layout_gravity="right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="BMW" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/ColorOfCar"
+                    <!-- CVV Input -->
+                    <EditText
+                        android:id="@+id/etCvv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_gravity="right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="2019" />
+                        android:hint="CVV"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:padding="12dp"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@id/EngineSizeofCar"
+                <!-- Billing Address Input -->
+                <EditText
+                    android:id="@+id/etBillingAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:hint="Billing Address"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:drawableStart="@drawable/baseline_home_24"
+                    android:drawablePadding="8dp"
+                    android:padding="12dp"/>
 
-                    <TextView
-                        android:layout_width="2dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Engine Size"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:layout_gravity="right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="2499 cc" />
-                </LinearLayout>
+                <!-- Save Payment Information Checkbox -->
+                <CheckBox
+                    android:id="@+id/cbSaveInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save payment information for future purchases"
+                    android:padding="8dp"/>
             </LinearLayout>
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/ConfirmationofPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Confirmation"
+            android:textColor="@color/purple"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/purple"
+            />
+
+
+
+
+        <!-- Confirmation Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <!-- Total Price -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Price: $75,000"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Confirm and Cancel Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <!-- Confirm Purchase Button -->
+            <Button
+                android:id="@+id/btnConfirmPurchase"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Confirm Purchase"
+                android:backgroundTint="@color/purple"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="8dp"
+                android:/>
+
+            <!-- Cancel Button -->
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="cancel purchase"
+                android:textColorHighlight="@color/black"
+                android:drawableLeft= "@drawable/cross_square_svgrepo_com__1_"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:textColor="@android:color/black"
+                android:layout_marginStart = "8dp"/>
+        </LinearLayout>
+        </LinearLayout>
+
+            <!-- Purchase Success Message -->
+            <TextView
+                android:id="@+id/tvPurchaseSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Purchase successful! Thank you for buying the BMW M3."
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"/>
+
+
+
+        </LinearLayout>
+
+
     </ScrollView>
 
+
+
     <LinearLayout
+
         android:layout_marginTop="10dp"
         android:id="@id/bottomMenuLayout"
         android:layout_width="match_parent"
