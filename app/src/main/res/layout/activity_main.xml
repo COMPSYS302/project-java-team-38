@@ -79,6 +79,22 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+    <TextView
+        android:id="@+id/main_view_all"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:textAlignment="center"
+        android:text="View All"
+        android:background="@drawable/browse_by_button"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvCarListings"
+        android:translationX="-20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="10dp"/>
+
 
     <TextView
         android:id="@+id/tvBrowseBy"
@@ -86,7 +102,7 @@
         android:layout_height="wrap_content"
         android:text="Browse by"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
