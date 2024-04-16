@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
 
     }
 
+
     private void setupButtonListeners() {
         ivNavigationButton.setOnClickListener(v -> navigateToProfile());
         homeButton.setOnClickListener(v -> showToast("Home clicked"));

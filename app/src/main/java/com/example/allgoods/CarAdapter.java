@@ -10,32 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     private static CarAdapter instance;
     private Context context;
     private List<CarListing> carListings;
+    private List<CarListing> weightedList = new ArrayList<>();
     private OnItemClickListener listener;
-
     private boolean showAll;
-
-    // Constructor and other methods remain the same
-
-    public void setShowAll(boolean showAll) {
-        this.showAll = showAll;
-        notifyDataSetChanged();
-    }
-
-    public interface OnItemClickListener {
-        void onAddWatchClick(int position);
-        void onImageClick(int position);
-        void onPriceClick(int position);
-        void onMakeModelClick(int position);
-        void onYearClick(int position);
-        void onOdoClick(int position);
-
-    }
 
     private CarAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
@@ -59,7 +44,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CarViewHolder holder, int position) {
-        CarListing carListing = carListings.get(position);
+        CarListing carListing = showAll ? carListings.get(position) : weightedList.get(position);
         holder.tvCarMakeModel.setText(carListing.getCar().getMake() + " " + carListing.getCar().getModel());
         holder.tvCarYear.setText("Year: " + carListing.getCar().getYear());
         holder.tvCarPrice.setText("$" + carListing.getPrice());
@@ -69,27 +54,52 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (showAll) {
-            return carListings.size();
-        } else {
-            // Show only 3 listings if not in "View All" mode
-            return Math.min(carListings.size(), 3);
-        }
+        return showAll ? carListings.size() : Math.min(weightedList.size(), 3);
     }
 
-
-    public CarListing getItem(int position) {
-        if (position >= 0 && position < carListings.size()) {
-            return carListings.get(position);
-        }
-        return null;
+    public void setShowAll(boolean showAll) {
+        this.showAll = showAll;
+        notifyDataSetChanged();
     }
-
 
     public void updateData(List<CarListing> newCarListings) {
         carListings.clear();
         carListings.addAll(newCarListings);
+        updateWeightedList();
+    }
+
+    private void updateWeightedList() {
+        weightedList.clear();
+        List<CarListing> recentlyViewed = UserSession.getInstance(this.context).getUser().getRecentViewedCarListings();
+        HashMap<CarListing, Integer> weightMap = new HashMap<>();
+
+        for (CarListing viewed : recentlyViewed) {
+            for (CarListing listing : carListings) {
+                int weight = calculateWeight(viewed, listing);
+                weightMap.put(listing, weightMap.getOrDefault(listing, 0) + weight);
+            }
+        }
+
+        weightedList.addAll(carListings);
+        Collections.sort(weightedList, (a, b) -> weightMap.get(b) - weightMap.get(a));
         notifyDataSetChanged();
+    }
+
+    private int calculateWeight(CarListing viewed, CarListing listing) {
+        int weight = 0;
+        if (viewed.getCar().getMake().equals(listing.getCar().getMake())) weight++;
+        if (viewed.getCar().getModel().equals(listing.getCar().getModel())) weight++;
+        if (viewed.getCar().getType().equals(listing.getCar().getType())) weight++;
+        return weight;
+    }
+
+    public interface OnItemClickListener {
+        void onAddWatchClick(int position);
+        void onImageClick(int position);
+        void onPriceClick(int position);
+        void onMakeModelClick(int position);
+        void onYearClick(int position);
+        void onOdoClick(int position);
     }
 
     static class CarViewHolder extends RecyclerView.ViewHolder {
@@ -142,5 +152,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         });
 
         }
+    }
+    public CarListing getItem(int position) {
+        if (position >= 0 && position < carListings.size()) {
+            return carListings.get(position);
+        }
+        return null;
     }
 }

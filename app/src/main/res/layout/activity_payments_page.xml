@@ -258,14 +258,13 @@
                         android:padding="12dp"/>
                 </LinearLayout>
 
-<<<<<<< HEAD
+
                 <LinearLayout
                     android:id="@+id/EngineSizeofCar"
-=======
-                <!-- Billing Address Input -->
+
+
                 <EditText
                     android:id="@+id/etBillingAddress"
->>>>>>> 512968411cab9ce432e78c0639f4ff84fb9fda06
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Billing Address"
@@ -276,7 +275,6 @@
                     android:drawablePadding="8dp"
                     android:padding="12dp"/>
 
-                <!-- Save Payment Information Checkbox -->
                 <CheckBox
                     android:id="@+id/cbSaveInfo"
                     android:layout_width="match_parent"

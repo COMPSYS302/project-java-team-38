@@ -1,43 +1,37 @@
 package com.example.allgoods;
 
-// The User class represents a user in the system with their personal details and credentials.
-
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class User implements Parcelable {
     private final String id;
     private String username;
     private String email;
     private String encryptedPassword;
-    // UserHelper is transient because helper methods don't need to be parcelled
-    transient UserHelper userHelper;
+    private List<CarListing> recentViewedCarListings;  // List to store recently viewed car listings
+
+    transient UserHelper userHelper;  // Helper class for user operations, not part of the parcel
 
     public User(String id, String username, String password, String email) {
-        this.userHelper = new UserHelper();
         this.id = id;
-        if (!userHelper.isValidEmail(email)) {
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.email = email;
-        }
-        if (!userHelper.isValidUsername(username)) {
-            throw new IllegalArgumentException("Invalid username");
-        } else {
-            this.username = username;
-        }
-        if (!userHelper.isValidPassword(password)) {
-            throw new IllegalArgumentException("Invalid password");
-        } else {
-            this.encryptedPassword = userHelper.encrypt(password);
-        }
+        this.username = username;
+        this.email = email;
+        this.encryptedPassword = userHelper.encrypt(password);  // Encrypt password upon initialization
+        this.recentViewedCarListings = new ArrayList<>(3);  // Initialize with capacity of 3
+        this.userHelper = new UserHelper();  // Initialize user helper
     }
 
+    // Constructor used for parceling
     protected User(Parcel in) {
         id = in.readString();
         username = in.readString();
         email = in.readString();
         encryptedPassword = in.readString();
-        userHelper = new UserHelper();  // Re-instantiate userHelper as it's not parcelled
+        recentViewedCarListings = new ArrayList<>();
+        in.readTypedList(recentViewedCarListings, CarListing.CREATOR);  // Read the list of CarListing objects
+        userHelper = new UserHelper();  // Recreate the transient helper
     }
 
     @Override
@@ -46,6 +40,7 @@ public class User implements Parcelable {
         dest.writeString(username);
         dest.writeString(email);
         dest.writeString(encryptedPassword);
+        dest.writeTypedList(recentViewedCarListings);  // Write the list of CarListing objects
     }
 
     @Override
@@ -65,21 +60,19 @@ public class User implements Parcelable {
         }
     };
 
-    public String getUsername() {
-        return username;
-    }
+    // Getters
+    public String getUsername() { return username; }
+    public String getId() { return id; }
+    public String getEmail() { return email; }
+    public String getPassword() { return userHelper.decrypt(encryptedPassword); }
+    public List<CarListing> getRecentViewedCarListings() { return recentViewedCarListings; }
 
-    public String getId() {
-        return id;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        // Decrypts the password for usage
-        return userHelper.decrypt(encryptedPassword);
+    public void addViewedCarListing(CarListing carListing) {
+        if (recentViewedCarListings.size() == 3) {
+            recentViewedCarListings.remove(0); // Remove the oldest viewed listing if the list is full
+        }
+        recentViewedCarListings.add(carListing); // Add the new listing
     }
 
     public void setUsername(String username) {
