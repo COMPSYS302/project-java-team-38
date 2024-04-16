@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
 
         User DevenT1 = new User("1", "DevenT1", "Password145!", "DevenT1@example.com");
         Car car1 = new Car(DevenT1, "BMW", "M4 Competition", 2023, 2500, "sedan", "HYH234");
-        CarListing listing1 = new CarListing("1", car1, 150000, currentDateTimeWithZone, listing1img,"This is a M4" +
+        CarListing listing1 = new CarListing("1", car1, 150000, currentDateTimeWithZone, listing1img, "This is a M4" +
                 " Competition with a really fast 0-100km. It is perfect for you to drive away and enjoy the thrill of speed" +
                 " you will not find a car like this! Enquire for a test drive or if you cannot wait come and buy now!");
         dbManager = CarDatabaseManager.getInstance();
@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
                 " Accord offers reliable performance and a comfortable ride, even with 154,000 miles on the clock. Ideal for daily commuting " +
                 " or a cost-effective option for new drivers. Contact us to schedule a test drive or to discuss purchase options!");
 
-                dbManager = CarDatabaseManager.getInstance();
+        dbManager = CarDatabaseManager.getInstance();
         dbManager.addListing(DevenT3, listing3);
 
         ArrayList<Uri> listing4img = new ArrayList<>();
@@ -416,8 +416,8 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         listing4img.add(imageKiaBack);
 
         User DevenT4 = new User("4", "DevenT4", "Password145!", "DevenT4@example.com");
-        Car car4 = new Car(DevenT4, "Kia", "Sportage", 2014, 170982, "suv","SYR235");
-        CarListing listing4 = new CarListing("4", car4, 11900, currentDateTimeWithZone, listing4img,"Explore the roads " +
+        Car car4 = new Car(DevenT4, "Kia", "Sportage", 2014, 170982, "suv", "SYR235");
+        CarListing listing4 = new CarListing("4", car4, 11900, currentDateTimeWithZone, listing4img, "Explore the roads " +
                 " with this Kia Sportage, perfect for both city driving and weekend getaways. With robust handling and " +
                 " ample space, it's ideal for families or anyone needing a reliable SUV. " +
                 " Available now for a test drive or immediate purchase!");
@@ -426,12 +426,12 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
 
         ArrayList<Uri> listing5img = new ArrayList<>();
         Uri imageLexus = ImageToDataURI.drawableToUri(this, R.drawable.lexus_f_is350);
-        Uri imageLexusBack= ImageToDataURI.drawableToUri(this, R.drawable.lexus_back_f);
+        Uri imageLexusBack = ImageToDataURI.drawableToUri(this, R.drawable.lexus_back_f);
         listing5img.add(imageLexus);
         listing5img.add(imageLexusBack);
 
         User DevenT5 = new User("5", "DevenT5", "Password145!", "DevenT5@example.com");
-        Car car5 = new Car(DevenT5, "Lexus", "IS350 F Sport", 2013, 56538, "Sedan","POE823");
+        Car car5 = new Car(DevenT5, "Lexus", "IS350 F Sport", 2013, 56538, "Sedan", "POE823");
         CarListing listing5 = new CarListing("5", car5, 28950, currentDateTimeWithZone, listing5img,
                 "Step into luxury with the Lexus IS350 F Sport, blending performance with premium comfort. " +
                         " Its aggressive styling and responsive handling make it a standout choice for discerning drivers." +
@@ -442,27 +442,19 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
 
         ArrayList<Uri> listing6img = new ArrayList<>();
         Uri imageHondaAccord2Front = ImageToDataURI.drawableToUri(this, R.drawable.honda2_front);
-        Uri imageHondaAccord2Back= ImageToDataURI.drawableToUri(this, R.drawable.honda2_front);
+        Uri imageHondaAccord2Back = ImageToDataURI.drawableToUri(this, R.drawable.honda2_front);
         listing6img.add(imageHondaAccord2Front);
         listing6img.add(imageHondaAccord2Back);
 
-        User DevenT6 = new User("6", "DevenT6", "Password145!", "DevenT6@example.com");
-        Car car6 = new Car(DevenT6, "Honda", "Accord Euro L", 2011, 189500, "Sedan","UOA283");
-        CarListing listing6 = new CarListing("6", car6, 7500, currentDateTimeWithZone, listing6img,"Experience refined " +
-                " driving with this Honda Accord Euro L, a sedan that combines " +
-                " elegance and efficiency. Perfect for those who value comfort and performance. Ready for a " +
-                " test drive or immediate purchase to start your journey in style!");
-        dbManager = CarDatabaseManager.getInstance();
-        dbManager.addListing(DevenT6, listing6);
 
         ArrayList<Uri> listing7img = new ArrayList<>();
         Uri imageNissianCube = ImageToDataURI.drawableToUri(this, R.drawable.nissan_cube_front);
-        Uri imageNissianCubeBack= ImageToDataURI.drawableToUri(this, R.drawable.nissan_cube_front);
+        Uri imageNissianCubeBack = ImageToDataURI.drawableToUri(this, R.drawable.nissan_cube_front);
         listing7img.add(imageNissianCube);
         listing7img.add(imageNissianCubeBack);
 
         User DevenT7 = new User("7", "DevenT7", "Password145!", "DevenT7@example.com");
-        Car car7 = new Car(DevenT7, "Nissian", "Cube", 2012, 51000, "Hatchback","GST826");
+        Car car7 = new Car(DevenT7, "Nissian", "Cube", 2012, 51000, "Hatchback", "GST826");
         CarListing listing7 = new CarListing("7", car7, 8488, currentDateTimeWithZone, listing7img,
                 "Discover the unique charm of the Nissan Cube, an urban-friendly compact with" +
                         " distinctive styling and spacious interior. Ideal for city dwellers seeking practicality" +
@@ -477,14 +469,12 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         listing8img.add(imageporscheBack);
 
         User DevenT8 = new User("8", "DevenT8", "Password145!", "DevenT8@example.com");
-        Car car8 = new Car(DevenT8, "Porsche", "911 GT3 RS", 2016, 6050, "Coupe","HSO827");
+        Car car8 = new Car(DevenT8, "Porsche", "911 GT3 RS", 2016, 6050, "Coupe", "HSO827");
         CarListing listing8 = new CarListing("8", car8, 325000, currentDateTimeWithZone, listing8img,
                 "Unleash the thrill of the Porsche 911 GT3 RS, a track-inspired powerhouse designed " +
                         " for speed enthusiasts. Its razor-sharp handling and explosive acceleration offer an " +
                         " exhilarating driving experience. Available now for those ready to dominate the road or track.");
         dbManager = CarDatabaseManager.getInstance();
         dbManager.addListing(DevenT8, listing8);
-
-
     }
 }

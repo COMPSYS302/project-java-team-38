@@ -5,21 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="@drawable/browse_by_button">
 
     <ImageView
         android:id="@+id/ivCarPhoto"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
+        android:background="@drawable/image_view_custom_for_item_listing"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/tvCarMakeModel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
+        android:layout_marginStart="155dp"
         android:layout_marginTop="4dp"
         android:text="Car Make &amp; Model"
         android:textSize="16sp"
@@ -27,41 +31,64 @@
         app:layout_constraintStart_toEndOf="@id/tvCarPrice"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/ivCarPhoto"
-        app:layout_constraintTop_toTopOf="@id/ivCarPhoto" />
+        app:layout_constraintTop_toTopOf="@id/ivCarPhoto"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/tvCarYear"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
         android:text="Year: "
         android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/tvCarMakeModel"
         app:layout_constraintStart_toStartOf="@id/tvCarMakeModel"
-        app:layout_constraintEnd_toEndOf="@id/tvCarMakeModel"/>
+        app:layout_constraintStart_toEndOf="@id/ivCarPhoto"
+        android:clickable="true"
+        android:focusable="true"/>
 
 
     <TextView
         android:id="@+id/tvCarOdo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
         android:text="Odo: "
         android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/tvCarYear"
+        app:layout_constraintStart_toEndOf="@id/ivCarPhoto"
         app:layout_constraintStart_toStartOf="@id/tvCarYear"
-        app:layout_constraintEnd_toEndOf="@id/tvCarYear"/>
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/tvCarPrice"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="$ "
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tvCarOdo"
-        app:layout_constraintStart_toEndOf="@id/tvCarMakeModel"
         app:layout_constraintEnd_toEndOf="@id/carDescriptionWatchlist"
-        android:layout_marginStart="10dp"
+        android:translationX="-10dp"
+        android:translationY="-10dp"
+        android:layout_marginStart="0dp"
         android:background="@drawable/sign_out_card"
-        android:gravity="center" />
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <Button
+        android:id="@+id/AddWatchList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:drawableTop="@drawable/baseline_add_shopping_cart_24"
+        android:gravity="center"
+        android:contentDescription="Adds to watchlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        android:focusable="true"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

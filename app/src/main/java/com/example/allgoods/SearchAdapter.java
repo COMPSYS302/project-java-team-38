@@ -81,7 +81,7 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             protected FilterResults performFiltering(CharSequence constraint) {
                 String searchQuery = constraint.toString().toLowerCase();
                 List<CarListing> tempList = new ArrayList<>();
-                if (!searchQuery.isEmpty()) {
+                if (!searchQuery.isEmpty() && searchQuery.length()>=1) {
                     for (CarListing listing : carListings) {
                         if (listing.getCar().getMake().toLowerCase().contains(searchQuery) ||
                                 listing.getCar().getModel().toLowerCase().contains(searchQuery) ||
