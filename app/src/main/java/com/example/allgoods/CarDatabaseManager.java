@@ -28,7 +28,7 @@ public class CarDatabaseManager {
 
     // Adding a car listing for a user
     public void addListing(User user, CarListing carListing) {
-        if (!Objects.equals(carListing.getCar().getUser(), user)) {
+        if (!Objects.equals(carListing.getCar().getOwner(), user)) {
             throw new IllegalArgumentException("CarListing does not belong to the given user");
         }
         // Get or create the list of car listings for this user

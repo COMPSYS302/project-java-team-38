@@ -29,6 +29,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
     public interface OnItemClickListener {
         void onAddWatchClick(int position);
+        void onImageClick(int position);
+        void onPriceClick(int position);
+        void onMakeModelClick(int position);
+        void onYearClick(int position);
+        void onOdoClick(int position);
+
     }
 
     private CarAdapter(Context context, OnItemClickListener listener) {
@@ -104,6 +110,37 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
                 }
             });
+
+        ivCarPhoto.setOnClickListener(v -> {
+            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                listener.onImageClick(getAdapterPosition());
+            }
+        });
+
+        tvCarPrice.setOnClickListener(v -> {
+            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                listener.onPriceClick(getAdapterPosition());
+            }
+        });
+
+        tvCarMakeModel.setOnClickListener(v -> {
+            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                listener.onMakeModelClick(getAdapterPosition());
+            }
+        });
+
+        tvCarYear.setOnClickListener(v -> {
+            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                listener.onYearClick(getAdapterPosition());
+            }
+        });
+
+        tvCarOdo.setOnClickListener(v -> {
+            if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
+                listener.onOdoClick(getAdapterPosition());
+            }
+        });
+
         }
     }
 }
