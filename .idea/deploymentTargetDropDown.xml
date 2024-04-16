@@ -34,20 +34,31 @@
           <timeTargetWasSelectedWithDropDown value="2024-04-15T11:47:15.775540Z" />
         </State>
       </entry>
-      <entry key="RegisterActivity (2)">
+      <entry key="RegisterActivity">
+        <State />
+      </entry>
+      <entry key="StartingPageActivity">
         <State>
-          <targetSelectedWithDropDown>
+          <targetsSelectedWithDialog>
             <Target>
               <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\deven\.android\avd\Pixel_7_Pro_API_30.avd" />
+                  <value value="C:\Users\rohan\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd" />
                 </Key>
               </deviceKey>
             </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-15T11:04:06.671254900Z" />
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\rohan\.android\avd\Pixel_2_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetsSelectedWithDialog>
         </State>
       </entry>
     </value>

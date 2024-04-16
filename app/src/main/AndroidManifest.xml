@@ -44,6 +44,7 @@
         <activity android:name=".SearchResultsActivity" android:exported="true"/>
         <activity android:name=".WatchListActivity" android:exported="true"/>
         <activity android:name="IndepthListingActivity" android:exported="true"/>
+        <activity android:name=".StartingPageActivity" android:exported="true"/>
 
     </application>
 
