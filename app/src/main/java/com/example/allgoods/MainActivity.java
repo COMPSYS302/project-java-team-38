@@ -1,6 +1,8 @@
 package com.example.allgoods;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,10 +13,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 
 
@@ -31,14 +41,45 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
     private RecyclerView rvCarListings;
     private CarAdapter carAdapter;
 
+    CarDatabaseManager dbManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DemoDataInitializer demoDataInitializer = DemoDataInitializer.getInstance(this);
+        if(!demoDataInitializer.initializeDemoDataIfNecessary()) {
+            initializeDemoDataInBackground();
 
-        initializeUIComponents();
-        setupRecyclerView();
     }
+    initializeUIComponents();
+    setupRecyclerView();
+
+    }
+
+    private void initializeDemoDataInBackground() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    initializeDemoData();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }finally {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            setupRecyclerView();
+                        }
+                    });
+                }
+            }
+        });
+
+        executor.shutdown();
+    }
+
 
     private void initializeUIComponents() {
         categoriesLayout = findViewById(R.id.llCategoryButtons);
@@ -166,5 +207,49 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnItem
         Intent intent = new Intent(this, SearchResultsActivity.class);
         intent.putExtra("searchQuery", "Other");
         startActivity(intent);
+    }
+
+    private void initializeDemoData() {
+
+        TimeZone timeZone = TimeZone.getDefault();
+        String timeZoneID = timeZone.getID();
+        ZonedDateTime currentDateTimeWithZone = ZonedDateTime.now(ZoneId.of(timeZoneID));
+
+        ArrayList<Uri> listing1img = new ArrayList<>();
+        Uri imageUri = ImageToDataURI.drawableToUri(this, R.drawable.bmw_back);
+        Uri imageUri2 = ImageToDataURI.drawableToUri(this, R.drawable.bmw_front);
+        listing1img.add(imageUri);
+        listing1img.add(imageUri2);
+
+        User DevenT1 = new User("1", "DevenT1", "Password145!", "DevenT1@example.com");
+        Car car1 = new Car(DevenT1, "BMW", "M4 Competition", 2023, 2500, "sedan");
+        CarListing listing1 = new CarListing("1", car1, 150000, currentDateTimeWithZone, listing1img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT1, listing1);
+
+        ArrayList<Uri> listing2img = new ArrayList<>();
+        Uri imageUriX5 = ImageToDataURI.drawableToUri(this, R.drawable.x5_front);
+        Uri imageUriX52 = ImageToDataURI.drawableToUri(this, R.drawable.x5_back);
+        listing2img.add(imageUriX5);
+        listing2img.add(imageUriX52);
+
+        User DevenT2 = new User("2", "DevenT2", "Password145!", "DevenT2@example.com");
+        Car car2 = new Car(DevenT2, "BMW", "X5", 2012, 120000, "suv");
+        CarListing listing2 = new CarListing("1", car2, 12000, currentDateTimeWithZone, listing2img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT2, listing2);
+
+        ArrayList<Uri> listing3img = new ArrayList<>();
+        Uri imageAccordOld = ImageToDataURI.drawableToUri(this, R.drawable.honda_accord_old_front_real);
+        Uri imageAccordOldBack = ImageToDataURI.drawableToUri(this, R.drawable.honda_accord_old_front);
+        listing3img.add(imageAccordOld);
+        listing3img.add(imageAccordOldBack);
+
+        User DevenT3 = new User("3", "DevenT3", "Password145!", "DevenT3@example.com");
+        Car car3 = new Car(DevenT3, "Honda", "Accord", 2002, 154000, "sedan");
+        CarListing listing3 = new CarListing("3", car3, 15500, currentDateTimeWithZone, listing3img);
+        dbManager = CarDatabaseManager.getInstance();
+        dbManager.addListing(DevenT3, listing3);
+
     }
 }
