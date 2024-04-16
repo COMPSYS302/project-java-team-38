@@ -1,6 +1,7 @@
 package com.example.allgoods;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == ITEM_VIEW_TYPE_EMPTY) {
             View view = LayoutInflater.from(context).inflate(R.layout.item_no_result, parent, false);
-            return new EmptyViewHolder(view);
+            return new SearchViewHolder.EmptyViewHolder(view);
         } else {
             View view = LayoutInflater.from(context).inflate(R.layout.item_car_listing, parent, false);
             return new SearchViewHolder(view, listener);
@@ -57,13 +58,7 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if (getItemViewType(position) == ITEM_VIEW_TYPE_RESULT) {
             CarListing carListing = filteredCarListings.get(position);
             SearchViewHolder viewHolder = (SearchViewHolder) holder;
-            viewHolder.tvCarMakeModel.setText(carListing.getCar().getMake() + " " + carListing.getCar().getModel());
-            viewHolder.tvCarYear.setText("Year: " + carListing.getCar().getYear());
-            viewHolder.tvCarPrice.setText("$" + carListing.getPrice());
-            viewHolder.tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
-            if (carListing.getFirstImage() != null) {
-                viewHolder.ivCarPhoto.setImageURI(carListing.getFirstImage());
-            }
+            viewHolder.bind(carListing);
         }
     }
 
@@ -72,25 +67,11 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return filteredCarListings.isEmpty() ? 1 : filteredCarListings.size();
     }
 
-    public int getListingCount() {
-        if(carListings != null){
-            return 1;
-        }
-        return 0;
-    }
-
     public CarListing getItem(int position) {
         if (!filteredCarListings.isEmpty() && position >= 0 && position < filteredCarListings.size()) {
             return filteredCarListings.get(position);
         }
         return null;
-    }
-
-    public void updateData(List<CarListing> newCarListings) {
-        carListings.clear();
-        carListings.addAll(newCarListings);
-        filteredCarListings = new ArrayList<>(carListings);
-        notifyDataSetChanged();
     }
 
     @Override
@@ -135,22 +116,45 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             tvCarPrice = itemView.findViewById(R.id.tvCarPrice);
             tvCarOdo = itemView.findViewById(R.id.tvCarOdo);
 
-            itemView.findViewById(R.id.AddWatchList).setOnClickListener(v -> {
+            itemView.setOnClickListener(v -> {
                 if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
                     listener.onAddWatchClick(getAdapterPosition());
                 }
             });
         }
-    }
 
-    static class EmptyViewHolder extends RecyclerView.ViewHolder {
-        ImageView noResultsImageView;
+        void bind(CarListing carListing) {
+            tvCarMakeModel.setText(carListing.getCar().getMake() + " " + carListing.getCar().getModel());
+            tvCarYear.setText("Year: " + carListing.getCar().getYear());
+            tvCarPrice.setText("$" + carListing.getPrice());
+            tvCarOdo.setText("Odo: " + carListing.getCar().getOdo() + " Km");
+            if (carListing.getFirstImage() != null) {
+                ivCarPhoto.setImageURI(carListing.getFirstImage());
+            }
 
-        public EmptyViewHolder(View itemView) {
-            super(itemView);
-            noResultsImageView = itemView.findViewById(R.id.noSearchResults);
+            // Register click event to navigate to detailed car view and add to recently viewed
+            itemView.setOnClickListener(v -> {
+                User user = UserSession.getInstance(itemView.getContext()).getUser();
+                user.addViewedCarListing(carListing);
+                navigateToCarDetails(carListing);
+            });
+        }
 
+        private void navigateToCarDetails(CarListing carListing) {
+            Context context = itemView.getContext(); // Get the context from itemView
+            Intent intent = new Intent(context, IndepthListingActivity.class);
+            intent.putExtra("CarListing", carListing);  // Ensure CarListing is Serializable or Parcelable
+            context.startActivity(intent);
+        }
+
+
+        static class EmptyViewHolder extends RecyclerView.ViewHolder {
+            ImageView noResultsImageView;
+
+            EmptyViewHolder(View itemView) {
+                super(itemView);
+                noResultsImageView = itemView.findViewById(R.id.noSearchResults);
+            }
         }
     }
-
 }
