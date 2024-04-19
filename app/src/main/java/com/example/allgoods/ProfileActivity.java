@@ -3,6 +3,7 @@ package com.example.allgoods;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,12 +22,35 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout supportIcon;
     private LinearLayout signoutButton;
 
+    private ImageButton homeButton, plusButton, watchlistmenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         initViews();
         setupListeners();
+        navView();
+
+        setupButtonListeners();
+    }
+
+    private void setupButtonListeners() {
+        homeButton.setOnClickListener(v -> navigatetoHomePage());
+        plusButton.setOnClickListener(v -> navigateToCreateListing());
+        watchlistmenu.setOnClickListener(v -> navigateToWatchList());
+
+
+
+    }
+
+    private void navView() {
+        homeButton = findViewById(R.id.homeButton);
+        plusButton = findViewById(R.id.plusButton);
+        watchlistmenu = findViewById(R.id.watchlistmenu);
+
+
+
     }
 
     private void initViews() {
@@ -115,5 +139,23 @@ public class ProfileActivity extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(ProfileActivity.this, "Please Try Again", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void navigateToCreateListing() {
+        Intent intent = new Intent(this, CreateListingActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
+
+    private void navigateToWatchList() {
+        Intent intent = new Intent(this, WatchListActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
+
+    private void navigatetoHomePage() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
     }
 }

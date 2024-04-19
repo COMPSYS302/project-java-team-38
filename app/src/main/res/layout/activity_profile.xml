@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/white">
 
     <!-- Main Content Layout -->
     <RelativeLayout
@@ -235,35 +236,41 @@
         android:background="@color/grey"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:weightSum="6">
-        <Button
+        android:weightSum="6"
+        android:backgroundTint="@color/white">
+        <ImageButton
             android:id="@+id/homeButton"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/baseline_home_24"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_home_24"
             android:text="Home"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:textColor="@color/text_selector" />
-        <Button
-            android:id="@+id/plusButton"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/baseline_add_24"
-            android:text="Create Listing"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:textColor="@color/text_selector" />
+            android:textColor="@color/text_selector"
+            android:contentDescription="Home button"/>
 
-        <Button
+        <ImageButton
+            android:id="@+id/plusButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:src="@drawable/baseline_add_24"
+            android:text="Create Listing"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/text_selector"
+            android:contentDescription="Create Task button"/>
+        <ImageButton
             android:id="@+id/watchlistmenu"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/baseline_add_shopping_cart_24"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:src="@drawable/baseline_add_shopping_cart_24"
             android:text="Watchlist"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:textColor="@color/text_selector" />
+            android:textColor="@color/text_selector"
+            android:contentDescription="Watchlist button"/>
     </LinearLayout>
+
+
 
 </RelativeLayout>
