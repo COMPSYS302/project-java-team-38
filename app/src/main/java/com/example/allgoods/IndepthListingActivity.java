@@ -118,10 +118,18 @@ public class IndepthListingActivity extends AppCompatActivity {
         });
     }
     private void navigateToPaymentsPage() {
-        Intent intent = new Intent(this, PaymentsActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+        CarListing carListing = getIntent().getParcelableExtra("CarListing");
+
+        if (carListing != null) {
+            Intent intent = new Intent(this, PaymentsActivity.class);
+            intent.putExtra("CarListing", carListing); // Pass the CarListing object to PaymentsActivity
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+        } else {
+            Toast.makeText(this, "Error: Car details not available.", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void navigateToWatchlist() {
         Intent intent = new Intent(this, Watchlist.class);
