@@ -35,9 +35,6 @@ public class IndepthListingActivity extends AppCompatActivity {
         ImageButton watchlistbtn = findViewById(R.id.watchlistbtn);
         Button buyNow = findViewById(R.id.btnBuyNow);
         Button watchlistcardbutton = findViewById(R.id.btnWatchlist);
-
-
-
         viewPager = findViewById(R.id.ivCarImageListingDepth);
 
         // Retrieve the Parcelable CarListing object
@@ -91,7 +88,7 @@ public class IndepthListingActivity extends AppCompatActivity {
     private void setupImageSlider(CarListing carListing) {
         sliderAdapter = new ImageSliderAdapter(this);
         viewPager.setAdapter(sliderAdapter);
-        sliderAdapter.setImageUris(carListing.getImages()); // Assumes getImages() method in CarListing
+        sliderAdapter.setImageUris(carListing.getImages());
     }
 
     private void setupCardViewButton(View button, final CardView cardView, final boolean show) {
@@ -122,7 +119,7 @@ public class IndepthListingActivity extends AppCompatActivity {
 
         if (carListing != null) {
             Intent intent = new Intent(this, PaymentsActivity.class);
-            intent.putExtra("CarListing", carListing); // Pass the CarListing object to PaymentsActivity
+            intent.putExtra("CarListing", carListing);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
         } else {
