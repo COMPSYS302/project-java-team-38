@@ -79,7 +79,7 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchAd
 
     private void navigateToCarDetails(CarListing carListing) {
         Intent intent = new Intent(this, IndepthListingActivity.class);
-        intent.putExtra("CarListing", carListing); // Make sure CarListing is Serializable or Parcelable
+        intent.putExtra("CarListing", carListing);
         startActivity(intent);
     }
 

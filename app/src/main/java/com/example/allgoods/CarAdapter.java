@@ -84,7 +84,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
     public void updateWeightedList() {
         HashMap<CarListing, Integer> weightMap = new HashMap<>();
         List<CarListing> newList = new ArrayList<>(carListings);
-        List<CarListing> recentlyViewed = UserSession.getInstance(this.context).getUser().getRecentViewedCarListings();
+        List<CarListing> recentlyViewed = new ArrayList<>();
+        recentlyViewed.addAll(UserSession.getInstance(this.context).getUser().getRecentViewedCarListings());
 
         if (!recentlyViewed.isEmpty()) {
             for (CarListing viewed : recentlyViewed) {
