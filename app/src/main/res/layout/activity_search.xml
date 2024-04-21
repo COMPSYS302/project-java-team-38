@@ -78,23 +78,6 @@
 
 
             <TextView
-                android:id="@+id/main_view_all"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/browse_by_button"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="View All"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:translationX="-20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvCarListings" />
-
-            <TextView
                 android:id="@+id/tvBrowseBy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,7 +90,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvCarListingsSearches" />
 
-            <!-- Grid Layout for Category Buttons -->
+
             <GridLayout
                 android:id="@+id/glBrowseBy"
                 android:layout_width="0dp"
@@ -123,7 +106,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvBrowseBy">
-                <!-- Category Buttons: Defined similarly to existing ones -->
+
                 <Button
                     android:id="@+id/search_hatchback"
                     android:layout_width="0dp"

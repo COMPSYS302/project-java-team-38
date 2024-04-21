@@ -20,6 +20,8 @@ public class IndepthListingActivity extends AppCompatActivity {
 
     private Button buyNow, watchlistcardbutton;
 
+    private CarListing currentCarListing;
+
 
 
     @Override
@@ -37,10 +39,13 @@ public class IndepthListingActivity extends AppCompatActivity {
         Button watchlistcardbutton = findViewById(R.id.btnWatchlist);
         viewPager = findViewById(R.id.ivCarImageListingDepth);
 
-        // Retrieve the Parcelable CarListing object
-        CarListing carListing = getIntent().getParcelableExtra("CarListing");
 
-        // Set up the image slider if CarListing is not null
+        animateButton(buyNow);
+        animateButton(watchlistcardbutton);
+
+        CarListing carListing = getIntent().getParcelableExtra("CarListing");
+        currentCarListing = carListing;
+
         if (carListing != null) {
             setupTextViews(carListing);
             setupImageSlider(carListing);
@@ -51,16 +56,12 @@ public class IndepthListingActivity extends AppCompatActivity {
         // Button functionalities
         btnBack.setOnClickListener(v -> finish());
         buyNow.setOnClickListener(v -> navigateToPaymentsPage());
-        watchlistcardbutton.setOnClickListener(v -> navigateToWatchlist());
+        watchlistcardbutton.setOnClickListener(v -> addToWatchList());
         watchlistbtn.setOnClickListener(v -> Toast.makeText(this, "Added to WatchList", Toast.LENGTH_SHORT).show());
         setupCardViewButton(inquireButton, inquiryCardView, true);
         setupCardViewButton(crossButton, inquiryCardView, false);
 
-
-
     }
-
-
 
 
     private void setupTextViews(CarListing carListing) {
@@ -116,7 +117,6 @@ public class IndepthListingActivity extends AppCompatActivity {
     }
     private void navigateToPaymentsPage() {
         CarListing carListing = getIntent().getParcelableExtra("CarListing");
-
         if (carListing != null) {
             Intent intent = new Intent(this, PaymentsActivity.class);
             intent.putExtra("CarListing", carListing);
@@ -128,10 +128,72 @@ public class IndepthListingActivity extends AppCompatActivity {
     }
 
 
-    private void navigateToWatchlist() {
-        Intent intent = new Intent(this, Watchlist.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    private void addToWatchList() {
+        if (currentCarListing != null) {
+            UserSession userSession = UserSession.getInstance(this);
+            User user = userSession.getUser();
+            WatchlistHelper.getInstance().addToWatchlist(user, currentCarListing);
+            Toast.makeText(this, "Added to watchlist: " + currentCarListing.getCar().getModel(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error adding to Watchlist", Toast.LENGTH_SHORT).show();
+        }
+
     }
+
+    private void animateButton(Button button) {
+        // Create fade-in animation
+        Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
+        fadeIn.setDuration(500); // Customize duration as needed
+
+        // Create fade-out animation
+        Animation fadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
+        fadeOut.setDuration(500); // Customize duration as needed
+
+        // Set click listener for the button
+        button.setOnClickListener(v -> {
+            // Start fade-in animation on button click
+            button.startAnimation(fadeIn);
+        });
+
+        // Set up animation listener for fade-in animation
+        fadeIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Optional: Actions to take when fade-in starts
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Start fade-out animation once fade-in completes
+                button.startAnimation(fadeOut);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Optional: Actions to take if animation repeats
+            }
+        });
+
+        // Set up animation listener for fade-out animation
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Optional: Actions to take when fade-out starts
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Optional: Actions to take when fade-out ends
+                // You can loop the animation here if needed by starting another animation
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Optional: Actions to take if animation repeats
+            }
+        });
+    }
+
+
 
 }

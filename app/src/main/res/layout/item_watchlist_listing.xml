@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
+    android:layout_margin="10dp"
     android:background="@drawable/browse_by_button">
 
     <ImageView
@@ -73,20 +73,6 @@
         android:layout_marginStart="0dp"
         android:background="@drawable/sign_out_card"
         android:gravity="center"
-        android:clickable="true"
-        android:focusable="true"/>
-
-    <Button
-        android:id="@+id/AddWatchList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:drawableTop="@drawable/baseline_add_shopping_cart_24"
-        android:gravity="center"
-        android:contentDescription="Adds to watchlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:clickable="true"
         android:focusable="true"/>
 
