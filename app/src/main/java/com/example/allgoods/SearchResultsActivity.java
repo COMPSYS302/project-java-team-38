@@ -60,7 +60,7 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchAd
 
         searchAdapter = new SearchAdapter(this, carListings, this::onAddWatchClick);
         recyclerView.setAdapter(searchAdapter);
-        if (searchEditText.getText().toString().length() > 0) {
+        if (searchEditText.getText().toString().length() >= 1) {
             searchAdapter.getFilter().filter(searchEditText.getText().toString());
         }
     }

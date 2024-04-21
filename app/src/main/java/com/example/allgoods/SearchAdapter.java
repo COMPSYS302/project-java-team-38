@@ -89,6 +89,11 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                             tempList.add(listing);
                         }
                     }
+                }else{
+                    filteredCarListings = carListings;
+                    FilterResults filterResults = new FilterResults();
+                    filterResults.values = filteredCarListings;
+                    return filterResults;
                 }
                 filteredCarListings = tempList;
                 FilterResults filterResults = new FilterResults();
