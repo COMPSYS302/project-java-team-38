@@ -18,6 +18,10 @@ public class IndepthListingActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private ImageSliderAdapter sliderAdapter;
 
+    private Button buyNow, watchlistcardbutton;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,11 @@ public class IndepthListingActivity extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btnBack);
         ImageButton crossButton = findViewById(R.id.ivCross);
         ImageButton watchlistbtn = findViewById(R.id.watchlistbtn);
+        Button buyNow = findViewById(R.id.btnBuyNow);
+        Button watchlistcardbutton = findViewById(R.id.btnWatchlist);
+
+
+
         viewPager = findViewById(R.id.ivCarImageListingDepth);
 
         // Retrieve the Parcelable CarListing object
@@ -44,10 +53,18 @@ public class IndepthListingActivity extends AppCompatActivity {
 
         // Button functionalities
         btnBack.setOnClickListener(v -> finish());
+        buyNow.setOnClickListener(v -> navigateToPaymentsPage());
+        watchlistcardbutton.setOnClickListener(v -> navigateToWatchlist());
         watchlistbtn.setOnClickListener(v -> Toast.makeText(this, "Added to WatchList", Toast.LENGTH_SHORT).show());
         setupCardViewButton(inquireButton, inquiryCardView, true);
         setupCardViewButton(crossButton, inquiryCardView, false);
+
+
+
     }
+
+
+
 
     private void setupTextViews(CarListing carListing) {
         TextView tvMakeModel = findViewById(R.id.MakeofCar);
@@ -100,4 +117,24 @@ public class IndepthListingActivity extends AppCompatActivity {
             cardView.startAnimation(animation);
         });
     }
+    private void navigateToPaymentsPage() {
+        CarListing carListing = getIntent().getParcelableExtra("CarListing");
+
+        if (carListing != null) {
+            Intent intent = new Intent(this, PaymentsActivity.class);
+            intent.putExtra("CarListing", carListing); // Pass the CarListing object to PaymentsActivity
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+        } else {
+            Toast.makeText(this, "Error: Car details not available.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void navigateToWatchlist() {
+        Intent intent = new Intent(this, Watchlist.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
+
 }
