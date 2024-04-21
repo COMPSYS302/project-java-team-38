@@ -49,98 +49,156 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSearchProducts" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCarListingsSearches"
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/featuredSearches"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-    <GridLayout
-        android:id="@+id/glBrowseBy"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="10dp"
-        android:alignmentMode="alignMargins"
-        android:columnCount="2"
-        android:rowCount="4"
-        app:layout_constraintTop_toBottomOf="@+id/rvCarListingsSearches"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp">
+        app:layout_constraintEnd_toEndOf="@id/bottom_navigation_bar">
 
-        <Button
-            android:id="@+id/search_hatchback"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_columnWeight="1"
-            android:text="Hatchback"
-            android:background="@drawable/browse_by_button"
-            android:padding="16dp" />
+        <!-- All scrollable content goes here -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/search_sedan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_columnWeight="1"
-            android:text="Sedan"
-            android:background="@drawable/browse_by_button"
-            android:padding="16dp"
-            android:gravity="center" />
+            <!-- RecyclerView for Car Listings -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCarListingsSearches"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <Button
-            android:id="@+id/search_suv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_columnWeight="1"
-            android:text="Rv/SUV"
-            android:background="@drawable/browse_by_button"
-            android:padding="16dp"
-            android:gravity="center" />
-        <Button
-            android:id="@+id/search_coupe"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_columnWeight="1"
-            android:text="Coupe"
-            android:background="@drawable/browse_by_button"
-            android:padding="16dp"
-            android:gravity="center" />
-        <Button
-            android:id="@+id/search_minivan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_columnWeight="1"
-            android:text="Minivan"
-            android:background="@drawable/browse_by_button"
-            android:padding="16dp"
-            android:gravity="center" />
 
-        <Button
-            android:id="@+id/search_other"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_columnWeight="1"
-            android:text="Other"
-            android:background="@drawable/browse_by_button"
-            android:padding="16dp"
-            android:gravity="center" />
+            <TextView
+                android:id="@+id/main_view_all"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/browse_by_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="View All"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:translationX="-20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvCarListings" />
 
-    </GridLayout>
+            <TextView
+                android:id="@+id/tvBrowseBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Browse by"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvCarListingsSearches" />
+
+            <!-- Grid Layout for Category Buttons -->
+            <GridLayout
+                android:id="@+id/glBrowseBy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="13dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:padding="16dp"
+                android:rowCount="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBrowseBy">
+                <!-- Category Buttons: Defined similarly to existing ones -->
+                <Button
+                    android:id="@+id/search_hatchback"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/browse_by_button"
+                    android:padding="16dp"
+                    android:text="Hatchback" />
+
+                <Button
+                    android:id="@+id/search_sedan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/browse_by_button"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Sedan" />
+
+                <Button
+                    android:id="@+id/search_suv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/browse_by_button"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Rv/SUV" />
+
+                <Button
+                    android:id="@+id/search_coupe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/browse_by_button"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Coupe" />
+
+                <Button
+                    android:id="@+id/search_minivan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/browse_by_button"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Minivan" />
+
+                <Button
+                    android:id="@+id/search_other"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/browse_by_button"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Other"
+                    android:layout_marginBottom="40dp"/>
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
 
     <LinearLayout
         android:id="@+id/bottom_navigation_bar"
