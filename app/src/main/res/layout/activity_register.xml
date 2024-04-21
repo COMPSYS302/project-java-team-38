@@ -14,7 +14,7 @@
         android:background="@color/white"
         android:id="@+id/Flipper"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="225dp"
         android:autoStart="true"
         android:flipInterval="3000"
         android:inAnimation="@anim/slide_in_from_left"
@@ -83,10 +83,9 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="right"
-                android:contentDescription="Image Button"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/baseline_arrow_back_24"
-                />
+                android:contentDescription="Image Button"
+                android:src="@drawable/baseline_arrow_back_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,7 +136,7 @@
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/browse_by_button"
 
                 android:hint="Password"
