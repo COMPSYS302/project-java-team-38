@@ -18,7 +18,7 @@ public class WatchListActivity extends AppCompatActivity {
 
     private RecyclerView rvCarListings;
     private ImageButton homeButton, plusButton;
-    private ImageView backButton; // Change type to Button if it's a button in your layout
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

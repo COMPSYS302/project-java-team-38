@@ -2,10 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="All Tests">
-        <State />
-      </entry>
-      <entry key="IndepthListingActivity">
+      <entry key="MainActivity">
         <State>
           <targetSelectedWithDropDown>
             <Target>
@@ -18,29 +15,13 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-16T11:20:50.858054400Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-21T05:45:05.127491200Z" />
         </State>
       </entry>
-      <entry key="MainActivity">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\rohan\.android\avd\Pixel_2_API_30.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-15T11:47:15.775540Z" />
-        </State>
-      </entry>
-      <entry key="StartingPageActivity">
+      <entry key="RegisterActivity">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="Unnamed">
         <State />
       </entry>
     </value>

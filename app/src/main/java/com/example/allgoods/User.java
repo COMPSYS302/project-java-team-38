@@ -16,11 +16,23 @@ public class User implements Parcelable {
 
     public User(String id, String username, String password, String email) {
         this.id = id;
-        this.username = username;
-        this.email = email;
-        this.encryptedPassword = userHelper.encrypt(password);
+        if (userHelper.isValidUsername(username)) {
+            this.username = username;
+        }else{
+            throw new IllegalArgumentException("Please ensure there are no special characters in your username");
+        }
+        if(userHelper.isValidEmail(email)){
+            this.email = email;
+        }
+        else{
+            throw new IllegalArgumentException("Please ensure your email is valid");
+        }
+        if(userHelper.isValidPassword(password)) {
+            this.encryptedPassword = userHelper.encrypt(password);
+        }else{
+            throw new IllegalArgumentException("Please Ensure your password has a uppercase and a special character");
+        }
         this.recentViewedCarListings = new ArrayList<>(3);
-        this.userHelper = new UserHelper();
     }
 
     // Constructor used for parceling
