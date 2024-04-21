@@ -21,7 +21,7 @@ public class IndepthListingActivity extends AppCompatActivity {
     private Button buyNow, watchlistcardbutton;
 
     private CarListing currentCarListing;
-
+    private ImageButton homeButton, plusButton, watchlistButton;
 
 
     @Override
@@ -38,6 +38,9 @@ public class IndepthListingActivity extends AppCompatActivity {
         Button buyNow = findViewById(R.id.btnBuyNow);
         Button watchlistcardbutton = findViewById(R.id.btnWatchlist);
         viewPager = findViewById(R.id.ivCarImageListingDepth);
+        homeButton = findViewById(R.id.homeButton);
+        plusButton = findViewById(R.id.plusButton);
+        watchlistButton = findViewById(R.id.watchlistButton);
 
 
         animateButton(buyNow);
@@ -54,6 +57,9 @@ public class IndepthListingActivity extends AppCompatActivity {
         }
 
         // Button functionalities
+        homeButton.setOnClickListener(v -> navigateToMainPage());
+        plusButton.setOnClickListener(v -> navigateToCreateListing());
+        watchlistButton.setOnClickListener(v -> navigateToWatchList());
         btnBack.setOnClickListener(v -> finish());
         buyNow.setOnClickListener(v -> navigateToPaymentsPage());
         watchlistcardbutton.setOnClickListener(v -> addToWatchList());
@@ -61,6 +67,21 @@ public class IndepthListingActivity extends AppCompatActivity {
         setupCardViewButton(inquireButton, inquiryCardView, true);
         setupCardViewButton(crossButton, inquiryCardView, false);
 
+    }
+
+    private void navigateToMainPage() {
+        startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+    }
+
+    private void navigateToCreateListing() {
+        startActivity(new Intent(this, CreateListingActivity.class));
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
+
+    private void navigateToWatchList() {
+        startActivity(new Intent(this, WatchListActivity.class));
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
     }
 
 

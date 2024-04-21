@@ -59,6 +59,8 @@ public class CreateListingActivity extends AppCompatActivity {
 
     private String selectedCarType;
 
+    private ImageButton homeButton, plusButton, watchlistButton;
+
     private final String fieldsNotFilled = "Code 404";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +79,13 @@ public class CreateListingActivity extends AppCompatActivity {
         Spinner carTypeSpinner = findViewById(R.id.carTypeSpinner);
         TextView validateListing = findViewById(R.id.validateListing);
         ImageButton addPhotoButton = findViewById(R.id.addPhotoButton);
+        homeButton = findViewById(R.id.homeButton);
+        plusButton = findViewById(R.id.plusButton);
+        watchlistButton = findViewById(R.id.watchlistButton);
 
-
+        homeButton.setOnClickListener(v -> navigatetoHomePage());
+        plusButton.setOnClickListener(v -> showToast("Already Creating Listing"));
+        watchlistButton.setOnClickListener(v -> navigateToWatchList());
         backCreateListing.setOnClickListener(v -> onBack());
         confirmButton.setOnClickListener(v -> onConfirmListing());
         validateListing.setOnClickListener(v -> validateListing());
@@ -371,6 +378,16 @@ public class CreateListingActivity extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
     }
+    private void navigateToWatchList() {
+        Intent intent = new Intent(this, WatchListActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
 
+    private void navigatetoHomePage() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+    }
 
 }

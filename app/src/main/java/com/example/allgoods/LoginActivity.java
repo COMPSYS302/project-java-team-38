@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(view -> {
             try {
                 if(authenticationManager.loginAuthenticator(username.getText().toString(), password.getText().toString()) && authenticationManager.databaseValidator()) {
-                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     User currentUser = authenticationManager.users.get(username.getText().toString());
                     UserSession session = UserSession.getInstance(LoginActivity.this);
                     session.createLoginSession(currentUser);

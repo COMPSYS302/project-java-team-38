@@ -40,7 +40,6 @@ public class SearchResultsActivity extends AppCompatActivity implements SearchAd
         searchEditText = findViewById(R.id.etSearchProducts);
         recyclerView = findViewById(R.id.rvCarListingsSearches);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         hatchback = findViewById(R.id.search_hatchback);
         sedan = findViewById(R.id.search_sedan);
         suv = findViewById(R.id.search_suv);
